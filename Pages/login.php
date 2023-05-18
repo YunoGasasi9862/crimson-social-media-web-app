@@ -1,3 +1,7 @@
+<?php
+require "../crimson-social-media-web-app/scripts/db.php";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,10 +10,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="../Bootstrap/css/mdb.min.css">
-    <link rel="stylesheet" href="/Bootstrap/css/mdb.rtl.min.css">
+    <link rel="stylesheet" href="../css/index.css">
+
     <title>Login</title>
 </head>
 <body>
+
     <section class="vh-100 bg-image bg">
         <div class="mask d-flex align-items-center h-100 gradient-custom-3">
           <div class="container h-100">
