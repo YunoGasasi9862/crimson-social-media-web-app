@@ -1,5 +1,5 @@
 <?php
-require "../crimson-social-media-web-app/scripts/db.php";
+require "../scripts/db.php";
 
 ?>
 <!DOCTYPE html>

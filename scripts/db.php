@@ -7,7 +7,7 @@ const PASS="";
 //creating connection
 $db=new PDO(DSN, USER, PASS);
 $records=$db->prepare("SELECT * FROM users");
-$array=$record->execute()->fetch();
+$array=$records->execute();
 
 
 var_dump($array);

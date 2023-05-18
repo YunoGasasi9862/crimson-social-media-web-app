@@ -47,7 +47,7 @@
                     class="btn btn-success btn-block btn-lg gradient-custom-2 text-body">Register</button>
                 </div>
 
-                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="/crimson-social-media-web-app/Pages/login.php"
+                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="Pages/login.php"
                     class="fw-bold text-body"><u>Login here</u></a></p>
 
               </form>
