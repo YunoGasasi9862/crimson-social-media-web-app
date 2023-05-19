@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crimson</title>
     <link rel="stylesheet" href="Bootstrap/css/mdb.min.css">
+
     <link rel="stylesheet" href="css/index.css">
 
 
@@ -33,6 +34,11 @@
                 </div>
 
                 <div class="form-outline mb-4">
+                  <input type="date" id="form3Example3cg" class="form-control form-control-lg" />
+                  <label class="form-label" for="form3Example3cg">Your Date of Birth</label>
+                </div>
+
+                <div class="form-outline mb-4">
                   <input type="password" id="form3Example4cg" class="form-control form-control-lg" />
                   <label class="form-label" for="form3Example4cg">Password</label>
                 </div>
@@ -44,7 +50,7 @@
 
                 <div class="d-flex justify-content-center">
                   <button type="button"
-                    class="btn btn-success btn-block btn-lg gradient-custom-2 text-body">Register</button>
+                    class="btn btn-danger btn-block btn-lg gradient-custom-2 text-body">Register</button>
                 </div>
 
                 <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="Pages/login.php"

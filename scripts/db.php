@@ -10,7 +10,34 @@ $records=$db->prepare("SELECT * FROM users");
 $users=$records->execute();
 $users=$records->fetchAll(PDO::FETCH_ASSOC);
 
-var_dump($users);
 
+function AuthenticateUser($email, $password)
+{
+    global $db;
+    $records=$db->prepare("SELECT * FROM users WHERE email = ?");
+    $records->execute([$email]);
+    if($records->rowCount())  //has a record with that name
+    {
+        $user=$records->fetch(PDO::FETCH_ASSOC);
+        if(password_verify($password, $user['password'])) //then verifies the name
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+function GetUser($email)
+{
+    global $db;
+    $record=$db->prepare("SELECT * FROM users WHERE email= ?");
+    $record->execute([$email]);
+    return $record->fetch(PDO::FETCH_ASSOC);
+}
+
+function Register($email, $name, $password, $file, $DOB)
+{
+
+}
 
 ?>

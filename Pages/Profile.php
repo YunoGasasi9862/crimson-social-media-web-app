@@ -156,6 +156,9 @@ background: linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238
                 <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(114).webp"
                   alt="image 1" class="w-100 rounded-3">
               </div>
+              <a href="logout.php" class="btn btn-danger w-bold text-body">Logout</a>
+                 
+
             </div>
           </div>
         </div>
