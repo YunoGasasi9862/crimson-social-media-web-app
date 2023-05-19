@@ -16,7 +16,7 @@ if(!empty($_POST))
   $userLoggingIn= AuthenticateUser($email, $password);
   if($userLoggingIn)
   {
-    $_SESSION['User']=GetUser($email);  
+    $_SESSION['User']=GetUser($email);  //sets up a session for that particular user
     header("Location: Profile.php");
     exit;
   }
@@ -49,15 +49,20 @@ if(!empty($_POST))
                     <form action="" method="post">
                
       
-                      <div class="form-outline mb-4">
-                        <input name="email" type="email" id="form3Example3cg" class="form-control form-control-lg" />
-                        <label class="form-label" for="form3Example3cg">Your Email</label>
-                      </div>
+                 
+                                <div class="form-floating mb-4">
+                    <input name="email" type="email" class="form-control border-1" id="floatingInput1" placeholder="name@example.com">
+                    <label for="floatingInput1">Email address</label>
+                  </div>
+
+                  
+                  <div class="form-floating mb-4">
+                    <input name="password" type="password" class="form-control border-1" id="floatingInput1" placeholder="name@example.com">
+                    <label for="floatingInput1">Password</label>
+                  </div>
       
-                      <div class="form-outline mb-4">
-                        <input name="password" type="password" id="form3Example4cg" class="form-control form-control-lg" />
-                        <label class="form-label" for="form3Example4cg">Password</label>
-                      </div>
+      
+
       
                       <div class="d-flex justify-content-center">
                         <button type="submit"

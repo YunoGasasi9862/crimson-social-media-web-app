@@ -1,5 +1,6 @@
 <?php
 
+require "Pages/PictureUpload.php";  //including the picture upload class
 const DSN = "mysql:host=localhost;port=3306;dbname=crimson;charset=utf8mb4" ;
 const USER="root";
 const PASS="";
@@ -37,7 +38,10 @@ function GetUser($email)
 
 function Register($email, $name, $password, $file, $DOB)
 {
-
+    global $db;
+    $statement= $db->prepare("INSERT INTO users (email, name, password, profilePic, DOB) VALUES (?, ?, ?, ?, ?)");
+    $filePath= new PictureUpload($file);
+    $statement->execute([$email, $name, $password, $file, $DOB]);  
 }
 
 ?>
