@@ -1,5 +1,4 @@
 <?php
-require "../crimson-social-media-web-app/scripts/db.php";
 
 ?>
 <!DOCTYPE html>
@@ -8,7 +7,6 @@ require "../crimson-social-media-web-app/scripts/db.php";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="../Bootstrap/css/mdb.min.css">
     <link rel="stylesheet" href="../css/index.css">
 
@@ -25,7 +23,7 @@ require "../crimson-social-media-web-app/scripts/db.php";
                   <div class="card-body p-5">
                     <h2 class="text-uppercase text-center mb-5">Sign in</h2>
       
-                    <form>
+                    <form method="post">
       
                       <div class="form-outline mb-4">
                         <input type="email" id="form3Example3cg" class="form-control form-control-lg" />
