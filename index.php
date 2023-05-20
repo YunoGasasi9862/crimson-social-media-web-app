@@ -20,7 +20,7 @@ if(!empty($_POST))
     if(empty($error))
     {
       $filePath= new PictureUpload("PP", "PPimages"); //they both have to be string
-       Register($email, $password, $name, $surname, $filePath->FName, $DOB);
+       Register($email, $password, $username, $name, $surname, $filePath->filename, $DOB);
        header("Location: Pages/login.php");
        exit;
     }
@@ -73,6 +73,11 @@ if(!empty($_POST))
         <div class="form-floating mb-4">
           <input name="email" type="email" class="form-control border-1" id="floatingInput1" placeholder="name@example.com">
           <label for="floatingInput1">Email address</label>
+        </div>
+
+        <div class="form-floating mb-4">
+          <input name="username" type="text" class="form-control border-1" id="floatingInput1" placeholder="xxxx">
+          <label for="floatingInput1">User Name</label>
         </div>
              
                 <div class="form-floating mb-4">

@@ -48,10 +48,7 @@ if(!empty($_POST))
                     <h2 class="text-uppercase text-center mb-5">Sign in</h2>
       
                     <form action="" method="post">
-               
-      
-                 
-                                <div class="form-floating mb-4">
+                    <div class="form-floating mb-4">
                     <input name="email" type="email" class="form-control border-1" id="floatingInput1" placeholder="name@example.com">
                     <label for="floatingInput1">Email address</label>
                   </div>
@@ -62,15 +59,11 @@ if(!empty($_POST))
                     <label for="floatingInput1">Password</label>
                   </div>
       
-      
-
-      
-                      <div class="d-flex justify-content-center">
-                        <button type="submit"
-                          class="btn btn-danger btn-block btn-lg gradient-custom-4 text-body">Sign in</button>
-                      </div>
-      
-                      </form>
+                  <div class="d-flex justify-content-center">
+                    <button type="submit"
+                      class="btn btn-danger btn-block btn-lg gradient-custom-4 text-body">Sign in</button>
+                  </div>
+                  </form>
       
                   </div>
                 </div>

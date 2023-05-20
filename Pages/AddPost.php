@@ -1,3 +1,22 @@
+<?php
+include "../Classes/post.php";
+
+if($_SERVER['REQUEST_METHOD']=="POST"){
+    $result= Post::create_post("root2525",$_POST);
+
+    if($result==""){
+        header("Location: Feed.php");
+        die;
+    }else{
+        echo "ERROR OCCURED";
+        echo $result;
+    }
+}
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +58,7 @@
                     <h5 class="card-title">Add Post</h5>
                     <input name="image" type="file" class="form-control border-1" id="floatingInput1" placeholder="xx-xx-xxxx">
                     <br>
-                    <textarea name="explanation" id="explanation" cols="74" rows="2" placeholder="Write Description"></textarea>
+                    <textarea name="description" id="description" cols="74" rows="2" placeholder="Write Description"></textarea>
                     <br><br>
                     <input name="submitPost" class="btn btn-primary" type="submit" value="Post">
                 </div>

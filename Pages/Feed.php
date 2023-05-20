@@ -1,9 +1,12 @@
 <?php
     session_start();
-    include "src/post.php";
-    include "src/login.php";
+    //include "src/post.php";
+    //include "src/login.php";
+    include "../Classes/post.php";
+    include "../Classes/user.php";
 
-
+    //collect posts
+    $posts= Post::get_posts("root2525");
 ?>
 
 <!DOCTYPE html>
@@ -24,36 +27,23 @@
 
       <nav>
         <div class="nav-item">
-          <a href="./post.php"><img src="../img/camara-icon-21.png" alt="" id="camera" ></a>
+          <a href="./AddPost.php"><img src="../img/camara-icon-21.png" alt="" id="camera" ></a>
         </div>
         <div class="nav-item">
           <img src="../img/search.png" alt="" id="search">
         </div>
       </nav>
 
-      <div class="card">
+      <?php
+      if($posts){
+        foreach($posts as $row){
+          $row_user=User::get_user($row["username"]);
+          include "../HTML/post.php";
+        }
+      }
+      ?>
 
-        <div class="profile">
-          <img src="./../img//avatar-1.webp" id="profimg">
-          <p>Avatar Surname</p>
-        </div>
-
-        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-          <img src="../img/111.webp" class="img-fluid post" />
-          <a href="#!">
-            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-          </a>
-        </div>
-
-        <div class="card-body">
-          <div class="reaction">
-            <img src="../img/likebutn.png" alt="" id="like"><span id="like_number">4</span> 
-            <img src="../img/comment.png" alt="" id="comment"><span id="comment_number">4</span> 
-          </div>
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
+      
 
     </div>
   </div>
