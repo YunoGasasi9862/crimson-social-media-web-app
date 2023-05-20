@@ -1,6 +1,6 @@
 <?php
 
-require "Pages/PictureUpload.php";  //including the picture upload class
+ //including the picture upload class
 const DSN = "mysql:host=localhost;port=3306;dbname=crimson;charset=utf8mb4" ;
 const USER="root";
 const PASS="";
@@ -23,6 +23,9 @@ function AuthenticateUser($email, $password)
         if(password_verify($password, $user['password'])) //then verifies the name
         {
             return true;
+        }else
+        {
+            return false;
         }
     }
 
@@ -36,12 +39,12 @@ function GetUser($email)
     return $record->fetch(PDO::FETCH_ASSOC);
 }
 
-function Register($email, $name, $password, $file, $DOB)
+function Register($email, $password, $name, $file, $DOB)
 {
     global $db;
-    $statement= $db->prepare("INSERT INTO users (email, name, password, profilePic, DOB) VALUES (?, ?, ?, ?, ?)");
-    $filePath= new PictureUpload($file);
-    $statement->execute([$email, $name, $password, $file, $DOB]);  
+    $password=password_hash($password, PASSWORD_BCRYPT); //hashed password
+    $statement= $db->prepare("INSERT INTO users (email,  password, name, profile, DOB) VALUES (?, ?, ?, ?, ?)");
+    $statement->execute([$email,$password, $name, $file, $DOB]);  
 }
 
 ?>
