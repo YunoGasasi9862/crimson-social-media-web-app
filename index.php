@@ -1,5 +1,4 @@
 <?php
-
 if(!empty($_POST))
 {
   require "scripts\db.php";
@@ -17,8 +16,8 @@ if(!empty($_POST))
     {
       $filePath= new PictureUpload("PP", "PPimages"); //they both have to be string
        Register($email, $password, $userName, $filePath->FName, $DOB);
-        header("Location: Pages/Profile.php");
-        exit;
+       header("Location: Pages/login.php");
+       exit;
     }
 
 }

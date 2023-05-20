@@ -22,7 +22,7 @@ class PictureUpload   //pictureClass
                 $this->error = "File size allowed (1024 * 1024 bytes). Please upload a smaller file.";
             }else
             {
-                $this->FName = sha1(uniqid() . $tmp_name . $name . $size/$size*3). ".$extension";  //creating unique profile names in the DB
+                $this->FName = sha1(uniqid() . $tmp_name . $name . $size). ".$extension";  //creating unique profile names in the DB
                 if (!move_uploaded_file($tmp_name, $uploadFolder."/".$this->FName)){//tries to move the file
                     $this->error = "Move/Copy Error" ;
                     $this->FName = null ; 
