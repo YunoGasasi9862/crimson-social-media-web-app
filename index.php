@@ -1,12 +1,17 @@
 <?php
 if(!empty($_POST))
 {
-  require "scripts\db.php";
+  require "scripts/db.php";
   require "Pages/PictureUpload.php";
   extract($_POST);
   extract($_FILES);
-
   $error=[];
+  filter_var($email, FILTER_SANITIZE_SPECIAL_CHARS);
+  filter_var($password, FILTER_SANITIZE_SPECIAL_CHARS);
+  filter_var($repeatPassword, FILTER_SANITIZE_SPECIAL_CHARS);
+  filter_var($name, FILTER_SANITIZE_SPECIAL_CHARS);
+  filter_var($surname, FILTER_SANITIZE_SPECIAL_CHARS);
+
   if($password!=$repeatPassword)
   {
     $error["pass"]="Passwords do not match!";
