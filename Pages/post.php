@@ -34,14 +34,16 @@
             <br><br><br>
             <form action="" method="post">
             <div class="card text-center">
-                <div class="card-header">Add a Post</div>
+                <div class="card-header">Create Post</div>
                 <div class="card-body">
-                    <h5 class="card-title">Choose an image to share </h5>
-                    <a href="#" class="btn btn-primary">Button</a>
-                    <p class="card-text"></p>
-                    <textarea name="explanation" id="explanation" cols="50" rows="1" placeholder="Explanation"></textarea>
+                    <h5 class="card-title">Add Post</h5>
+                    <input name="image" type="file" class="form-control border-1" id="floatingInput1" placeholder="xx-xx-xxxx">
+                    <br>
+                    <textarea name="explanation" id="explanation" cols="74" rows="2" placeholder="Write Description"></textarea>
+                    <br><br>
+                    <input name="submitPost" class="btn btn-primary" type="submit" value="Post">
                 </div>
-                <div class="card-footer text-muted">2 days ago</div>
+                <div class="card-footer text-muted">@user</div>
             </div>
             </form>
         </div>
