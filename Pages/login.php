@@ -13,6 +13,8 @@ extract($_POST);
 
 if(!empty($_POST))
 {
+  filter_var($email, FILTER_SANITIZE_SPECIAL_CHARS);
+  filter_var($password, FILTER_SANITIZE_SPECIAL_CHARS);
   $userLoggingIn= AuthenticateUser($email, $password);
   if($userLoggingIn)
   {
