@@ -1,3 +1,17 @@
+<?php
+require "../scripts/db.php";
+session_start();
+var_dump($_SESSION['User']);
+$email=$_SESSION['User']['email'];
+$user= GetUser($email);
+if($_SESSION['User']['profile']!=null)
+  $profile=$user['profile'];
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,9 +95,9 @@ background: linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238
           <div class="rounded-top text-white d-flex flex-row" style="background-image: url('../img/profilebackground.jpg'); height:200px;">
             
           <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
-           <a href=""> <img src="../../img/home.png" alt="" id="home"></a>
+           <a href=""> <img src="../img/home.png" alt="" id="home"></a>
             <a href=""><img src="../img/notification.png" alt="" id="notif"></a>
-              <img src="../img/avatar-1.webp"
+              <img src="../PPimages/<?= $profile ?>"
                 alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
                 style="width: 150px; z-index: 1">
               <button type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark"
@@ -92,7 +106,7 @@ background: linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238
               </button>
             </div>
             <div class="ms-3" style="margin-top: 130px;">
-              <h5>Andy Horwitz</h5>
+              <h5><?=$_SESSION["User"]["name"] ?></h5>
               <p>New York</p>
             </div>
           </div>

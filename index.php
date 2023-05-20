@@ -1,13 +1,31 @@
 <?php
-session_start();
-
 if(!empty($_POST))
 {
+  require "scripts/db.php";
+  require "Pages/PictureUpload.php";
   extract($_POST);
-  require "Pages/Register.php";
+  extract($_FILES);
+  $error=[];
+  filter_var($email, FILTER_SANITIZE_SPECIAL_CHARS);
+  filter_var($password, FILTER_SANITIZE_SPECIAL_CHARS);
+  filter_var($repeatPassword, FILTER_SANITIZE_SPECIAL_CHARS);
+  filter_var($name, FILTER_SANITIZE_SPECIAL_CHARS);
+  filter_var($surname, FILTER_SANITIZE_SPECIAL_CHARS);
+
+  if($password!=$repeatPassword)
+  {
+    $error["pass"]="Passwords do not match!";
+
+  }
+    if(empty($error))
+    {
+      $filePath= new PictureUpload("PP", "PPimages"); //they both have to be string
+       Register($email, $password, $name, $surname, $filePath->FName, $DOB);
+       header("Location: Pages/login.php");
+       exit;
+    }
 
 }
-
 
 ?>
 
@@ -39,12 +57,17 @@ if(!empty($_POST))
               <h2 class="text-uppercase text-center mb-5">Welcome to Crimson!</h2>
 
               
-              <form action="" method="post">
+              <form action="" method="post" enctype="multipart/form-data">
       
              
               <div class="form-floating mb-4">
-          <input name="userName" type="text" class="form-control border-1" id="floatingInput1" placeholder="Name">
+          <input name="name" type="text" class="form-control border-1" id="floatingInput1" placeholder="Name">
           <label for="floatingInput1">Your Name</label>
+        </div>
+
+        <div class="form-floating mb-4">
+          <input name="surname" type="text" class="form-control border-1" id="floatingInput1" placeholder="Name">
+          <label for="floatingInput1">Your Surname</label>
         </div>
         
         <div class="form-floating mb-4">
@@ -63,12 +86,12 @@ if(!empty($_POST))
         </div>
 
         <div class="form-floating mb-4">
-          <input type="password" class="form-control border-1" id="floatingInput1" placeholder="xx-xx-xxxx">
+          <input name="repeatPassword" type="password" class="form-control border-1" id="floatingInput1" placeholder="xx-xx-xxxx">
           <label for="floatingInput1">Repeat your password</label>
         </div>
 
         <div class="form-floating mb-6">
-          <input name="ProfilePicture" type="file" class="form-control border-1" id="floatingInput1" placeholder="xx-xx-xxxx">
+          <input name="PP" type="file" class="form-control border-1" id="floatingInput1" placeholder="xx-xx-xxxx">
           <label for="floatingInput1">Upload Profile Picture</label>
         </div>
 
