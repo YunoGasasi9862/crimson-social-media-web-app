@@ -2,8 +2,8 @@
 
 class PictureUpload   //pictureClass
 {
-    public $FName = null ;
-    public $Error = null ;
+    public $filename = null ;
+    public $error = null ;
     const MAX_FILESIZE = 1024 * 1024 ; 
 
     public function __construct($file, $uploadFolder) //foldername is the folder where the file will be uploaded
@@ -22,10 +22,10 @@ class PictureUpload   //pictureClass
                 $this->error = "File size allowed (1024 * 1024 bytes). Please upload a smaller file.";
             }else
             {
-                $this->FName = sha1(uniqid() . $tmp_name . $name . $size). ".$extension";  //creating unique profile names in the DB
-                if (!move_uploaded_file($tmp_name, $uploadFolder."/".$this->FName)){//tries to move the file
+                $this->filename = sha1(uniqid() . $tmp_name . $name . $size). ".$extension";  //creating unique profile names in the DB
+                if (!move_uploaded_file($tmp_name, $uploadFolder."/".$this->filename)){//tries to move the file
                     $this->error = "Move/Copy Error" ;
-                    $this->FName = null ; 
+                    $this->filename = null ; 
                   }
             }
 

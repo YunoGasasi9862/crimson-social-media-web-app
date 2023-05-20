@@ -1,0 +1,47 @@
+.gradient-custom-2 {
+    background: #fbc2eb;
+    background: -webkit-linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1));
+    background: linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1))
+  }
+
+  #home {
+    width: 30px;
+    position: absolute;
+    top: 20px;
+  }
+
+  #notif {
+    width: 30px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
+  .follow:hover .submain {
+    display: block;
+  }
+
+  .submain {
+    position: absolute;
+    right: 20px;
+    top: 280px;
+    display: none;
+  }
+
+  .submain ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .submain li {
+    padding: 5px 0;
+  }
+
+  .submain li a {
+    text-decoration: none;
+    color: #333;
+  }
+
+  .submain li a:hover {
+    color: #ff0000;
+  }

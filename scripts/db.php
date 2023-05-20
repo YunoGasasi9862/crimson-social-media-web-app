@@ -39,11 +39,11 @@ function GetUser($email)
     return $record->fetch(PDO::FETCH_ASSOC);
 }
 
-function Register($email, $password, $name, $surname, $file, $DOB)
+function Register($email, $password, $username, $name, $surname, $file, $DOB)
 {
     global $db;
     $password=password_hash($password, PASSWORD_BCRYPT); //hashed password
-    $statement= $db->prepare("INSERT INTO users (email,  password, name, surname, profile, DOB) VALUES (?, ?, ?, ?, ?, ?)");
+    $statement= $db->prepare("INSERT INTO users (email,  password, username, name, surname, profile, DOB) VALUES (?, ?, ?, ?, ?, ?, ?)");
     $statement->execute([$email,$password, $name, $surname, $file, $DOB]);  
 }
 

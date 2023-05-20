@@ -1,12 +1,12 @@
 <?php
-require "../scripts/db.php";
+/*require "../scripts/db.php";
 session_start();
 var_dump($_SESSION['User']);
 $email=$_SESSION['User']['email'];
 $user= GetUser($email);
 if($_SESSION['User']['profile']!=null)
   $profile=$user['profile'];
-
+*/
 
 
 ?>
@@ -20,70 +20,10 @@ if($_SESSION['User']['profile']!=null)
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/profile.css">
     <title>Document</title>
 </head>
-<style>
-    .gradient-custom-2 {
-/* fallback for old browsers */
-background: #fbc2eb;
 
-
-/* Chrome 10-25, Safari 5.1-6 */
-background: -webkit-linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1));
-
-/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-background: linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1))
-
-
-
-}
-
-
-#home {
-
-    width:30px;
-
-    position:absolute;
-    top:20px;
-
-}
-#notif{
-    width:30px;
-
-    position:absolute;
-    top:20px;
-    right:20px;
-
-}
-.follow:hover .submain {
-  display: block;
-}
-
-.submain {
-  position: absolute;
-  right: 20px;
-  top: 280px;
-  display: none;
-}
-
-.submain ul {
-  list-style: none;
-  padding: 0;
-}
-
-.submain li {
-  padding: 5px 0;
-}
-
-.submain li a {
-  text-decoration: none;
-  color: #333;
-}
-
-.submain li a:hover {
-  color: #ff0000;
-}
-</style>
 
 <body>
 
