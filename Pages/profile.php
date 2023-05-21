@@ -1,12 +1,12 @@
 <?php
-/*require "../scripts/db.php";
+require "../scripts/db.php";
 session_start();
 var_dump($_SESSION['User']);
 $email=$_SESSION['User']['email'];
 $user= GetUser($email);
 if($_SESSION['User']['profile']!=null)
   $profile=$user['profile'];
-*/
+
 
 
 ?>
