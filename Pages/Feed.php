@@ -1,5 +1,7 @@
 <?php
     session_start();
+    var_dump($_SESSION['User']); 
+    $email=$_SESSION['User']['email'];
     //include "src/post.php";
     //include "src/login.php";
     include "../Classes/post.php";
@@ -37,6 +39,7 @@
       <?php
       if($posts){
         foreach($posts as $row){
+          var_dump($row["username"]);
           $row_user=User::get_user($row["username"]);
           include "../HTML/post.php";
         }

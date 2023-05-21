@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
   KEY `likes` (`likes`),
   KEY `date` (`date`),
   KEY `comments` (`comments`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `posts` (`id`, `postid`, `username`, `post`, `image`, `comments`, `likes`, `date`) VALUES
 (12, 632027717095717, 'root2525', 'Are you ready for a new adventure? Where are the kids?', 'd6f74ba5a378ee7a5e565d7b1cdcaabbcbcf12d4.jpg', 0, 0, '2023-05-21 19:34:23'),
