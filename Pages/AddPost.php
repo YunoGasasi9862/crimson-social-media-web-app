@@ -2,8 +2,13 @@
 include "../Classes/post.php";
 
 if($_SERVER['REQUEST_METHOD']=="POST"){
-    $result= Post::create_post("root2525",$_POST);
+    require "../Pages/PictureUpload.php";
 
+    extract($_POST);
+    extract($_FILES);
+    $filePath = new PictureUpload("postimage", "../PostImages"); //they both have to be string
+    $result= Post::create_post("root2525",$filePath->filename, $_POST);
+    
     if($result==""){
         header("Location: Feed.php");
         die;
@@ -51,12 +56,12 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
     <div class="h-100 gradient-custom-2 ">
         <div class="main">
             <br><br><br>
-            <form action="" method="post">
+            <form action="" method="post"  enctype="multipart/form-data">
             <div class="card text-center">
                 <div class="card-header">Create Post</div>
                 <div class="card-body">
                     <h5 class="card-title">Add Post</h5>
-                    <input name="image" type="file" class="form-control border-1" id="floatingInput1" placeholder="xx-xx-xxxx">
+                    <input type="file" name="postimage" class="form-control border-1" id="floatingInput1" placeholder="xx-xx-xxxx">
                     <br>
                     <textarea name="description" id="description" cols="74" rows="2" placeholder="Write Description"></textarea>
                     <br><br>
