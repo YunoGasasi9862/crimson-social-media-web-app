@@ -37,7 +37,6 @@ if (!empty($_POST)) {
 </head>
 
 <body>
-
   <section class="vh-100 bg-image bg">
     <div class="mask d-flex align-items-center h-100 gradient-custom-3">
       <div class="container h-100">
@@ -63,7 +62,6 @@ if (!empty($_POST)) {
                     <button type="submit" class="btn btn-danger btn-block btn-lg gradient-custom-4 text-body">Sign in</button>
                   </div>
                 </form>
-
               </div>
             </div>
           </div>

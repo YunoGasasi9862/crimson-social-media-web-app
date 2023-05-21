@@ -44,7 +44,7 @@ function Register($email, $password, $username, $name, $surname, $file, $DOB)
     global $db;
     $password=password_hash($password, PASSWORD_BCRYPT); //hashed password
     $statement= $db->prepare("INSERT INTO users (email,  password, username, name, surname, profile, DOB) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $statement->execute([$email,$password, $name, $surname, $file, $DOB]);  
+    $statement->execute([$email,$password, $username, $name, $surname, $file, $DOB]);  
 }
 
 ?>
