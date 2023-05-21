@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set("Europe/Istanbul");
 $date=new DateTime($row["date"]);
 $currentDate= new DateTime();
 $interval = $currentDate->diff($date);
@@ -36,7 +37,7 @@ $seconds = $interval->format('%s');
     </div>
 
     <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-        <img src="../img/111.webp" class="img-fluid post" />
+        <img src="../PostImages/<?=$row["image"]?>" class="img-fluid post" />
         <a href="#!">
             <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
         </a>

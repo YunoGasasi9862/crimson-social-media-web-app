@@ -5,14 +5,14 @@ const PASS="";
 
 class Post{
 
-    public static function create_post($username, $data){
+    public static function create_post($username, $file, $data){
         $db=new PDO(DSN, USER, PASS);
         $error = "";
         if(!empty($data['description'])){
             $description= $data['description'];
             $postid=Post::create_postid();
-            $statement=$db->prepare ("INSERT INTO posts (postid,username,post) VALUES (?,?,?)");
-            $statement->execute([$postid,$username,$description]);  
+            $statement=$db->prepare ("INSERT INTO posts (postid,username,post,image) VALUES (?,?,?,?)");
+            $statement->execute([$postid,$username,$description, $file]);  
 
         }else{
             $error="Please Type Something to Post <br>";
