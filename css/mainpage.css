@@ -1,9 +1,11 @@
 .main {
     background-color: white;
-    border-radius: 2%;
+    border-radius: 30px;
     width: 800px;
     margin: auto;
     min-height: 800px;
+    padding-bottom: 10px;
+
   }
 
   .gradient-custom-2 {
@@ -11,6 +13,9 @@
     background: -webkit-linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1));
     background: linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1));
     min-height: 800px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
   }
 
   nav {
@@ -64,6 +69,15 @@
   .profile p {
     margin-top: 20px;
     margin-left: 10px;
+  }
+
+  .date{
+    margin-left: auto;
+  }
+
+  .date p{
+    color: rgb(103, 101, 101);
+    font-size: 12px;
   }
   .reaction{
     display: flex;
