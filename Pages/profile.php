@@ -1,14 +1,11 @@
 <?php
-/*require "../scripts/db.php";
+require "../scripts/db.php";
 session_start();
 var_dump($_SESSION['User']);
 $email=$_SESSION['User']['email'];
 $user= GetUser($email);
 if($_SESSION['User']['profile']!=null)
   $profile=$user['profile'];
-*/
-
-
 ?>
 
 
@@ -37,7 +34,7 @@ if($_SESSION['User']['profile']!=null)
           <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
            <a href=""> <img src="../img/home.png" alt="" id="home"></a>
             <a href=""><img src="../img/notification.png" alt="" id="notif"></a>
-              <img src="../PPimages/<?= $profile ?>"
+              <img src= <?=isset($_SESSION['User']['profile'])? "../PPimages/$profile" : "../img/home.png" ?>
                 alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
                 style="width: 150px; z-index: 1">
               <button type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark"
