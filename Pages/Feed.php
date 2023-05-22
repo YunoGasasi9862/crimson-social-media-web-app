@@ -1,14 +1,20 @@
 <?php
     session_start();
-    var_dump($_SESSION['User']); 
+    $user=$_SESSION['User']['username'];
     $email=$_SESSION['User']['email'];
-    //include "src/post.php";
-    //include "src/login.php";
+  
     include "../Classes/post.php";
     include "../Classes/user.php";
+    include "../Classes/friends.php";
 
     //collect posts
-    $posts= Post::get_posts("root2525");
+   // 
+    $posts=Friends::getFriends($email); //returns all the friends 
+    $list=Friends::fetchUsernames($posts); //returns all the emails of the friends
+    
+     
+    //now we need their usernames
+
 ?>
 
 <!DOCTYPE html>
@@ -38,11 +44,15 @@
 
       <?php
       if($posts){
-        foreach($posts as $row){
-          var_dump($row["username"]);
-          $row_user=User::get_user($row["username"]);
-          include "../HTML/post.php";
+        foreach($list as $perUser)
+        {
+          $posts= Post::get_posts($perUser);
+          foreach($posts as $row){
+            $row_user=User::get_user($row["username"]);
+            include "../HTML/post.php";
+          }
         }
+        
       }
       ?>
       
