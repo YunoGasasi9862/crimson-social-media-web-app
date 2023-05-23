@@ -104,9 +104,16 @@
   <div class="h-100 gradient-custom-2 ">
     <div class="main">
 
-      <nav>
+    <nav>
         <div class="nav-item"><img src="../img/camara-icon-21.png" alt="" id="camera" ></div>
+      
+        <form>
+        <input type="text" name="search" id="inp" placeholder="Arama yapın">
+        <button type="submit" id="btn" style="border: none; background: none; padding: 0;">
         <div class="nav-item"><img src="../img/search.png" alt="" id="search"></div>
+        </button>
+
+    </form>
       </nav>
 
       <div class="card">
