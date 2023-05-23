@@ -42,7 +42,7 @@
 
   nav img {
     width: 50px;
-    background-color: #F9F9F9;
+    
     border-radius: 50%;
   }
 
@@ -113,6 +113,20 @@
   background-color: white; 
   color: black; 
 }
+#btn:hover {
+  transform: scale(1.1); 
+ 
+}
+#camera:hover {
+  
+  transform: scale(1.1);
+ 
+ 
+}
+
+
+  
+
 
 </style>
 
@@ -120,16 +134,17 @@
   <div class="h-100 gradient-custom-2 ">
     <div class="main">
 
-    <nav>
-        <div class="nav-item"><img src="../img/camara-icon-21.png" alt="" id="camera" ></div>
+     <nav>
+        <button type="submit" id="camera" style="border: none; background: none; padding: 0;">
+          <div class="nav-item"><img src="../img/camara-icon-21.png" alt="" id="camera" ></div>
+        </button>
       
         <form>
-        <input type="text" name="search" id="inp" placeholder="Search...">
-        <button type="submit" id="btn" style="border: none; background: none; padding: 0;">
-        <div class="nav-item"><img src="../img/search.png" alt="" id="search"></div>
-        </button>
-
-    </form>
+          <input type="text" name="search" id="inp" placeholder="Search...">
+          <button type="submit" id="btn" style="border: none; background: none; padding: 0;">
+            <div class="nav-item"><img src="../img/search.png" alt="" id="search"></div>
+          </button>
+        </form>
       </nav>
 
       <div class="card">
@@ -161,4 +176,3 @@
 </body>
 
 </html>
-
