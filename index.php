@@ -1,64 +1,122 @@
+<?php
+if (!empty($_POST)) {
+  require "scripts/db.php";
+  require "Pages/PictureUpload.php";
+  extract($_POST);
+  extract($_FILES);
+  $error = [];
+  filter_var($email, FILTER_SANITIZE_SPECIAL_CHARS);
+  filter_var($password, FILTER_SANITIZE_SPECIAL_CHARS);
+  filter_var($repeatPassword, FILTER_SANITIZE_SPECIAL_CHARS);
+  filter_var($name, FILTER_SANITIZE_SPECIAL_CHARS);
+  filter_var($surname, FILTER_SANITIZE_SPECIAL_CHARS);
+
+  if ($password != $repeatPassword) {
+    $error["pass"] = "Passwords do not match!";
+  }
+  if (empty($error)) {
+    $filePath = new PictureUpload("PP", "PPimages"); //they both have to be string
+    Register($email, $password, $username, $name, $surname, $filePath->filename, $DOB);
+    header("Location: Pages/login.php");
+    exit;
+  }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crimson</title>
-    <link rel="stylesheet" href="Bootstrap/css/mdb.min.css">
-    <link rel="stylesheet" href="css/index.css">
 
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crimson</title>
+  <link rel="stylesheet" href="Bootstrap/css/mdb.min.css">
+
+  <link rel="stylesheet" href="css/index.css">
+
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+  <script src="JS/prevent.js"></script>
+
+  <style>
+    ::-webkit-scrollbar{
+      width: 2em;
+    }
+    ::-webkit-scrollbar-track{
+    background: hsl(120, 75%, 0% );
+    }
+  </style>
 
 </head>
+
 <body>
-    <section class="vh-100 bg-image bg">
-  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
-    <div class="container h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-          <div class="card" style="border-radius: 15px;">
-            <div class="card-body p-5">
-              <h2 class="text-uppercase text-center mb-5">Welcome to Crimson!</h2>
+  <section class="vh-100 bg-image bg">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+      <div class="container h-100 ">
+        <div class="row d-flex justify-content-center align-items-center h-100 ">
+          <div class="col-12 col-md-9 col-lg-7 col-xl-6 " style="width: 800px;">
+            <div class="card " style="border-radius: 15px; height: 600px; overflow: scroll;">
+              <div class="card-body p-5 ">
+                <h2 class="text-uppercase text-center mb-5">Welcome to Crimson!</h2>
+                <form action="" method="post" enctype="multipart/form-data">
 
-              <form>
+                  <div class="form-floating mb-4">
+                    <input name="name" type="text" class="form-control border-1" id="floatingInput1" placeholder="Name">
+                    <label for="floatingInput1">Your Name</label>
+                  </div>
 
-                <div class="form-outline mb-4">
-                  <input type="text" id="form3Example1cg" class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example1cg">Your Name</label>
-                </div>
+                  <div class="form-floating mb-4">
+                    <input name="surname" type="text" class="form-control border-1" id="floatingInput1" placeholder="Name">
+                    <label for="floatingInput1">Your Surname</label>
+                  </div>
 
-                <div class="form-outline mb-4">
-                  <input type="email" id="form3Example3cg" class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example3cg">Your Email</label>
-                </div>
+                  <div class="form-floating mb-4">
+                    <input name="email" type="email" class="form-control border-1" id="floatingInput1" placeholder="name@example.com">
+                    <label for="floatingInput1">Email address</label>
+                  </div>
 
-                <div class="form-outline mb-4">
-                  <input type="password" id="form3Example4cg" class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example4cg">Password</label>
-                </div>
+                  <div class="form-floating mb-4">
+                    <input name="username" type="text" class="form-control border-1" id="floatingInput1" placeholder="xxxx">
+                    <label for="floatingInput1">User Name</label>
+                  </div>
 
-                <div class="form-outline mb-4">
-                  <input type="password" id="form3Example4cdg" class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example4cdg">Repeat your password</label>
-                </div>
+                  <div class="form-floating mb-4">
+                    <input name="DOB" type="date" class="form-control border-1" id="floatingInput1" placeholder="xx-xx-xxxx">
+                    <label for="floatingInput1">Your Date of Birth</label>
+                  </div>
 
-                <div class="d-flex justify-content-center">
-                  <button type="button"
-                    class="btn btn-success btn-block btn-lg gradient-custom-2 text-body">Register</button>
-                </div>
+                  <div class="form-floating mb-4">
+                    <input name="password" type="password" class="form-control border-1" id="floatingInput1" placeholder="xx-xx-xxxx">
+                    <label for="floatingInput1">Password</label>
+                  </div>
 
-                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="/crimson-social-media-web-app/Pages/login.php"
-                    class="fw-bold text-body"><u>Login here</u></a></p>
+                  <div class="form-floating mb-4">
+                    <input name="repeatPassword" type="password" class="form-control border-1" id="floatingInput1" placeholder="xx-xx-xxxx">
+                    <label for="floatingInput1">Repeat your password</label>
+                  </div>
 
-              </form>
+                  <div class="form-floating mb-6">
+                    <input name="PP" type="file" class="form-control border-1" id="floatingInput1" placeholder="xx-xx-xxxx">
+                    <label for="floatingInput1">Upload Profile Picture</label>
+                  </div>
 
+                  <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-danger btn-block btn-lg gradient-custom-2 text-body">Register</button>
+                  </div>
+
+                  <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="Pages/login.php" class="fw-bold text-body"><u>Login here</u></a></p>
+
+                </form>
+
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-    
+  </section>
+
 </body>
+
 </html>
