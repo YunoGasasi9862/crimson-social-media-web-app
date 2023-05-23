@@ -2,7 +2,6 @@
     session_start();
     $user=$_SESSION['User']['username'];
     $email=$_SESSION['User']['email'];
-
     include "../Classes/post.php";
     include "../Classes/user.php";
     include "../Classes/friends.php";
@@ -11,7 +10,7 @@
    // 
     $friends = Friends::getFriends($email); //returns all the friends
     $usernames = Friends::fetchUsernames($friends); //returns all the emails of the friends
-    
+
      
     //now we need their usernames
 
@@ -61,7 +60,7 @@
         // $end = min($start + PAGE_SIZE, $count);
         $paginatedPosts = array_slice($posts, ($requestedPage - 1) * PAGE_SIZE, PAGE_SIZE);
           foreach($paginatedPosts as $row){
-            $row_user = User::get_user($row["username"]);
+            $row_user= User::get_user($row["username"]);
             include "../HTML/post.php";
           }
       }
