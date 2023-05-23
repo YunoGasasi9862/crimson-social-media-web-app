@@ -98,6 +98,22 @@
     padding: 8px;
   }
 
+  #inp {
+  width: 300px; 
+  height: 40px; 
+  border-radius: 20px; 
+  border: white;
+  padding: 10px;
+  
+  color: grey; 
+  box-shadow: 0 0 10px #6c00ff; 
+}
+#inp:focus {
+  outline: none; 
+  background-color: white; 
+  color: black; 
+}
+
 </style>
 
 <body>
@@ -108,7 +124,7 @@
         <div class="nav-item"><img src="../img/camara-icon-21.png" alt="" id="camera" ></div>
       
         <form>
-        <input type="text" name="search" id="inp" placeholder="Arama yapın">
+        <input type="text" name="search" id="inp" placeholder="Search...">
         <button type="submit" id="btn" style="border: none; background: none; padding: 0;">
         <div class="nav-item"><img src="../img/search.png" alt="" id="search"></div>
         </button>
