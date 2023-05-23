@@ -56,7 +56,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
         background: linear-gradient(135deg, #ff00ff,#6c00ff );    
         font-weight: bold;
         color: white;
-        font-size: ;
+        font-size: larger;
     }
     .card-body {
         padding: 30px;
