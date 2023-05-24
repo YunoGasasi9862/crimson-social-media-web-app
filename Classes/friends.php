@@ -23,6 +23,9 @@
         {
             $Usernames=[];
              $counter=0;
+             $record=self::UserNameHelper($FriendArray[0]['userEmail']);
+             $Usernames[$counter]= $record[0]['username'];
+             $counter++;
             foreach($FriendArray as $i)
             {
                 $record=self::UserNameHelper($i['FriendEmail']);
@@ -30,8 +33,8 @@
                 $counter++;
             }
             //append the current user's email to the array
-            $record=self::UserNameHelper($FriendArray[0]['userEmail']);
-            $Usernames[$counter]= $record[0]['username'];
+           
+            $counter=0;
             return $Usernames;
         }
 
