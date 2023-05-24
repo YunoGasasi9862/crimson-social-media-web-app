@@ -59,6 +59,27 @@
       transform: scale(1.1); 
     
     }
+      .neon-button {
+        background-color: #6c00ff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 4px;
+        box-shadow: 0px 0px 10px #37268E;
+        margin-left: 610px;
+      }
+
+      .neon-button:hover {
+        background: linear-gradient(135deg, #ff00ff,#6c00ff ); 
+        color: white;
+        box-shadow: 0px 0px 15px #5B3DA8;
+      }
+
+      .neon-button:active {
+        background-color: #37268E;
+        box-shadow: none;
+      }
     </style>
 
 
@@ -105,6 +126,8 @@
       ?>
 
     </div>
+    <button class="neon-button">Next</button>
+
   </div>
 </body>
 
