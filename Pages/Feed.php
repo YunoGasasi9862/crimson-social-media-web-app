@@ -1,5 +1,9 @@
 <?php
+ 
+ 
     session_start();
+
+   
 
     //$user=$_SESSION['User']['username'];
     //$email=$_SESSION['User']['email'];
@@ -14,6 +18,41 @@
     $friends = Friends::getFriends($email); //returns all the friends
     $usernames = Friends::fetchUsernames($friends); //returns all the emails of the friends
 
+    if(!empty($_POST))
+    {
+        extract($_POST);
+        $exist=true;
+        if(isset($searchuser))
+        {
+           
+            if(user::findUserfromName($searchuser))
+            {
+                $searchuser = user::findUserfromName($searchuser);
+               
+            }
+            else if(user::findUserfromSurname($searchuser))
+            {
+                $searchuser = user::findUserfromSurname($searchuser);
+               
+            }
+            else if(user::findUserfromEmail($searchuser))
+            {
+                $searchuser = user::findUserfromEmail($searchuser);
+                
+            }else
+            {
+                  $exist=false;
+            }
+
+           //first check whether the user exists or not
+            if($exist)
+            {
+              header("Location: ShowPerson.php?searchuser=$searchuser");
+              exit;
+            }
+          
+        }
+    }
      
     //now we need their usernames
 
@@ -104,12 +143,12 @@
           
         </button>
       
-        <form>
+        <form action="" method="post">
           <div class="Align">
-          <input type="text" name="search" id="inp" placeholder="Search...">
-          <a id="btn" style="border: none; background: none; padding: 0;" href="ShowPerson.php"> 
+          <input type="text" name="searchuser" id="inp" placeholder="Search...">
+          <button id="btn" style="border: none; background: none; padding: 0;">
           <div class="nav-item"><img src="../img/search.png" alt="" id="search"></div> 
-          </a>
+         </button>
           <div>
         </form>
       </nav>

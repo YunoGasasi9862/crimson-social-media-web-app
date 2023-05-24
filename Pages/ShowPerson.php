@@ -1,10 +1,10 @@
 <?php
 
  session_start();
- if(isset($_POST))
+ if(isset($_GET))
  {
-      extract($_POST);
-      var_dump($_POST);
+      extract($_GET);
+      var_dump($_GET);
  }
 
 ?>

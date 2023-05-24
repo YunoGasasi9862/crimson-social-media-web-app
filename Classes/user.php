@@ -23,7 +23,7 @@ class User {
         $db=new PDO(DSN, USER, PASS);
         $query= "SELECT * FROM users where surname=?"; 
         $record= $db->prepare($query);
-        $record->execute([$name]);  
+        $record->execute([$surname]);  
         return $record->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -32,7 +32,7 @@ class User {
         $db=new PDO(DSN, USER, PASS);
         $query= "SELECT * FROM users where email=?"; 
         $record= $db->prepare($query);
-        $record->execute([$name]);  
+        $record->execute([$email]);  
         return $record->fetch(PDO::FETCH_ASSOC);
     }
 }
