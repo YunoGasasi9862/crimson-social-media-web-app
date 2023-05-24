@@ -6,12 +6,12 @@
     $user=$_SESSION['User']['username'];
     $email=$_SESSION['User']['email'];
     include "../Classes/post.php";
-   // include "../Classes/user.php";
+    include "../Classes/user.php";
     include "../Classes/friends.php";
 
     //collect posts
    // 
-    //$friends = Friends::getFriends($email); //returns all the friends
+    $friends = Friends::getFriends($email); //returns all the friends
     $usernames = Friends::fetchUsernames($friends); //returns all the emails of the friends
 
      
@@ -33,19 +33,57 @@
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
   </script>
   <link rel="stylesheet" href="../css/mainpage.css">
+
+    <style>
+    #inp {
+      width: 300px; 
+      height: 40px; 
+      border-radius: 20px; 
+      border: white;
+      padding: 10px;
+      
+      color: grey; 
+      box-shadow: 0 0 10px #6c00ff; 
+    }
+    #inp:focus {
+      outline: none; 
+      background-color: white; 
+      color: black; 
+    }
+    #btn:hover {
+      transform: scale(1.1); 
+    
+    }
+    #camera:hover {
+      
+      transform: scale(1.1);
+    
+    
+    }
+
+        </style>
+
+
+
 </head>
 
 <body>
   <div class="h-100 gradient-custom-2 ">
     <div class="main">
 
-      <nav>
-        <div class="nav-item">
-          <a href="./AddPost.php"><img src="../img/camara-icon-21.png" alt="" id="camera"></a>
-        </div>
-        <div class="nav-item">
-          <img src="../img/search.png" alt="" id="search">
-        </div>
+    <nav>
+        <button type="submit" id="camera" style="border: none; background: none; padding: 0;">
+          <div class="nav-item">
+            <a href="./AddPost.php"><img src="../img/camara-icon-21.png" alt="" id="camera" ></div></a>
+          
+        </button>
+      
+        <form>
+          <input type="text" name="search" id="inp" placeholder="Search...">
+          <button type="submit" id="btn" style="border: none; background: none; padding: 0;">
+           <div class="nav-item"><img src="../img/search.png" alt="" id="search"></div>
+          </button>
+        </form>
       </nav>
 
       <?php
