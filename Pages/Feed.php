@@ -45,6 +45,9 @@
       color: grey; 
       box-shadow: 0 0 10px #6c00ff; 
     }
+    #btn{
+      margin-left:30px;
+    }
     #inp:focus {
       outline: none; 
       background-color: white; 
@@ -80,6 +83,11 @@
         background-color: #37268E;
         box-shadow: none;
       }
+       .Align{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+       }
     </style>
 
 
@@ -97,10 +105,12 @@
         </button>
       
         <form>
+          <div class="Align">
           <input type="text" name="search" id="inp" placeholder="Search...">
-          <button type="submit" id="btn" style="border: none; background: none; padding: 0;">
-           <div class="nav-item"><img src="../img/search.png" alt="" id="search"></div>
-          </button>
+          <a id="btn" style="border: none; background: none; padding: 0;" href="ShowPerson.php"> 
+          <div class="nav-item"><img src="../img/search.png" alt="" id="search"></div> 
+          </a>
+          <div>
         </form>
       </nav>
 
@@ -125,8 +135,9 @@
       }
       ?>
 
+  <button class="neon-button">Next</button>
+
     </div>
-    <button class="neon-button">Next</button>
 
   </div>
 </body>
