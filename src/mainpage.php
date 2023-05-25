@@ -146,16 +146,76 @@
   box-shadow: none;
 }
 
+.button {
+  background-color: transparent; /* Buton arka plan rengi */
+  border: none;
+  color: white; /* Buton metin rengi */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  padding: 10px 20px; /* Buton boyutu */
+  position: absolute; /* Pozisyon ayarı */
+  margin-left: 50px;
+}
 
+.button:hover {
+  animation: shake 0.8s;
+}
 
-  
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(15deg); }
+  75% { transform: rotate(-15deg); }
+  100% { transform: rotate(0deg); }
+}
+#notf{
+  width:40px;
+  margin-top: 17px;
+}
 
+.table-container {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.5s ease;
+}
 
+.button:checked + .table-container {
+  max-height: 240px; /* Tablo yüksekliği */
+  transition: max-height 0.5s ease;
+}
+
+.table {
+  width: 200px; /* Tablo genişliği */
+  height: 200px; /* Tablo yüksekliği */
+  position: relative; /* Pozisyon ayarı */
+}
+
+.table::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white; /* Tablo arka plan rengi */
+  border: 1px solid black; /* Tablo kenarlık rengi */
+}
 </style>
+
 
 <body>
   <div class="h-100 gradient-custom-2 ">
     <div class="main">
+
+    <button class="button">
+      <img src="../img/notification.png" id="notf" alt="">
+    </button>
+    <div class="table-container">
+    <div class="table"></div>
+</div>
 
      <nav>
         <button type="submit" id="camera" style="border: none; background: none; padding: 0;">
@@ -198,6 +258,7 @@
 
     </div>
   </div>
+  
 </body>
 
 </html>
