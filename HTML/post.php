@@ -12,6 +12,7 @@ $minutes = $interval->format('%i');
 $seconds = $interval->format('%s');
 
 ?>
+
 <div class="card">
 
     <div class="profile">
@@ -53,32 +54,29 @@ $seconds = $interval->format('%s');
             ?>
         </p>
        
-        <div class="small d-flex justify-content-start">
+       
+             <div class="small d-flex justify-content-start">
               <a style="text-decoration:none" href="#!" class="d-flex align-items-center me-3">
                 <i style="color:red" class="far fa-thumbs-up me-2"></i>
-                <p style="color:purple" class="mb-0">Like</p>
+                <p style="color:purple" class="mb-0">0</p>
               </a>
-              <a style="text-decoration:none"  href="#!" class="d-flex align-items-center me-3">
+              <a style="text-decoration:none"  href="#!" class="d-flex align-items-center me-3 comment">
                 <i  style="color:red" class="far fa-comment-dots me-2"></i>
                 <p style="color:purple" class="mb-0">Comment</p>
               </a>
-              <a style="text-decoration:none"  href="#!" class="d-flex align-items-center me-3">
-                <i  style="color:red" class="fas fa-share me-2"></i>
-                <p style="color:purple" class="mb-0">Share</p>
-              </a>
             </div>
 
+            <div style="display:none" class="PostComment">
               <div style="margin-top:10px" class="form-outline w-100">
                 <textarea class="form-control" id="textAreaExample" rows="4"
                   style="background: #fff;"></textarea>        
               </div>
        
-            <div class="float-end mt-2 pt-1">
-              <button type="button" class="btn btn-danger btn-sm">Post comment</button>
-              <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button>
+                <div  class="float-end mt-2 pt-1">
+                    <button type="button" class="btn btn-danger btn-sm">Post comment</button>
+                    <button type="button" class="btn btn-outline-primary btn-sm cancel">Cancel</button>
+                </div>
             </div>
-    
 
-        
     </div>
 </div>

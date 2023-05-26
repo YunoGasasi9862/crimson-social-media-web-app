@@ -59,6 +59,8 @@ if (!empty($_POST)) {
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
   <script>
     function navigateToNextPage() {
       const currentURL = window.location.href;
@@ -69,9 +71,10 @@ if (!empty($_POST)) {
       window.location.href = url.toString();
     }
   </script>
+    <script src="../JS/post.js"></script> 
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="../css/mainpage.css">
-
   <style>
     #inp {
       width: 300px;
@@ -159,6 +162,7 @@ if (!empty($_POST)) {
         </form>
       </nav>
 
+
       <?php
       const PAGE_SIZE = 10;
       $page = isset($_GET["page"]) ? $_GET["page"] : 1;
@@ -183,6 +187,7 @@ if (!empty($_POST)) {
       <button class="neon-button" onclick="navigateToNextPage()">Next</button>
     </div>
   </div>
+
 </body>
 
 </html>
