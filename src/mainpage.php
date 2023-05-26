@@ -123,29 +123,7 @@
  
  
 }
-
-.neon-button {
-  background-color: #6c00ff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 4px;
-  box-shadow: 0px 0px 10px #37268E;
-  margin-left: 610px;
-}
-
-.neon-button:hover {
-  background: linear-gradient(135deg, #ff00ff,#6c00ff ); 
-  color: white;
-  box-shadow: 0px 0px 15px #5B3DA8;
-}
-
-.neon-button:active {
-  background-color: #37268E;
-  box-shadow: none;
-}
-
+/*coppy paste starting there for notifications tables etc*/
 .button {
   background-color: transparent; /* Buton arka plan rengi */
   border: none;
@@ -158,7 +136,8 @@
   cursor: pointer;
   padding: 10px 20px; /* Buton boyutu */
   position: absolute; /* Pozisyon ayarı */
-  margin-left: 50px;
+  margin-left: -190px;
+  margin-top: -45px;
 }
 
 .button:hover {
@@ -171,56 +150,110 @@
   75% { transform: rotate(-15deg); }
   100% { transform: rotate(0deg); }
 }
-#notf{
-  width:40px;
-  margin-top: 17px;
+
+#notf {
+  
+    width: 40px;
+    margin-top: 17px;
+    
+  }
+  
+
+.notftable {
+  position: relative;
+
+  
+    z-index: 1;
+  }
+
+  
+
+  .notftable:hover .submain,
+  .notftable.show .submain {
+    display: block;
+  }
+
+  .submain {
+    position: absolute;
+    margin-left: -170px ;
+    margin-top: 25px;
+    display: none;
+    background-color: #fff;
+    
+    width:400px;
+    height:400px;
+    border: 2px solid #bcbce5;
+    border-radius: 5px;
+  }
+
+  .submain ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .submain li {
+    padding: 5px 10px;
+    
+  }
+
+  
+
+  .submain li a {
+  text-decoration: none;
+  color: #333;
+  text-align: right; /* Align the text to the right */
+  margin-right: 30px; /* Adjust the right margin */
+  margin-left: auto; /* Set the left margin to auto for center alignment */
 }
 
-.table-container {
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height 0.5s ease;
+.submain li p {
+  border-bottom: 2px solid #bcbce5;
+  padding: 5px;
+  text-align: right; /* Align the text to the right */
+  margin-right: 30px; /* Adjust the right margin */
+  margin-left: auto; /* Set the left margin to auto for center alignment */
 }
 
-.button:checked + .table-container {
-  max-height: 240px; /* Tablo yüksekliği */
-  transition: max-height 0.5s ease;
-}
 
-.table {
-  width: 200px; /* Tablo genişliği */
-  height: 200px; /* Tablo yüksekliği */
-  position: relative; /* Pozisyon ayarı */
-}
 
-.table::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: white; /* Tablo arka plan rengi */
-  border: 1px solid black; /* Tablo kenarlık rengi */
-}
+
+  .submain li a:hover {
+    color: #ff0000;
+  }
+  #pic1{
+    width:50px;
+    border-radius: 170px;
+  }
 </style>
-
-
+<script>
+  function toggleNotftable() {
+    var notftable = document.querySelector(".notftable");
+    notftable.classList.toggle("show");
+  }
+</script>
 <body>
   <div class="h-100 gradient-custom-2 ">
     <div class="main">
-
-    <button class="button">
-      <img src="../img/notification.png" id="notf" alt="">
-    </button>
-    <div class="table-container">
-    <div class="table"></div>
-</div>
 
      <nav>
         <button type="submit" id="camera" style="border: none; background: none; padding: 0;">
           <div class="nav-item"><img src="../img/camara-icon-21.png" alt="" id="camera" ></div>
         </button>
+
+        
+        <div class="notftable">
+  <button class="button" onclick="toggleNotftable()">
+    <img src="../img/notification.png" id="notf" alt="">
+  </button>
+  <div class="submain" id="submain">
+    <ul>
+      <li><br><img src="../img/avatar-1.webp" id="pic1"alt=""><a href="#">Submenu Öğesi 1 Submenu Öğesi 1 Submenu Öğesi 1 <p></p></a></li>
+      <li><img src="../img/avatar-1.webp" id="pic1"alt=""><a href="#">Submenu Öğesi 1 Submenu Öğesi 1 Submenu Öğesi 1 <p></p></a></li>
+      <li><a href="#">Submenu Öğesi 3 </a></li>
+    </ul>
+  </div>
+</div>
+
       
         <form>
           <input type="text" name="search" id="inp" placeholder="Search...">
@@ -253,12 +286,9 @@
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
         </div>
       </div>
-      <button class="neon-button">Next</button>
-
 
     </div>
   </div>
-  
 </body>
 
 </html>
