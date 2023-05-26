@@ -12,10 +12,11 @@ $minutes = $interval->format('%i');
 $seconds = $interval->format('%s');
 
 ?>
+
 <div class="card">
 
     <div class="profile">
-        <img src="./../img//avatar-1.webp" id="profimg">
+        <img src=<?= isset($row_user["image"])? "/PPimages/$row_user[image]" : "../img/home.png"?> id="profimg">
         <p><?=$row_user["name"] . " ". $row_user["surname"]?></p>
         <div class="date"><p class="card-text">
         <?php
@@ -36,6 +37,8 @@ $seconds = $interval->format('%s');
         </p></div>
     </div>
 
+    
+
     <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
         <img src="../PostImages/<?=$row["image"]?>" class="img-fluid post" />
         <a href="#!">
@@ -44,17 +47,36 @@ $seconds = $interval->format('%s');
     </div>
 
     <div class="card-body">
-        <div class="reaction">
-            <img src="../img/likebutn.png" alt="" id="like"><span id="like_number">4</span>
-            <img src="../img/comment.png" alt="" id="comment"><span id="comment_number">4</span>
-            
-        </div>
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">
+       
+    <p class="card-text">
             <?php
                 echo $row["post"]; 
             ?>
         </p>
-        
+       
+       
+             <div class="small d-flex justify-content-start">
+              <a style="text-decoration:none" href="#!" class="d-flex align-items-center me-3">
+                <i style="color:red" class="far fa-thumbs-up me-2"></i>
+                <p style="color:purple" class="mb-0">0</p>
+              </a>
+              <a style="text-decoration:none"  href="#!" class="d-flex align-items-center me-3 comment">
+                <i  style="color:red" class="far fa-comment-dots me-2"></i>
+                <p style="color:purple" class="mb-0">Comment</p>
+              </a>
+            </div>
+
+            <div style="display:none" class="PostComment">
+              <div style="margin-top:10px" class="form-outline w-100">
+                <textarea class="form-control" id="textAreaExample" rows="4"
+                  style="background: #fff;"></textarea>        
+              </div>
+       
+                <div  class="float-end mt-2 pt-1">
+                    <button type="button" class="btn btn-danger btn-sm">Post comment</button>
+                    <button type="button" class="btn btn-outline-primary btn-sm cancel">Cancel</button>
+                </div>
+            </div>
+
     </div>
 </div>

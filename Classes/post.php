@@ -10,8 +10,15 @@ class Post{
         if(!empty($data['description'])){
             $description= $data['description'];
             $postid=Post::create_postid();
-            $statement=$db->prepare ("INSERT INTO posts (postid,username,post,image) VALUES (?,?,?,?)");
-            $statement->execute([$postid,$username,$description, $file]);
+            $statement=$db->prepare ("INSERT INTO posts (postid,username,post,image,comments, likes, date) VALUES (?,?,?,?,?,?,?)"); //you cant insert partial data, you have to give all the fields
+            if($file!=null)
+            {
+                $statement->execute([$postid,$username,$description, $file, 0, 0, date("Y-m-d H:i:s")]);
+            }else
+            {
+                $statement->execute([$postid,$username,$description, NULL, 0, 0, date("Y-m-d H:i:s")]);
+            }
+         
         }else{
             $error="Please Type Something to Post <br>";
         }
