@@ -1,34 +1,49 @@
-<style>
-    .result{
-        display: flex;
-        flex-direction: column;
-        background-color: blue;
-        
-    }
-    #description{
-        font-weight: lighter;
-        font-size: 15px;
-    }
-</style>
+// I will continue do not change anything PLEASE!!
+<link rel="stylesheet" href="../css/livesearch.css">
 
 <?php
-    include "../Classes/user.php";
-    $input= $_POST["input"];
-    $users = User::get_user_like($input);
+include "../Classes/user.php";
+include "../Classes/friends.php";
+session_start();
+$currentUser= $_SESSION['User']['email'];
+$friends= Friends::getFriends($currentUser);
+var_dump($friends);
 
-    if($users){
-        echo "<table><thead><tr><th>Username</th></tr></thead>";
-        foreach($users as $user){
-            $username= $user["username"];
-            $name=$user["name"];
-            $surname = $user["surname"];
-            echo "<tr><th class='result'><div>{$username}</div><div id='description'>$name $surname</div></th></tr>";
+
+$input = $_POST["input"];
+$users = User::get_user_like($input);
+
+if (isset($users)) {
+    echo "<ul class='list-group list-group-flush result-container'>";
+    foreach ($users as $user) {
+        $username = $user["username"];
+        $name = $user["name"];
+        $surname = $user["surname"];
+        $mail= $user["email"];
+        $profile = $user["profile"];
+
+        echo "
+                <li class='list-group-item result'>
+                    <div class='profile'>
+                    <img src='../PPimages/$profile'></img>
+                    </div>
+                    <div class='user-description'>
+                        <div>{$username}</div>
+                        <div id='description'>$name $surname</div>
+                    </div>
+                    <div class='follow-button'>
+                        <button type='button' class='btn btn-outline-primary'>Follow</button>
+                    </div>
+                </li>
+        ";
+        foreach($friends as $friend){
+            if($mail == $friend["FriendEmail"]){
+                echo "deleley";
+            }
         }
-        echo "</table>";
-    }else{
-        echo "none";
     }
+    echo "</ul>";
+} else {
+    echo "No ";
+}
 ?>
-
-    
-   
