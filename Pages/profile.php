@@ -32,7 +32,7 @@ if($_SESSION['User']['profile']!=null)
           <div class="rounded-top text-white d-flex flex-row" style="background-image: url('../img/profilebackground.jpg'); height:200px;">
             
           <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
-           <a href=""> <img src="../img/home.png" alt="" id="home"></a>
+           <a href="Feed.php"> <img src="../img/home.png" alt="" id="home"></a>
             <a href=""><img src="../img/notification.png" alt="" id="notif"></a>
               <img src= <?=isset($_SESSION['User']['profile'])? "../PPimages/$profile" : "../img/home.png" ?>
                 alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"

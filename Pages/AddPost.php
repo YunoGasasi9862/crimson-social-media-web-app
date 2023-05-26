@@ -1,13 +1,15 @@
 <?php
+session_start();
 include "../Classes/post.php";
 
+$username=$_SESSION['User']['username'];
 if($_SERVER['REQUEST_METHOD']=="POST"){
     require "../Pages/PictureUpload.php";
 
     extract($_POST);
     extract($_FILES);
     $filePath = new PictureUpload("postimage", "../PostImages"); //they both have to be string
-    $result= Post::create_post("root2525",$filePath->filename, $_POST);
+    $result= Post::create_post($username,$filePath->filename, $_POST);
     
     if($result==""){
         header("Location: Feed.php");
@@ -17,7 +19,6 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
         echo $result;
     }
 }
-
 
 
 ?>
@@ -67,7 +68,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
                     <br><br>
                     <input name="submitPost" class="btn btn-primary" type="submit" value="Post">
                 </div>
-                <div class="card-footer text-muted">@user</div>
+                <div class="card-footer text-muted"><?=$username?></div>
             </div>
             </form>
         </div>

@@ -15,7 +15,7 @@ $seconds = $interval->format('%s');
 <div class="card">
 
     <div class="profile">
-        <img src="./../img//avatar-1.webp" id="profimg">
+        <img src=<?= isset($row_user["image"])? "/PPimages/$row_user[image]" : "../img/home.png"?> id="profimg">
         <p><?=$row_user["name"] . " ". $row_user["surname"]?></p>
         <div class="date"><p class="card-text">
         <?php
