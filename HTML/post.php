@@ -10,7 +10,8 @@ $days = $interval->format('%d');
 $hours = $interval->format('%h');
 $minutes = $interval->format('%i');
 $seconds = $interval->format('%s');
-
+$postId=$row["postid"];
+var_dump($postId);
 ?>
 
 <div class="card">
@@ -56,11 +57,11 @@ $seconds = $interval->format('%s');
        
        
              <div class="small d-flex justify-content-start">
-              <a style="text-decoration:none" href="#!" class="d-flex align-items-center me-3">
+              <a id="<?=$postId?>" style="text-decoration:none" href="#!" class="d-flex align-items-center me-3">
                 <i style="color:red" class="far fa-thumbs-up me-2"></i>
                 <p style="color:purple" class="mb-0">0</p>
               </a>
-              <a style="text-decoration:none"  href="#!" class="d-flex align-items-center me-3 comment">
+              <a  style="text-decoration:none"  href="#!" class="d-flex align-items-center me-3 comment">
                 <i  style="color:red" class="far fa-comment-dots me-2"></i>
                 <p style="color:purple" class="mb-0">Comment</p>
               </a>
