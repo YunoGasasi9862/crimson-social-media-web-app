@@ -178,12 +178,14 @@
     margin-left: -170px ;
     margin-top: 25px;
     display: none;
-    background-color: #fff;
+    background-color: #f5e8ff;
     
     width:400px;
     height:400px;
-    border: 2px solid #bcbce5;
+    border: 2px solid #d98cff;
     border-radius: 5px;
+    box-shadow: 0 0 2px #d98cff, 0 0 2px #d98cff, 0 0 3px #d98cff, 0 0 4px #d98cff, 0 0 5px #d98cff, 0 0 6px #d98cff, 0 0 7px #d98cff;
+
   }
 
   .submain ul {
@@ -204,14 +206,18 @@
   text-align: right; /* Align the text to the right */
   margin-right: 30px; /* Adjust the right margin */
   margin-left: auto; /* Set the left margin to auto for center alignment */
+  width:30px;
 }
 
 .submain li p {
-  border-bottom: 2px solid #bcbce5;
-  padding: 5px;
+  border-bottom: 2px solid #d98cff;
+  box-shadow:   2px #d98cff;
+
+  padding: 3px;
   text-align: right; /* Align the text to the right */
+  
   margin-right: 30px; /* Adjust the right margin */
-  margin-left: auto; /* Set the left margin to auto for center alignment */
+  margin-left: 30px; /* Set the left margin to auto for center alignment */
 }
 
 
@@ -220,10 +226,11 @@
   .submain li a:hover {
     color: #ff0000;
   }
-  #pic1{
-    width:50px;
-    border-radius: 170px;
-  }
+  #pic1 {
+      width: 50px;
+      border: 2px dashed #d98cff; /* Çizgili kenarlık */
+      border-radius: 50%; /* Yuvarlak köşeler */
+    }
 </style>
 <script>
   function toggleNotftable() {
@@ -247,9 +254,9 @@
   </button>
   <div class="submain" id="submain">
     <ul>
-      <li><br><img src="../img/avatar-1.webp" id="pic1"alt=""><a href="#">Submenu Öğesi 1 Submenu Öğesi 1 Submenu Öğesi 1 <p></p></a></li>
+      <li><br><img src="../img/avatar-1.webp" id="pic1" alt=""><a href="#">Submenu Öğesi 1 Submenu Öğesi 1 Submenu Öğesi 1 <p></p></a></li>
       <li><img src="../img/avatar-1.webp" id="pic1"alt=""><a href="#">Submenu Öğesi 1 Submenu Öğesi 1 Submenu Öğesi 1 <p></p></a></li>
-      <li><a href="#">Submenu Öğesi 3 </a></li>
+      <li><img src="../img/avatar-1.webp" id="pic1"alt=""><a href="#">Submenu Öğesi 3 </a></li>
     </ul>
   </div>
 </div>
