@@ -99,6 +99,7 @@ $usernames = Friends::fetchUsernames($friends); //returns all the emails of the 
       background-color: #37268E;
       box-shadow: none;
     }
+  
   </style>
 
 
@@ -124,6 +125,7 @@ $usernames = Friends::fetchUsernames($friends); //returns all the emails of the 
 
       <?php
       const PAGE_SIZE = 10;
+      $countTest=0;
       $page = isset($_GET["page"]) ? $_GET["page"] : 1;
       if ($usernames) {
         $posts = array();
@@ -138,12 +140,16 @@ $usernames = Friends::fetchUsernames($friends); //returns all the emails of the 
         $paginatedPosts = array_slice($posts, ($requestedPage - 1) * PAGE_SIZE, PAGE_SIZE);
         foreach ($paginatedPosts as $row) {
           $row_user = User::get_user($row["username"]);
+          $countTest++;
           include "../HTML/post.php";
         }
       }
+         if($countTest!=0) //checks if there are any posts to show: If so, then shows the next button
+         {
+          echo "<button class='neon-button' onclick='navigateToNextPage()'>Next</button>";
+         }
       ?>
-
-      <button class="neon-button" onclick="navigateToNextPage()">Next</button>
+      
     </div>
   </div>
 
