@@ -31,7 +31,6 @@
             return $db->fetchAll(PDO::FETCH_ASSOC);
         }
 
-
         public static function fetchUsernames($FriendArray)
         {
             global $username;
@@ -39,7 +38,6 @@
              $counter=0;
              if($FriendArray!=null)
              {
-                
                 $Usernames[$counter]= $username;
                 $counter++;
                 foreach($FriendArray as $i)
@@ -48,12 +46,9 @@
                     $Usernames[$counter]= $record[0]['username'];
                     $counter++;
                 }
-                //append the current user's email to the array
-                
-                $counter=0;
-                   
+                //append the current user's email to the arra
+                $counter=0;    
              }
-       
              return $Usernames;
 
         }
