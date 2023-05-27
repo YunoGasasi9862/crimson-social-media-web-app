@@ -1,4 +1,6 @@
 <?php
+    $username = $_SESSION['User']['username'];
+
     class Friends
     {
 
@@ -21,21 +23,28 @@
 
         public static function fetchUsernames($FriendArray)
         {
+            global $username;
             $Usernames=[];
              $counter=0;
-             $record=self::UserNameHelper($FriendArray[0]['userEmail']);
-             $Usernames[$counter]= $record[0]['username'];
-             $counter++;
-            foreach($FriendArray as $i)
-            {
-                $record=self::UserNameHelper($i['FriendEmail']);
-                $Usernames[$counter]= $record[0]['username'];
+             if($FriendArray!=null)
+             {
+                
+                $Usernames[$counter]= $username;
                 $counter++;
-            }
-            //append the current user's email to the array
-           
-            $counter=0;
-            return $Usernames;
+                foreach($FriendArray as $i)
+                {
+                    $record=self::UserNameHelper($i['FriendEmail']);
+                    $Usernames[$counter]= $record[0]['username'];
+                    $counter++;
+                }
+                //append the current user's email to the array
+                
+                $counter=0;
+                   
+             }
+       
+             return $Usernames;
+
         }
 
     }
