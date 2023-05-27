@@ -5,6 +5,14 @@
         public static function getFriends($email) //current Email
         {
             $db= new PDO(DSN, USER, PASS);
+            $db= $db->prepare("SELECT * FROM friends WHERE userEmail=?");
+            $db->execute([$email]);
+            return $db->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public static function getFriendMail($email) //current Email
+        {
+            $db= new PDO(DSN, USER, PASS);
             $db= $db->prepare("SELECT FriendEmail FROM friends WHERE userEmail=?");
             $db->execute([$email]);
             return $db->fetchAll(PDO::FETCH_ASSOC);
