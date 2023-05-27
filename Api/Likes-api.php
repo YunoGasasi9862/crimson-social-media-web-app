@@ -10,7 +10,7 @@ $input= json_decode($json); //converts into php object
 
 if($method=== "GET")
 {
-    $result = getLikes($input->postId);
+    $result = getLikes();
 }
 
 if($method=== "PUT")

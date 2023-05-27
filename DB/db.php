@@ -9,12 +9,12 @@ try {
    exit ;
  }
 
-function getLikes($postId)
+function getLikes()
 {
      global $db;
-     $query = "select likes FROM posts WHERE postid = ?";
+     $query = "select * from posts";
      $record= $db->prepare($query);
-     $record->execute([$postId]);
+     $record->execute();
      return $record->fetchAll(PDO::FETCH_ASSOC);
 }
 function updateLikes($postId, $newLikes)

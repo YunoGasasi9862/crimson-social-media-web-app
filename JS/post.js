@@ -3,6 +3,8 @@ const apiURL = "../Api/Likes-api.php" ;
 $(function()
 {
 
+   getLikes();
+
   $(".comment").click(function()
   {
         $(this).parent().next().css({display:"block"});//shows the comment box
@@ -50,3 +52,23 @@ $(function()
 
 
 });
+
+function getLikes()
+{
+
+   $.ajax({
+      type: "GET",
+      url: apiURL,
+      contentType: "application/json",
+      success: function(data)
+      {
+         console.log(data);
+         
+      },
+      error: function()
+      {
+         alert("Error connecting to the server.");
+      }
+
+   })
+}
