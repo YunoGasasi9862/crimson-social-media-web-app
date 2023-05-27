@@ -1,6 +1,5 @@
 <?php
-
-
+require_once "../scripts/config.php";
 class User {
     public static function get_user($username){
         $db=new PDO(DSN, USER, PASS);

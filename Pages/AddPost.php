@@ -1,5 +1,6 @@
 <?php
-session_start();
+if(session_id() == ''){ session_start();}
+
 include "../Classes/post.php";
 
 $username=$_SESSION['User']['username'];

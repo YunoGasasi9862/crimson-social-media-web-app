@@ -1,16 +1,12 @@
 <?php
-
- session_start();
- if(isset($_GET))
- {
-      extract($_GET);
-      var_dump($_GET);
- }
+if(session_id() == ''){ session_start();}
+if(isset($_GET))
+{
+    extract($_GET);
+    var_dump($_GET);
+}
 
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +15,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../Bootstrap/css/mdb.min.css">
     <link rel="stylesheet" href="../css/mainpage.css">
-
     <title>Search</title>
 </head>
 <body>
