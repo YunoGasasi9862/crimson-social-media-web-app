@@ -1,4 +1,7 @@
 <?php
+    require_once "../scripts/config.php";
+    if(session_id() == ''){ session_start();}
+
     $username = $_SESSION['User']['username'];
 
     class Friends

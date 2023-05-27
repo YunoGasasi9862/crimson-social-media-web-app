@@ -1,11 +1,12 @@
 <?php
 require "../scripts/db.php";
-session_start();
-var_dump($_SESSION['User']);
-$email=$_SESSION['User']['email'];
-$user= GetUser($email);
-if($_SESSION['User']['profile']!=null)
-  $profile=$user['profile'];
+include_once "../Classes/user.php";
+if(session_id() == ''){ session_start();}
+
+$username = $_GET["profile"] ?? $_SESSION['User']['username'] ;
+$user = USER::get_user($username);
+if(!$user)$user=$_SESSION['User'];
+$profile=$user["profile"];
 ?>
 
 
@@ -34,7 +35,8 @@ if($_SESSION['User']['profile']!=null)
           <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
            <a href="Feed.php"> <img src="../img/home.png" alt="" id="home"></a>
             <a href=""><img src="../img/notification.png" alt="" id="notif"></a>
-              <img src= <?=isset($_SESSION['User']['profile'])? "../PPimages/$profile" : "../img/home.png" ?>
+
+              <img src= <?=isset($profile)? "../PPimages/$profile" : "../img/home.png" ?>
                 alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
                 style="width: 150px; z-index: 1">
               <button type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark"
@@ -43,7 +45,7 @@ if($_SESSION['User']['profile']!=null)
               </button>
             </div>
             <div class="ms-3" style="margin-top: 130px;">
-              <h5><?=$_SESSION["User"]["name"] ?></h5>
+              <h5><?=$user["name"]." ".$user["surname"]?></h5>
               <p>New York</p>
             </div>
           </div>

@@ -1,7 +1,8 @@
 <?php
 require "../scripts/db.php";
 
-session_start(); //starts session
+if(session_id() == ''){ session_start();}
+
 
 if (isset($_SESSION['User']))  //checks if the user is already authenticated
 {
