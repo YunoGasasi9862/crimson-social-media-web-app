@@ -60,14 +60,11 @@ function getLikes()
       contentType: "application/json",
       success: function(data)
       {
-        
-            console.log("Entering");
             for(let i=0; i<data.length; i++)
             {
-               $(`#${data[i].postId}`).find("p").text(data[i].likes);
+               console.log(data[i].postid);
+               $(`#${data[i].postid}`).find("p").text(data[i].likes);
             }
-       
-         
       },
       error: function()
       {
