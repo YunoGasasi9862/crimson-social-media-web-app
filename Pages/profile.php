@@ -34,7 +34,6 @@ $profile=$user["profile"];
             
           <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
            <a href="Feed.php"> <img src="../img/home.png" alt="" id="home"></a>
-            <a href=""><img src="../img/notification.png" alt="" id="notif"></a>
 
               <img src= <?=isset($profile)? "../PPimages/$profile" : "../img/home.png" ?>
                 alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
@@ -54,24 +53,12 @@ $profile=$user["profile"];
     <div class="px-3 follow">
         <p class="mb-1 h5">1026</p>
         <p class="small text-muted mb-0">Followers</p>
-        <div class="submain">
-            <ul>
-            <li><a href="#">Submenu Öğesi 1</a></li>
-            <li><a href="#">Submenu Öğesi 2</a></li>
-            <li><a href="#">Submenu Öğesi 3</a></li>
-            </ul>
-        </div>
+    
     </div>
     <div class="follow">
         <p class="mb-1 h5">478</p>
         <p class="small text-muted mb-0">Following</p>
-        <div class="submain">
-            <ul>
-            <li><a href="#">Submenu Öğesi 1</a></li>
-            <li><a href="#">Submenu Öğesi 2</a></li>
-            <li><a href="#">Submenu Öğesi 3</a></li>
-            </ul>
-        </div>
+      
     </div>
           </div>
           <div class="submain" style="width: 18rem;">
@@ -81,9 +68,7 @@ $profile=$user["profile"];
     <li class="list-group-item px-3">Vestibulum at eros</li>
   </ul>
 </div>
-          <div class="card-body p-4 text-black">
-       
-           
+          <div class="card-body p-4 text-black">  
               <a href="logout.php" class="btn btn-danger w-bold text-body">Logout</a>
                  
             </div>
