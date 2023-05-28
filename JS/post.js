@@ -1,9 +1,8 @@
 const apiURL = "../Api/Likes-api.php" ;
+getLikes();
 
 $(function()
 {
-
-   getLikes();
 
   $(".comment").click(function()
   {
@@ -33,11 +32,10 @@ $(function()
          {
             if(data.error)
             {
-               alert(data.message);
+               //error
             }
             else
             {
-               console.log(data);
                $(`#${postId}`).find("p").text(data.newLikes);
 
             }
@@ -62,7 +60,13 @@ function getLikes()
       contentType: "application/json",
       success: function(data)
       {
-         console.log(data);
+        
+            console.log("Entering");
+            for(let i=0; i<data.length; i++)
+            {
+               $(`#${data[i].postId}`).find("p").text(data[i].likes);
+            }
+       
          
       },
       error: function()
