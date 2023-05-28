@@ -39,10 +39,6 @@ $profile=$user["profile"];
               <img src= <?=isset($profile)? "../PPimages/$profile" : "../img/home.png" ?>
                 alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
                 style="width: 150px; z-index: 1">
-              <button type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark"
-                style="z-index: 1;">
-                Edit profile
-              </button>
             </div>
             <div class="ms-3" style="margin-top: 130px;">
               <h5><?=$user["name"]." ".$user["surname"]?></h5>
@@ -86,32 +82,10 @@ $profile=$user["profile"];
   </ul>
 </div>
           <div class="card-body p-4 text-black">
-            
-            <div class="d-flex justify-content-between align-items-center mb-4">
-              <p class="lead fw-normal mb-0">Recent photos</p>
-            </div>
-            <div class="row g-2">
-              <div class="col mb-2">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(112).webp"
-                  alt="image 1" class="w-100 rounded-3">
-              </div>
-              <div class="col mb-2">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(107).webp"
-                  alt="image 1" class="w-100 rounded-3">
-              </div>
-            </div>
-            <div class="row g-2">
-              <div class="col">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(108).webp"
-                  alt="image 1" class="w-100 rounded-3">
-              </div>
-              <div class="col">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(114).webp"
-                  alt="image 1" class="w-100 rounded-3">
-              </div>
+       
+           
               <a href="logout.php" class="btn btn-danger w-bold text-body">Logout</a>
                  
-
             </div>
           </div>
         </div>
