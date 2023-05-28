@@ -123,21 +123,198 @@
  
  
 }
+/*coppy paste starting there for notifications tables etc*/
+.button {
+  background-color: transparent; /* Buton arka plan rengi */
+  border: none;
+  color: white; /* Buton metin rengi */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  padding: 10px 20px; /* Buton boyutu */
+  position: absolute; /* Pozisyon ayarı */
+  margin-left: -190px;
+  margin-top: -45px;
+}
 
+.button:hover {
+  animation: shake 0.8s;
+}
+
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(15deg); }
+  75% { transform: rotate(-15deg); }
+  100% { transform: rotate(0deg); }
+}
+
+#notf {
+  
+    width: 40px;
+    margin-top: 17px;
+    
+  }
+  
+
+.notftable {
+  position: relative;
+
+  
+    z-index: 2;
+  }
 
   
 
+  .notftable:hover .submain,
+  .notftable.show .submain {
+    display: block;
+  }
+
+  .submain {
+    position: absolute;
+    margin-left: -170px ;
+    margin-top: 25px;
+    display: none;
+    background-color: #f5e8ff;
+    
+    width:400px;
+    height:400px;
+    border: 2px solid #d98cff;
+    border-radius: 5px;
+    box-shadow: 0 0 2px #d98cff, 0 0 2px #d98cff, 0 0 3px #d98cff, 0 0 4px #d98cff, 0 0 5px #d98cff, 0 0 6px #d98cff, 0 0 7px #d98cff;
+
+  }
+
+  .submain ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .submain li {
+    padding: 5px 10px;
+    
+  }
+
+  
+
+  .submain li a {
+    text-decoration: none;
+  color: #333;
+
+  font-size:15px;
+  position: absolute;
+      left: 10px; /* Sağa hizalama miktarı */
+      top: 50%; /* Dikey ortalamak için */
+      transform: translateY(-50%); /* Dikey ortalamak için */
+      list-style: none;
+  
+}
+
+.submain li h1 {
+  border-bottom: 2px solid #d98cff;
+  box-shadow:   2px #d98cff;
+
+  padding: 3px;
+  text-align: right; /* Align the text to the right */
+  
+  margin-right: 30px; /* Adjust the right margin */
+  margin-left: 30px; /* Set the left margin to auto for center alignment */
+}
+
+
+
+
+  .submain li a:hover {
+    color: #9966FF;
+  }
+  
+    .circle {
+      width: 20px;
+    height: 20px;
+    background-color: #9966FF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 10px;
+    margin-left: -150px;
+    z-index: 9999;
+    position: absolute;
+    margin-top: -45px;
+    margin-top: -20px;
+    }
+
+    .square {
+      width: 300px;
+      height: 60px;
+      background-color: #f5e8ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 0;
+      margin-top: -47px;
+      margin-left: 60px;
+    }
+    #pic1 {
+      width: 50px;
+      border: 2px dashed #d98cff; /* Çizgili kenarlık */
+      border-radius: 50%; /* Yuvarlak köşeler */
+      width: 50px;
+      border: 2px dashed #d98cff;
+      border-radius: 50%;
+      position: relative;
+      z-index: 1;
+
+    }
+    h4{
+      padding-left: 20px;
+      text-decoration-line:underline;
+      color:#9966FF;
+    }
 
 </style>
-
+<script>
+  function toggleNotftable() {
+    var notftable = document.querySelector(".notftable");
+    notftable.classList.toggle("show");
+  }
+</script>
 <body>
   <div class="h-100 gradient-custom-2 ">
     <div class="main">
-
+   
      <nav>
         <button type="submit" id="camera" style="border: none; background: none; padding: 0;">
           <div class="nav-item"><img src="../img/camara-icon-21.png" alt="" id="camera" ></div>
         </button>
+       
+        
+        <div class="notftable">
+        
+          <div class="circle">3</div>
+  <button class="button" onclick="toggleNotftable()">
+
+    <img src="../img/notification.png" id="notf" alt="">
+  </button>
+ 
+  <div class="submain" id="submain">
+    <ul>
+      <br><h4>Notifications</h4>
+      <li><img src="../img/avatar-1.webp" id="pic1" alt=""><div class="square"><a href="#">Subsddddddddddddddddddddddddddd dddddddddd dddddddddddmenu wtrtÖğesi iiii </a></div><p></p> <h1></h1></li>
+      <li><img src="../img/avatar-1.webp" id="pic1"alt=""><div class="square"><a href="#">Subsddddddddddddddddddddddddddd dddddddddd dddddddddddmenu wtrtÖğesi iiii </a></div> <h1></h1></li>
+      <li><img src="../img/avatar-1.webp" id="pic1"alt=""><div class="square"><a href="#">Subsddddddddddddddddddddddddddd dddddddddd dddddddddddmenu wtrtÖğesi iiii </a></div></li>
+    </ul>
+    
+  </div>
+ 
+</div>
+
       
         <form>
           <input type="text" name="search" id="inp" placeholder="Search...">
