@@ -11,9 +11,45 @@ if (!empty($_POST)) {
   filter_var($name, FILTER_SANITIZE_SPECIAL_CHARS);
   filter_var($surname, FILTER_SANITIZE_SPECIAL_CHARS);
 
-  if ($password != $repeatPassword) {
-    $error["pass"] = "Passwords do not match!";
+  // Verification for Name
+  if (empty($name)) {
+    $error['name'] = "Name is required!";
   }
+
+  // Verification for Surname
+  if (empty($surname)) {
+    $error['surname'] = "Surname is required!";
+  }
+
+  // Verification for Email
+  if (empty($email)) {
+    $error['email'] = "Email is required!";
+  } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $error['email'] = "Invalid email format!";
+  }
+
+  // Verification for Username
+  if (empty($username)) {
+    $error['username'] = "Username is required!";
+  }
+
+  // Verification for Date of Birth
+  if (empty($DOB)) {
+    $error['DOB'] = "Date of Birth is required!";
+  }
+
+  // Verification for Password
+  if (empty($password)) {
+    $error['password'] = "Password is required!";
+  }
+
+  // Verification for Repeat Password
+  if (empty($repeatPassword)) {
+    $error['repeatPassword'] = "Repeat Password is required!";
+  } elseif ($password != $repeatPassword) {
+    $error['repeatPassword'] = "Passwords do not match!";
+  }
+
   if (empty($error)) {
     $filePath = new PictureUpload("PP", "PPimages"); //they both have to be string
     Register($email, $password, $username, $name, $surname, $filePath->filename, $DOB);
@@ -36,16 +72,18 @@ if (!empty($_POST)) {
 
   <link rel="stylesheet" href="css/index.css">
 
-  <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
   <script src="JS/prevent.js"></script>
 
   <style>
-    ::-webkit-scrollbar{
-      width: 2em;
-    }
-    ::-webkit-scrollbar-track{
-    background: hsl(120, 75%, 0% );
-    }
+  ::-webkit-scrollbar {
+    width: 2em;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(120, 75%, 0%);
+  }
   </style>
 
 </head>
@@ -62,50 +100,95 @@ if (!empty($_POST)) {
                 <form action="" method="post" enctype="multipart/form-data">
 
                   <div class="form-floating mb-4">
-                    <input name="name" type="text" class="form-control border-1" id="floatingInput1" placeholder="Name">
+                    <input name="name" type="text" class="form-control border-1" id="floatingInput1" placeholder="Name"
+                      required>
                     <label for="floatingInput1">Your Name</label>
+                    <?php if (isset($error['name'])): ?>
+                    <span class="text-danger">
+                      <?php echo $error['name']; ?>
+                    </span>
+                    <?php endif; ?>
                   </div>
 
                   <div class="form-floating mb-4">
-                    <input name="surname" type="text" class="form-control border-1" id="floatingInput1" placeholder="Name">
-                    <label for="floatingInput1">Your Surname</label>
+                    <input name="surname" type="text" class="form-control border-1" id="floatingInput2"
+                      placeholder="Surname" required>
+                    <label for="floatingInput2">Your Surname</label>
+                    <?php if (isset($error['surname'])): ?>
+                    <span class="text-danger">
+                      <?php echo $error['surname']; ?>
+                    </span>
+                    <?php endif; ?>
                   </div>
 
                   <div class="form-floating mb-4">
-                    <input name="email" type="email" class="form-control border-1" id="floatingInput1" placeholder="name@example.com">
-                    <label for="floatingInput1">Email address</label>
+                    <input name="email" type="email" class="form-control border-1" id="floatingInput3"
+                      placeholder="name@example.com" required>
+                    <label for="floatingInput3">Email address</label>
+                    <?php if (isset($error['email'])): ?>
+                    <span class="text-danger">
+                      <?php echo $error['email']; ?>
+                    </span>
+                    <?php endif; ?>
                   </div>
 
                   <div class="form-floating mb-4">
-                    <input name="username" type="text" class="form-control border-1" id="floatingInput1" placeholder="xxxx">
-                    <label for="floatingInput1">User Name</label>
+                    <input name="username" type="text" class="form-control border-1" id="floatingInput4"
+                      placeholder="xxxx" required>
+                    <label for="floatingInput4">User Name</label>
+                    <?php if (isset($error['username'])): ?>
+                    <span class="text-danger">
+                      <?php echo $error['username']; ?>
+                    </span>
+                    <?php endif; ?>
                   </div>
 
                   <div class="form-floating mb-4">
-                    <input name="DOB" type="date" class="form-control border-1" id="floatingInput1" placeholder="xx-xx-xxxx">
-                    <label for="floatingInput1">Your Date of Birth</label>
+                    <input name="DOB" type="date" class="form-control border-1" id="floatingInput5"
+                      placeholder="xx-xx-xxxx" required>
+                    <label for="floatingInput5">Your Date of Birth</label>
+                    <?php if (isset($error['DOB'])): ?>
+                    <span class="text-danger">
+                      <?php echo $error['DOB']; ?>
+                    </span>
+                    <?php endif; ?>
                   </div>
 
                   <div class="form-floating mb-4">
-                    <input name="password" type="password" class="form-control border-1" id="floatingInput1" placeholder="xx-xx-xxxx">
-                    <label for="floatingInput1">Password</label>
+                    <input name="password" type="password" class="form-control border-1" id="floatingInput6"
+                      placeholder="Password" required>
+                    <label for="floatingInput6">Password</label>
+                    <?php if (isset($error['password'])): ?>
+                    <span class="text-danger">
+                      <?php echo $error['password']; ?>
+                    </span>
+                    <?php endif; ?>
                   </div>
 
                   <div class="form-floating mb-4">
-                    <input name="repeatPassword" type="password" class="form-control border-1" id="floatingInput1" placeholder="xx-xx-xxxx">
-                    <label for="floatingInput1">Repeat your password</label>
+                    <input name="repeatPassword" type="password" class="form-control border-1" id="floatingInput7"
+                      placeholder="Repeat Password" required>
+                    <label for="floatingInput7">Repeat your password</label>
+                    <?php if (isset($error['repeatPassword'])): ?>
+                    <span class="text-danger">
+                      <?php echo $error['repeatPassword']; ?>
+                    </span>
+                    <?php endif; ?>
                   </div>
 
                   <div class="form-floating mb-6">
-                    <input name="PP" type="file" class="form-control border-1" id="floatingInput1" placeholder="xx-xx-xxxx">
-                    <label for="floatingInput1">Upload Profile Picture</label>
+                    <input name="PP" type="file" class="form-control border-1" id="floatingInput8"
+                      placeholder="Upload Profile Picture" required>
+                    <label for="floatingInput8">Upload Profile Picture</label>
                   </div>
 
                   <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-danger btn-block btn-lg gradient-custom-2 text-body">Register</button>
+                    <button type="submit"
+                      class="btn btn-danger btn-block btn-lg gradient-custom-2 text-body">Register</button>
                   </div>
 
-                  <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="Pages/login.php" class="fw-bold text-body"><u>Login here</u></a></p>
+                  <p class="text-center text-muted mt-5 mb-0">Already have an account? <a href="Pages/login.php"
+                      class="fw-bold text-body"><u>Login here</u></a></p>
 
                 </form>
 
