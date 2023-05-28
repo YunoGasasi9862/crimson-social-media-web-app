@@ -38,6 +38,8 @@ class Post{
         return $number;
     }
 
+
+
 }
 
 ?>

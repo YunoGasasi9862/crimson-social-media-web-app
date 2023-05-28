@@ -18,6 +18,15 @@ if($method=== "PUT")
     $result= updateLikes($input->postId, $input->newLikes);
 }
 
+if($method === "POST")
+{
+    $result= insertLikesIntoULikesTable($input->username, $input->postId, $input->YesNo);
+}
+
+if($method === "REMOVE")
+{
+    $result = removeLikes($input->postId, $input->username, $input->newLikes);
+}
 
 
 echo json_encode($result); //create json encoding

@@ -259,6 +259,10 @@ $usernames = Friends::fetchUsernames($friends); //returns all the emails of the 
   }
 </script>
 
+<script>
+     localStorage.setItem("username", '<?php echo $_SESSION['User']['username'] ?>'); //setting the username into localstorage
+  </script>
+
 </head>
 
 <body>
