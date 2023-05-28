@@ -16,7 +16,7 @@ $(function()
   })
 
 
-  $("a").click(function()
+  $("div.likeclass a:first-child").click(function()
   {
 
     let newLikes=parseInt($(this).find("p").text());
@@ -27,8 +27,40 @@ $(function()
   })
 
 
-});
+  $("button").click(function()
+  {
+     let postId= $(this).attr("id");
+     let Comment= $(this).parent().prev().find("textarea").val();
+     let username= localStorage.getItem("username");
+     $(this).next().parent().parent().css({display:"none"}); //closes
+     $(".PostComment").append(`
+     
+        
+     <div class="card-body p-4">
+     <div class="d-flex flex-start">
+     <img class="rounded-circle shadow-1-strong me-3"
+                src="/" alt="avatar" width="60"
+                height="60" />
+       <div>
+         <h6 class="fw-bold mb-1">${username}</h6>
+         <div class="d-flex align-items-center mb-3">
+           <p class="mb-0">
+             March 24, 2021
+           </p>
+         </div>
+         <p class="mb-0">
+           ${Comment}
+         </p>
+       </div>
+     </div>
+   </div>
+   
+     `);
+  });
 
+
+
+});
 function HelperUpdateLikes(username, postId, YesNo, newLikes)
 {
    $.ajax({

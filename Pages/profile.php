@@ -22,6 +22,9 @@ $profile=$user["profile"];
     <title>Document</title>
 </head>
 
+<script>
+    localStorage.setItem("profile", '<?php echo $profile=$user["profile"]?? "home.png"; ?>'); //setting the username into localstorage
+</script>
 
 <body>
 

@@ -66,6 +66,11 @@ function removeLikes($postId, $username, $newLikes)
   }
 }
 
+function addComment()
+{
+  
+}
+
 
 
 ?>

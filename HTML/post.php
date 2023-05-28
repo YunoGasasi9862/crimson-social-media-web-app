@@ -11,6 +11,9 @@ $hours = $interval->format('%h');
 $minutes = $interval->format('%i');
 $seconds = $interval->format('%s');
 $postId=$row["postid"];
+
+
+
 ?>
 
 <div class="card">
@@ -55,7 +58,7 @@ $postId=$row["postid"];
         </p>
        
        
-             <div class="small d-flex justify-content-start">
+             <div class="likeclass small d-flex justify-content-start">
               <a id="<?=$postId?>" style="text-decoration:none" href="#!" class="d-flex align-items-center me-3">
                 <i style="color:red" class="far fa-thumbs-up me-2"></i>
                 <p style="color:purple" class="mb-0">0</p>
@@ -66,17 +69,31 @@ $postId=$row["postid"];
               </a>
             </div>
 
+            
             <div style="display:none" class="PostComment">
               <div style="margin-top:10px" class="form-outline w-100">
-                <textarea class="form-control" id="textAreaExample" rows="4"
-                  style="background: #fff;"></textarea>        
+                <textarea name="comment" class="form-control" id="textAreaExample" rows="4"
+                  style="background: #fff;"></textarea>  
+               
               </div>
        
                 <div  class="float-end mt-2 pt-1">
-                    <button type="button" class="btn btn-danger btn-sm">Post comment</button>
+                    <button id="<?=$postId ?>" type="button" class="btn btn-danger btn-sm ">Post comment</button>
                     <button type="button" class="btn btn-outline-primary btn-sm cancel">Cancel</button>
                 </div>
+
+              
+                <div class="commentContainer mt-5">
+
+
+
+                </div>
+
+
+                
+        
             </div>
+      
 
     </div>
 </div>
