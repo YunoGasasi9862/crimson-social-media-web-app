@@ -1,7 +1,7 @@
 <?php
 
  //including the picture upload class
-require_once "../scripts/config.php";
+require_once "config.php";
 
 //creating connection
 $db=new PDO(DSN, USER, PASS);

@@ -15,7 +15,6 @@ class User {
         $record = $db->prepare($query);
         $record->execute([$input . '%',$input . '%',$input . '%']);
         return $record->fetchAll(PDO::FETCH_ASSOC);
-
     }
 }
 

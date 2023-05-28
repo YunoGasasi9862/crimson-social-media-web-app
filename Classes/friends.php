@@ -1,8 +1,10 @@
 <?php
     require_once "../scripts/config.php";
+    require_once "user.php";
     if(session_id() == ''){ session_start();}
 
     $username = $_SESSION['User']['username'];
+    
 
     class Friends
     {
@@ -53,7 +55,30 @@
 
         }
 
+        public static function addFriend($friendname){
+            global $username;
+            $user = USER::get_user($username); 
+            $usermail=$user["email"];
+            $friend= USER::get_user($friendname);
+            $friendmail=$friend["email"];
+            $db= new PDO(DSN, USER, PASS);
+            $db= $db->prepare("INSERT INTO friends (userEmail, FriendEmail) VALUES (?, ?)" );
+            $db->execute([$usermail, $friendmail]);
+        }
+
+        public static function removeFriend($friendname){
+            global $username;
+            $user = USER::get_user($username); 
+            $usermail=$user["email"];
+            $friend= USER::get_user($friendname);
+            $friendmail=$friend["email"];
+            $db= new PDO(DSN, USER, PASS);
+            $db= $db->prepare("DELETE FROM friends WHERE userEmail=? AND FriendEmail=?" );
+            $db->execute([$usermail, $friendmail]);
+
+        }
     }
+
 
 
 
