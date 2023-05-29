@@ -12,14 +12,12 @@ $minutes = $interval->format('%i');
 $seconds = $interval->format('%s');
 $postId=$row["postid"];
 
-
-
 ?>
 
 <div class="card">
 
     <div class="profile">
-        <img src=<?= isset($row_user["image"])? "/PPimages/$row_user[image]" : "../img/home.png"?> id="profimg">
+        <img src=<?= isset($row_user["profile"])? "../PPimages/$row_user[profile]" : "../img/home.png"?> id="profimg">
         <p><?=$row_user["name"] . " ". $row_user["surname"]?></p>
         <div class="date"><p class="card-text">
         <?php
@@ -78,19 +76,13 @@ $postId=$row["postid"];
               </div>
        
                 <div  class="float-end mt-2 pt-1">
-                    <button id="<?=$postId ?>" type="button" class="btn btn-danger btn-sm ">Post comment</button>
+                    <button id="<?=$postId ?>" type="button" class="btn btn-danger btn-sm postBTN">Post comment</button>
                     <button type="button" class="btn btn-outline-primary btn-sm cancel">Cancel</button>
                 </div>
 
-              
-                <div class="commentContainer mt-5">
+          
 
-
-
-                </div>
-
-
-                
+   
         
             </div>
       

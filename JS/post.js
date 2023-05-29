@@ -27,19 +27,19 @@ $(function()
   })
 
 
-  $("button").click(function()
+  $(".postBTN").click(function()
   {
      let postId= $(this).attr("id");
      let Comment= $(this).parent().prev().find("textarea").val();
      let username= localStorage.getItem("username");
-     $(this).next().parent().parent().css({display:"none"}); //closes
+     let profilename= localStorage.getItem("profile");
      $(".PostComment").append(`
      
         
      <div class="card-body p-4">
      <div class="d-flex flex-start">
-     <img class="rounded-circle shadow-1-strong me-3"
-                src="/" alt="avatar" width="60"
+     <img style="width:50px; height:50px;" class="rounded-circle shadow-1-strong me-3"
+                src="../PPimages/${profilename}" alt="avatar" width="60"
                 height="60" />
        <div>
          <h6 class="fw-bold mb-1">${username}</h6>
