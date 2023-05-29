@@ -66,9 +66,33 @@ function removeLikes($postId, $username, $newLikes)
   }
 }
 
-function addComment()
+function insertIntoComments($username, $postid, $comment)
 {
-  
+  global $db;
+  try{
+    $query= "INSERT INTO comments (username, postid, comment) VALUES (?,?,?)";
+    $record= $db->prepare($query);
+    $record->execute([$username, $postid, $comment]);
+    return ["username" => $username, "postid" => $postid, "comment" => $comment] ;
+
+  }catch(PDOEXCEPTION $e)
+  {
+    return ["error" => "API Error: Update Comment Error"] ;
+  }
+}
+
+function GetCommentsForEachPost()
+{
+  global $db;
+  try{
+    $query= "SELECT * FROM comments";
+    $record= $db->prepare($query);
+    $record->execute();
+    return $record->fetchAll(PDO::FETCH_ASSOC);
+  }catch(PDOEXCEPTION $e)
+  {
+    return ["error" => "API Error: Get Comments Error"] ;
+  }
 }
 
 

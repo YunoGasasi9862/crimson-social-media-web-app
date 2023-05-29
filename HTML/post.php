@@ -14,7 +14,7 @@ $postId=$row["postid"];
 
 ?>
 
-<div class="card">
+<div class="card" >
 
     <div class="profile">
         <img src=<?= isset($row_user["profile"])? "../PPimages/$row_user[profile]" : "../img/home.png"?> id="profimg">

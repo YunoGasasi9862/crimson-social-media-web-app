@@ -1,5 +1,8 @@
 const apiURL = "../Api/Likes-api.php" ;
+const apiURL2 = "../Api/Comments-api.php";
+
 getLikes();
+getComments();
 
 $(function()
 {
@@ -29,40 +32,84 @@ $(function()
 
   $(".postBTN").click(function()
   {
-     let postId= $(this).attr("id");
+     let postid= $(this).attr("id");
      let parent=findparent(this);
-     $(parent).attr("id", postId);
-     let Comment= $(this).parent().prev().find("textarea").val();
+     $(parent).attr("id", postid);
+     let comment= $(this).parent().prev().find("textarea").val();
      let username= localStorage.getItem("username");
-     let profilename= localStorage.getItem("profile");
-      $(parent).find('div.PostComment').append(`
-     
-        
-     <div class="card-body p-4">
-     <div class="d-flex flex-start">
-     <img style="width:50px; height:50px;" class="rounded-circle shadow-1-strong me-3"
-                src="../PPimages/${profilename}" alt="avatar" width="60"
-                height="60" />
-       <div>
-         <h6 class="fw-bold mb-1">${username}</h6>
-         <div class="d-flex align-items-center mb-3">
-           <p class="mb-0">
-             March 24, 2021
-           </p>
-         </div>
-         <p class="mb-0">
-           ${Comment}
-         </p>
-       </div>
-     </div>
-   </div>
-   
-     `);
+     let profilename= localStorage.getItem("profile");  
+     addCommentPostAjax(username, postid, comment, parent, profilename); //sends to the database
+
   });
 
-
-
 });
+
+function addCommentPostAjax(username, postid, comment, parent, profilename)
+{
+   $.ajax({
+      type: "POST",
+      url: apiURL2,
+      data: JSON.stringify({"username":username, "postid": postid, "comment": comment}),
+      contentType: "application/json",
+      success: function(data)
+      {
+         
+         $(parent).find('div.PostComment').append(`
+     
+        
+         <div class="card-body p-4">
+         <div class="d-flex flex-start">
+         <img style="width:50px; height:50px;" class="rounded-circle shadow-1-strong me-3"
+                    src="../PPimages/${profilename}" alt="avatar" width="60"
+                    height="60" />
+           <div>
+             <h6 class="fw-bold mb-1">${data.username}</h6>
+             <div class="d-flex align-items-center mb-3">
+               <p class="mb-0">
+                 March 24, 2021
+               </p>
+             </div>
+             <p class="mb-0">
+               ${data.comment}
+             </p>
+           </div>
+         </div>
+       </div>
+       
+         `);
+          
+      },
+      error: function()
+      {
+
+         alert("Error connecting to the server."); //if error, alert
+
+      }
+   })
+}
+
+function getComments()
+{
+   $.ajax({
+      type: "GET",
+      url: apiURL2,
+      contentType: "application/json",
+      success: function(data)
+      {
+         console.log(data);
+         for(let i=0; i<data.length; i++)
+         {
+            $
+         }
+
+      },
+      error: function()
+      {
+         alert("Error connecting to the server."); //if error, alert
+      }
+
+   })
+}
 
 function findparent(object)  //helper function to find the parent
 {

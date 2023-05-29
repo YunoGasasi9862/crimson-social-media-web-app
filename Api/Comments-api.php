@@ -9,14 +9,14 @@ $json = file_get_contents('php://input'); //to get the payload
 $input= json_decode($json); //converts into php object
 
 
-if($method==="GET")
+if($method ==="GET")
 {
-
+    $result= GetCommentsForEachPost();
 }
 
-if($method==="POST")
+if($method === "POST")
 {
-    $result= 
+    $result= insertIntoComments($input->username,$input->postid,$input->comment);
 }
 
-echo json_encode($result);  
+echo json_encode($result); //create json encoding
