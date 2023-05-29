@@ -40,12 +40,25 @@ if (!empty($_POST)) {
   <script src="JS/prevent.js"></script>
 
   <style>
-    ::-webkit-scrollbar{
+  
+    body{
+      overflow: scroll;
+      height: 800px;
+    }
+   
+   /* ::-webkit-scrollbar{
       width: 2em;
     }
     ::-webkit-scrollbar-track{
     background: hsl(120, 75%, 0% );
     }
+  */
+  .card{
+    border-radius: 15px;
+    height: 800px;
+    /*overflow: scroll;*/
+  }
+
   </style>
 
 </head>
@@ -56,7 +69,7 @@ if (!empty($_POST)) {
       <div class="container h-100 ">
         <div class="row d-flex justify-content-center align-items-center h-100 ">
           <div class="col-12 col-md-9 col-lg-7 col-xl-6 " style="width: 800px;">
-            <div class="card " style="border-radius: 15px; height: 600px; overflow: scroll;">
+            <div class="card " >
               <div class="card-body p-5 ">
                 <h2 class="text-uppercase text-center mb-5">Welcome to Crimson!</h2>
                 <form action="" method="post" enctype="multipart/form-data">
