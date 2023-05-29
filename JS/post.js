@@ -145,7 +145,7 @@ function updateLikes(postId, newLikes, YesNo)
       contentType: "application/json",
       success: function(data)
       {
-
+       console.log(data);
        let username= localStorage.getItem("username");
        HelperUpdateLikes(username, postId, YesNo, data.newLikes);  
     

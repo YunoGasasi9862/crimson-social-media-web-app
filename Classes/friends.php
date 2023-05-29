@@ -4,7 +4,6 @@
     if(session_id() == ''){ session_start();}
 
     $username = $_SESSION['User']['username'];
-    
 
     class Friends
     {
@@ -38,9 +37,9 @@
             global $username;
             $Usernames=[];
              $counter=0;
+             $Usernames[$counter]= $username;
              if($FriendArray!=null)
              {
-                $Usernames[$counter]= $username;
                 $counter++;
                 foreach($FriendArray as $i)
                 {
@@ -51,6 +50,7 @@
                 //append the current user's email to the arra
                 $counter=0;    
              }
+
              return $Usernames;
 
         }
