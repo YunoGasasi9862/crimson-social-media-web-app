@@ -34,9 +34,7 @@ if (!empty($_POST)) {
   <link rel="stylesheet" href="../Bootstrap/css/mdb.min.css">
   <link rel="stylesheet" href="../css/index.css">
 
-  <script>
-     localStorage.setItem("username", '<?php echo $_SESSION['User']['username'] ?>'); //setting the username into localstorage
-  </script>
+ 
 
 
   <title>Login</title>

@@ -16,7 +16,7 @@ if($method==="GET")
 
 if($method==="POST")
 {
-    $result=
+    $result= 
 }
 
 echo json_encode($result);  
