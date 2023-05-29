@@ -30,10 +30,12 @@ $(function()
   $(".postBTN").click(function()
   {
      let postId= $(this).attr("id");
+     let parent=findparent(this);
+     $(parent).attr("id", postId);
      let Comment= $(this).parent().prev().find("textarea").val();
      let username= localStorage.getItem("username");
      let profilename= localStorage.getItem("profile");
-     $(".PostComment").append(`
+      $(parent).find('div.PostComment').append(`
      
         
      <div class="card-body p-4">
@@ -61,6 +63,17 @@ $(function()
 
 
 });
+
+function findparent(object)  //helper function to find the parent
+{
+   while($(object).attr("class")!="card")  //checks against the class name
+   {
+      object= $(object).parent(); //sets the current object to its parent
+   }
+
+   return object;
+}
+
 function HelperUpdateLikes(username, postId, YesNo, newLikes)
 {
    $.ajax({
