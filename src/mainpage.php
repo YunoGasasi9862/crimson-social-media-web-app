@@ -43,7 +43,7 @@
   nav img {
     width: 50px;
     
-    border-radius: 50%;
+   
   }
 
   img {
@@ -136,7 +136,7 @@
   cursor: pointer;
   padding: 10px 20px; /* Buton boyutu */
   position: absolute; /* Pozisyon ayarı */
-  margin-left: -190px;
+  margin-left: -135px;
   margin-top: -45px;
 }
 
@@ -207,7 +207,7 @@
   font-size:15px;
   position: absolute;
       left: 10px; /* Sağa hizalama miktarı */
-      top: 50%; /* Dikey ortalamak için */
+      top: 30%; /* Dikey ortalamak için */
       transform: translateY(-50%); /* Dikey ortalamak için */
       list-style: none;
   
@@ -242,10 +242,10 @@
     color: white;
     font-weight: bold;
     font-size: 10px;
-    margin-left: -150px;
+    margin-left: -95px;
     z-index: 9999;
     position: absolute;
-    margin-top: -45px;
+    
     margin-top: -20px;
     }
 
@@ -272,17 +272,173 @@
       z-index: 1;
 
     }
-    h4{
+   .submain h4{
       padding-left: 20px;
       text-decoration-line:underline;
       color:#9966FF;
     }
+
+    /*coppy paste starting there for notifications tables etc*/
+.frbutton {
+  background-color: transparent; /* Buton arka plan rengi */
+  border: none;
+  color: white; /* Buton metin rengi */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  padding: 10px 20px; /* Buton boyutu */
+  position: absolute; /* Pozisyon ayarı */
+  margin-left: -200px;
+  margin-top: -55px;
+  z-index: 999;
+}
+
+
+
+
+#friend {
+  
+    width: 50px;
+    margin-top: 17px;
+    border:none;
+  }
+  
+
+.friendstable {
+  position: relative;
+
+  
+    z-index: 2;
+  }
+
+  
+
+  .friendstable:hover .frmain,
+  .friendstable.show .frmain {
+    display: block;
+  }
+
+  .frmain {
+    position: absolute;
+    margin-left: -170px ;
+    margin-top: 25px;
+    display: none;
+    background-color: #EDE7F6;
+    
+    width:300px;
+    height:400px;
+    border: 2px solid #9966FF;
+    border-radius: 5px;
+    box-shadow: 0 0 2px #9966FF, 0 0 2px #9966FF, 0 0 3px #9966FF, 0 0 4px #9966FF, 0 0 5px #9966FF, 0 0 6px #9966FF, 0 0 7px #9966FF;
+
+  }
+
+  .frmain ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .frmain li {
+    padding: 5px 10px;
+    
+  }
+
+  
+
+  .frmain li a {
+    text-decoration: none;
+  color: #333;
+
+  font-size:15px;
+  position: absolute;
+      left: 10px; /* Sağa hizalama miktarı */
+      top: -10%; /* Dikey ortalamak için */
+      transform: translateY(-50%); /* Dikey ortalamak için */
+      list-style: none;
+  
+}
+
+.frmain li h1 {
+  border-bottom: 2px solid #9966FF;
+  box-shadow:   2px #9966FF;
+
+  padding: 3px;
+  text-align: right; /* Align the text to the right */
+  
+  margin-right: 30px; /* Adjust the right margin */
+  margin-left: 30px; /* Set the left margin to auto for center alignment */
+}
+
+
+
+
+  .frmain li a:hover {
+    color:#6c00ff;
+  }
+  
+    
+
+    .frsquare {
+      width: 200px;
+      height: 60px;
+      background-color: #f5e8ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 0;
+      margin-top: -47px;
+      margin-left: 60px;
+    }
+    #frpic1 {
+      width: 60px;
+      border: 2px dashed #9966FF; /* Çizgili kenarlık */
+      border-radius: 50%; /* Yuvarlak köşeler */
+      
+      
+      
+      position: relative;
+      z-index: 1;
+
+    }
+    .frmain h4{
+      padding-left: 20px;
+      text-decoration-line:underline;
+      color:#6c00ff;
+    }
+
+    .remove-button {
+  width: 60px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  background-color: #6c00ff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  margin-left: -120px;
+  font-size: 13px;
+  color:#EBEBEB;
+  
+}
+
+.remove-button:hover {
+  background-color: #9966FF;
+  cursor: pointer;
+}
+
 
 </style>
 <script>
   function toggleNotftable() {
     var notftable = document.querySelector(".notftable");
     notftable.classList.toggle("show");
+  }
+
+  function togglefriendstable() {
+    var friendstable = document.querySelector(".friendstable");
+    friendstable.classList.toggle("show");
   }
 </script>
 <body>
@@ -306,13 +462,33 @@
   <div class="submain" id="submain">
     <ul>
       <br><h4>Notifications</h4>
-      <li><img src="../img/avatar-1.webp" id="pic1" alt=""><div class="square"><a href="#">Subsddddddddddddddddddddddddddd dddddddddd dddddddddddmenu wtrtÖğesi iiii </a></div><p></p> <h1></h1></li>
+      <li><img src="../img/avatar-1.webp" id="pic1" alt=""><div class="square"><a href="#">Subsdd aasfs </a></div> <h1></h1></li>
       <li><img src="../img/avatar-1.webp" id="pic1"alt=""><div class="square"><a href="#">Subsddddddddddddddddddddddddddd dddddddddd dddddddddddmenu wtrtÖğesi iiii </a></div> <h1></h1></li>
       <li><img src="../img/avatar-1.webp" id="pic1"alt=""><div class="square"><a href="#">Subsddddddddddddddddddddddddddd dddddddddd dddddddddddmenu wtrtÖğesi iiii </a></div></li>
     </ul>
     
   </div>
  
+</div>
+
+<div class="friendstable">
+        
+        
+<button class="frbutton" onclick="togglefriendstable()" style="border:none">
+
+  <img src="../img/friend.png" id="friend" alt="">
+</button>
+
+<div class="frmain" id="frmain">
+  <ul>
+    <br><h4>Friends</h4>
+    <li><img src="../img/avatar-1.webp" id="frpic1" alt=""><div class="frsquare"><a href="#">DEfne ersungur bilmemne </a><button class="remove-button">Remove</button></div> <h1></h1></li>
+    <li><img src="../img/avatar-1.webp" id="frpic1"alt=""><div class="frsquare"><a href="#">Subsdd iiii </a><button class="remove-button">Remove</button></div> <h1></h1></li>
+    <li><img src="../img/avatar-1.webp" id="frpic1"alt=""><div class="frsquare"><a href="#">Subsdddd iiii </a><button class="remove-button">Remove</button></div></li>
+  </ul>
+  
+</div>
+
 </div>
 
       
