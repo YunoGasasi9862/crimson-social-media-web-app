@@ -102,7 +102,7 @@ function getComments()
             let postid= data[i].postid;
             let profilename= localStorage.getItem("profile"); 
 
-              $(`#${postid}`).parent().parent().parent().find(`div.PostComment`).append(`
+              $(`#${postid}`).parent().next().append(`
                <div class="card-body p-4">
                <div class="d-flex flex-start">
                <img style="width:50px; height:50px;" class="rounded-circle shadow-1-strong me-3"
