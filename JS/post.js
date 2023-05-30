@@ -99,7 +99,31 @@ function getComments()
          console.log(data);
          for(let i=0; i<data.length; i++)
          {
-            $
+            let postid= data[i].postid;
+            let profilename= localStorage.getItem("profile"); 
+
+              $(`#${postid}`).parent().parent().parent().find(`div.PostComment`).append(`
+               <div class="card-body p-4">
+               <div class="d-flex flex-start">
+               <img style="width:50px; height:50px;" class="rounded-circle shadow-1-strong me-3"
+                        src="../PPimages/${profilename}" alt="avatar" width="60"
+                        height="60" />
+               <div>
+                  <h6 class="fw-bold mb-1">${data[i].username}</h6>
+                  <div class="d-flex align-items-center mb-3">
+                     <p class="mb-0">
+                     March 24, 2021
+                     </p>
+                  </div>
+                  <p class="mb-0">
+                     ${data[i].comment}
+                  </p>
+               </div>
+               </div>
+            </div>
+            
+               `);
+               
          }
 
       },
