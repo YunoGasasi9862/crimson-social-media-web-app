@@ -3,37 +3,25 @@ if (session_id() == '') {
   session_start();
 }
 
-$user = $_SESSION['User']['username'];
-$email = $_SESSION['User']['email'];
+$user = $_SESSION['User'];
 include "../Classes/post.php";
 include "../Classes/user.php";
 include "../Classes/notification.php";
 include "../Classes/friends.php";
 
 
-function filterCurrent($username)
-{
-  global $user;
-  return $username !== $user;
-}
-
-$friends = Friends::getFriends($email); //returns all the friends
-$usernames = Friends::fetchUsernames($friends); //returns all the emails of the friends
-$usernames = array_filter($usernames, "filterCurrent");
+$friends = Friends::getFriends($user["email"]);
 $friendsUsers = array();
-foreach ($usernames as $username) {
-  array_push($friendsUsers, User::get_user($username));
+foreach ($friends as $friend) {
+  array_push($friendsUsers, User::get_user_by_email($friend["FriendEmail"]));
 }
-
 $usersToShow = array();
-
 foreach ($friendsUsers as $friend) {
   if ($friend) {
     $usersToShow[] = $friend;
   }
 }
-
-$notificaitons = Notifications::getNotifications($email);
+$notificaitons = Notifications::getNotifications($user["email"]);
 ?>
 
 <!DOCTYPE html>
@@ -48,20 +36,20 @@ $notificaitons = Notifications::getNotifications($email);
     integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
-    </script>
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
     integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <script>
-    function navigateToNextPage() {
-      const currentURL = window.location.href;
-      const url = new URL(currentURL);
-      let currentPage = parseInt(url.searchParams.get("page")) || 1;
-      const nextPage = currentPage + 1;
-      url.searchParams.set("page", nextPage);
-      window.location.href = url.toString();
-    }
+  function navigateToNextPage() {
+    const currentURL = window.location.href;
+    const url = new URL(currentURL);
+    let currentPage = parseInt(url.searchParams.get("page")) || 1;
+    const nextPage = currentPage + 1;
+    url.searchParams.set("page", nextPage);
+    window.location.href = url.toString();
+  }
   </script>
   <script src="../JS/post.js"></script>
 
@@ -72,53 +60,53 @@ $notificaitons = Notifications::getNotifications($email);
   <link rel="stylesheet" href="../css/extracss.css">
 
   <script>
-    localStorage.setItem("username",
-      '<?php echo $_SESSION['User']['username'] ?>'); //setting the username into localstorage
-    localStorage.setItem("userEmail",
-      '<?php echo $_SESSION['User']['email'] ?>');
+  localStorage.setItem("username",
+    '<?php echo $_SESSION['User']['username'] ?>'); //setting the username into localstorage
+  localStorage.setItem("userEmail",
+    '<?php echo $_SESSION['User']['email'] ?>');
 
-    function toggleNotftable() {
-      var notftable = document.querySelector(".notftable");
-      notftable.classList.toggle("show");
-    }
+  function toggleNotftable() {
+    var notftable = document.querySelector(".notftable");
+    notftable.classList.toggle("show");
+  }
 
 
-    function togglefriendstable() {
-      var friendstable = document.querySelector(".friendstable");
-      friendstable.classList.toggle("show");
-    }
+  function togglefriendstable() {
+    var friendstable = document.querySelector(".friendstable");
+    friendstable.classList.toggle("show");
+  }
 
-    function removeFriend(friendEmail) {
-      let userEmail = localStorage.getItem("userEmail");
-      $.ajax({
-        type: "DELETE",
-        url: "../Api/RemoveFriend-api.php",
-        data: JSON.stringify({
-          userEmail,
-          friendEmail
-        }),
-        contentType: "application/json",
-        success: function (data) {
-          if (!data?.error) {
-            document.getElementById(friendEmail).remove()
-          }
-        },
-        error: function (response) {
-          alert("Error connecting to the server.");
+  function removeFriend(friendEmail) {
+    let userEmail = localStorage.getItem("userEmail");
+    $.ajax({
+      type: "DELETE",
+      url: "../Api/RemoveFriend-api.php",
+      data: JSON.stringify({
+        userEmail,
+        friendEmail
+      }),
+      contentType: "application/json",
+      success: function(data) {
+        if (!data?.error) {
+          document.getElementById(friendEmail).remove()
         }
-      })
+      },
+      error: function(response) {
+        alert("Error connecting to the server.");
+      }
+    })
+  }
+
+  function toggleNotftable() {
+    var notftable = document.querySelector(".notftable");
+    notftable.classList.toggle("show");
+  }
 
 
-    function toggleNotftable() {
-      var notftable = document.querySelector(".notftable");
-      notftable.classList.toggle("show");
-    }
-
-
-    function togglefriendstable() {
-      var friendstable = document.querySelector(".friendstable");
-      friendstable.classList.toggle("show");
-    }
+  function togglefriendstable() {
+    var friendstable = document.querySelector(".friendstable");
+    friendstable.classList.toggle("show");
+  }
   </script>
 
 </head>
@@ -168,21 +156,6 @@ $notificaitons = Notifications::getNotifications($email);
 
                 ?>
               </div>
-              <li><img src="../img/avatar-1.webp" id="pic1" alt="">
-                <div class="square"><a href="#">Subsddddddddddddddddddddddddddd dddddddddd dddddddddddmenu wtrtÖğesi
-                    iiii </a></div>
-                <p></p>
-                <h1></h1>
-              </li>
-              <li><img src="../img/avatar-1.webp" id="pic1" alt="">
-                <div class="square"><a href="#">Subsddddddddddddddddddddddddddd dddddddddd dddddddddddmenu wtrtÖğesi
-                    iiii </a></div>
-                <h1></h1>
-              </li>
-              <li><img src="../img/avatar-1.webp" id="pic1" alt="">
-                <div class="square"><a href="#">Subsddddddddddddddddddddddddddd dddddddddd dddddddddddmenu wtrtÖğesi
-                    iiii </a></div>
-              </li>
             </ul>
 
           </div>
@@ -207,6 +180,15 @@ $notificaitons = Notifications::getNotifications($email);
                   $picture = $userToShow["profile"] ? $userToShow["profile"] : "../img/avatar-1.webp";
                   $email = $userToShow['email'];
                   echo "
+                    <li id=\"$email\">
+                      <img src=\"$picture\" id=\"frpic1\" alt=\"\">
+                        <div class=\"frsquare\">
+                        <a href=\"#\">$name $surname</a>
+                        <button onclick=\"removeFriend('$email')\" class=\"remove-button\">Remove</button>
+                        </div>
+                      <h1></h1>
+                    </li>
+                  ";
                 <li id=$email>
                   <img src=\"$picture\" id=\"frpic1\" alt=\"\">
                     <div class=\"frsquare\">
