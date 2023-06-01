@@ -32,7 +32,8 @@ foreach ($friendsUsers as $friend) {
     $usersToShow[] = $friend;
   }
 }
-
+$usernames = Friends::fetchUsernames(array_push($friends, $user["username"]));
+$notificaitons = Notifications::getNotifications($user["email"]);
 $notificaitons = Notifications::getNotifications($email);
 ?>
 
@@ -107,13 +108,17 @@ $notificaitons = Notifications::getNotifications($email);
           alert("Error connecting to the server.");
         }
       })
-
+    }
 
     function toggleNotftable() {
       var notftable = document.querySelector(".notftable");
       notftable.classList.toggle("show");
     }
 
+    function toggleNotftable() {
+      var notftable = document.querySelector(".notftable");
+      notftable.classList.toggle("show");
+    }
 
     function togglefriendstable() {
       var friendstable = document.querySelector(".friendstable");
