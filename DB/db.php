@@ -98,6 +98,9 @@ function removeFriend($userEmail, $friendEmail)
     $query = "DELETE FROM friends where userEmail = ? AND FriendEmail = ?";
     $record = $db->prepare($query);
     $record->execute([$userEmail, $friendEmail]);
+    $query = "DELETE FROM friends where FriendEmail = ? AND userEmail = ?";
+    $record = $db->prepare($query);
+    $record->execute([$userEmail, $friendEmail]);
     $query = "INSERT INTO notifications (fromUserEmail, toUserEmail, content) VALUES (?,?,?)";
     $record = $db->prepare($query);
     $record->execute([$userEmail, $friendEmail, "removed you as a friend."]);
