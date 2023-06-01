@@ -1,4 +1,3 @@
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+03:00";
@@ -78,6 +77,17 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `postid` varchar(100) NOT NULL,
   `comment` varchar(500)  ,
 PRIMARY KEY (`id`, `username`, `postid`)
+
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
+COMMIT;
+
+DROP TABLE IF EXISTS `notifications`;
+CREATE TABLE IF NOT EXISTS `notifications` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `fromUserEmail` varchar(100) NOT NULL,
+  `toUserEmail` varchar(100) NOT NULL,
+  `content` varchar(500)  ,
+PRIMARY KEY (`id`)
 
 ) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 COMMIT;

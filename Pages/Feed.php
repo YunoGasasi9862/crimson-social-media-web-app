@@ -7,6 +7,7 @@ $user = $_SESSION['User']['username'];
 $email = $_SESSION['User']['email'];
 include "../Classes/post.php";
 include "../Classes/user.php";
+include "../Classes/notifications.php";
 include "../Classes/friends.php";
 
 
@@ -32,6 +33,7 @@ foreach ($friendsUsers as $friend) {
   }
 }
 
+$notificaitons = Notifications::getNotifications($email);
 ?>
 
 <!DOCTYPE html>
@@ -72,6 +74,40 @@ foreach ($friendsUsers as $friend) {
   <script>
     localStorage.setItem("username",
       '<?php echo $_SESSION['User']['username'] ?>'); //setting the username into localstorage
+    localStorage.setItem("userEmail",
+      '<?php echo $_SESSION['User']['email'] ?>');
+
+    function toggleNotftable() {
+      var notftable = document.querySelector(".notftable");
+      notftable.classList.toggle("show");
+    }
+
+
+    function togglefriendstable() {
+      var friendstable = document.querySelector(".friendstable");
+      friendstable.classList.toggle("show");
+    }
+
+    function removeFriend(friendEmail) {
+      let userEmail = localStorage.getItem("userEmail");
+      $.ajax({
+        type: "DELETE",
+        url: "../Api/RemoveFriend-api.php",
+        data: JSON.stringify({
+          userEmail,
+          friendEmail
+        }),
+        contentType: "application/json",
+        success: function (data) {
+          if (!data?.error) {
+            document.getElementById(friendEmail).remove()
+          }
+        },
+        error: function (response) {
+          alert("Error connecting to the server.");
+        }
+      })
+
 
     function toggleNotftable() {
       var notftable = document.querySelector(".notftable");
@@ -111,6 +147,27 @@ foreach ($friendsUsers as $friend) {
             <ul>
               <br>
               <h4>Notifications</h4>
+              <div style="overflow-y:scroll;max-height:300px;">
+                <?php
+                foreach ($notificaitons as $notificaiton) {
+                  $from = $notificaiton["fromUserEmail"];
+                  $fromUser = User::get_user($from);
+                  $to = $notificaiton["toUserEmail"];
+                  $content = $notificaiton["content"];
+                  echo "
+                    <li>
+                      <img src=\"../img/avatar-1.webp\" id=\"pic1\" alt=\"\">
+                      <div class=\"square\">
+                        <a href=\"#\">$from</a>
+                      </div>
+                      <p>$content</p>
+                      <h1></h1>
+                    </li>
+                    ";
+                }
+
+                ?>
+              </div>
               <li><img src="../img/avatar-1.webp" id="pic1" alt="">
                 <div class="square"><a href="#">Subsddddddddddddddddddddddddddd dddddddddd dddddddddddmenu wtrtÖğesi
                     iiii </a></div>
@@ -148,6 +205,13 @@ foreach ($friendsUsers as $friend) {
                   $name = $userToShow['name'];
                   $surname = $userToShow['surname'];
                   $picture = $userToShow["profile"] ? $userToShow["profile"] : "../img/avatar-1.webp";
+                  $email = $userToShow['email'];
+                  echo "
+                <li id=$email>
+                  <img src=\"$picture\" id=\"frpic1\" alt=\"\">
+                    <div class=\"frsquare\">
+                    <a href=\"#\">$name $surname</a>
+                    <button onclick=\"removeFriend('$email')\" class=\"remove-button\">Remove</button>
                   echo "
                 <li>
                   <img src=\"$picture\" id=\"frpic1\" alt=\"\">
