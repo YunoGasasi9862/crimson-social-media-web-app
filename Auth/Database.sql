@@ -16,8 +16,6 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users`(`email`, `password`, `username`, `name`, `surname`, `profile`, `DOB`) VALUES 
 ('root@gmail.com', '$2y$10$dV7UJZd8g9IKvmdjCwIlJeMKrdx2.2tU37aUf63PBwSJFTQL4u2sy', 'hello12','root', 'root', NULL, '19-02-2000');
-INSERT INTO `users`(`email`, `password`, `username`, `name`, `surname`, `profile`, `DOB`) VALUES 
-('iman@gmail.com', '$2y$10$dV7UJZd8g9IKvmdjCwIlJeMKrdx2.2tU37aUf63PBwSJFTQL4u2sy', 'imanzahid','iman', 'zahid', NULL, '19-02-2000');
 COMMIT;
 
 
@@ -30,8 +28,6 @@ CREATE TABLE IF NOT EXISTS `friends` (
 
 INSERT INTO `friends` (`userEmail`, `FriendEmail`) VALUES
 ("m.bilal9862@gmail.com", "iman@gmail.com");
-INSERT INTO `friends` (`userEmail`, `FriendEmail`) VALUES
-("root@gmail.com", "iman@gmail.com");
 INSERT INTO `friends` (`userEmail`, `FriendEmail`) VALUES
 ("iman@gmail.com", "m.bilal9862@gmail.com");
 INSERT INTO `friends` (`userEmail`, `FriendEmail`) VALUES
