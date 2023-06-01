@@ -7,7 +7,7 @@ $user = $_SESSION['User']['username'];
 $email = $_SESSION['User']['email'];
 include "../Classes/post.php";
 include "../Classes/user.php";
-include "../Classes/notifications.php";
+include "../Classes/notification.php";
 include "../Classes/friends.php";
 
 
@@ -212,14 +212,6 @@ $notificaitons = Notifications::getNotifications($email);
                     <div class=\"frsquare\">
                     <a href=\"#\">$name $surname</a>
                     <button onclick=\"removeFriend('$email')\" class=\"remove-button\">Remove</button>
-                  echo "
-                <li>
-                  <img src=\"$picture\" id=\"frpic1\" alt=\"\">
-                    <div class=\"frsquare\">
-                    <a href=\"#\">$name $surname</a>
-                    <button class=\"remove-button\">Remove</button>
-                    </div>
-                  <h1></h1>
                 </li>
               ";
                 }
