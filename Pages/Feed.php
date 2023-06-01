@@ -3,19 +3,30 @@ if (session_id() == '') {
   session_start();
 }
 
-$user = $_SESSION['User'];
+$user = $_SESSION['User']['username'];
+$email = $_SESSION['User']['email'];
 include "../Classes/post.php";
 include "../Classes/user.php";
 include "../Classes/notification.php";
 include "../Classes/friends.php";
 
 
-$friends = Friends::getFriends($user["email"]);
-$friendsUsers = array();
-foreach ($friends as $friend) {
-  array_push($friendsUsers, User::get_user_by_email($friend["FriendEmail"]));
+function filterCurrent($username)
+{
+  global $user;
+  return $username !== $user;
 }
+
+$friends = Friends::getFriends($email); //returns all the friends
+$usernames = Friends::fetchUsernames($friends); //returns all the emails of the friends
+$usernames = array_filter($usernames, "filterCurrent");
+$friendsUsers = array();
+foreach ($usernames as $username) {
+  array_push($friendsUsers, User::get_user($username));
+}
+
 $usersToShow = array();
+
 foreach ($friendsUsers as $friend) {
   if ($friend) {
     $usersToShow[] = $friend;
@@ -23,6 +34,7 @@ foreach ($friendsUsers as $friend) {
 }
 $usernames = Friends::fetchUsernames(array_push($friends, $user["username"]));
 $notificaitons = Notifications::getNotifications($user["email"]);
+$notificaitons = Notifications::getNotifications($email);
 ?>
 
 <!DOCTYPE html>
@@ -103,6 +115,10 @@ $notificaitons = Notifications::getNotifications($user["email"]);
       notftable.classList.toggle("show");
     }
 
+    function toggleNotftable() {
+      var notftable = document.querySelector(".notftable");
+      notftable.classList.toggle("show");
+    }
 
     function togglefriendstable() {
       var friendstable = document.querySelector(".friendstable");
@@ -157,6 +173,21 @@ $notificaitons = Notifications::getNotifications($user["email"]);
 
                 ?>
               </div>
+              <li><img src="../img/avatar-1.webp" id="pic1" alt="">
+                <div class="square"><a href="#">Subsddddddddddddddddddddddddddd dddddddddd dddddddddddmenu wtrtÖğesi
+                    iiii </a></div>
+                <p></p>
+                <h1></h1>
+              </li>
+              <li><img src="../img/avatar-1.webp" id="pic1" alt="">
+                <div class="square"><a href="#">Subsddddddddddddddddddddddddddd dddddddddd dddddddddddmenu wtrtÖğesi
+                    iiii </a></div>
+                <h1></h1>
+              </li>
+              <li><img src="../img/avatar-1.webp" id="pic1" alt="">
+                <div class="square"><a href="#">Subsddddddddddddddddddddddddddd dddddddddd dddddddddddmenu wtrtÖğesi
+                    iiii </a></div>
+              </li>
             </ul>
 
           </div>
@@ -181,15 +212,6 @@ $notificaitons = Notifications::getNotifications($user["email"]);
                   $picture = $userToShow["profile"] ? $userToShow["profile"] : "../img/avatar-1.webp";
                   $email = $userToShow['email'];
                   echo "
-                    <li id=\"$email\">
-                      <img src=\"$picture\" id=\"frpic1\" alt=\"\">
-                        <div class=\"frsquare\">
-                        <a href=\"#\">$name $surname</a>
-                        <button onclick=\"removeFriend('$email')\" class=\"remove-button\">Remove</button>
-                        </div>
-                      <h1></h1>
-                    </li>
-                  ";
                 <li id=$email>
                   <img src=\"$picture\" id=\"frpic1\" alt=\"\">
                     <div class=\"frsquare\">
