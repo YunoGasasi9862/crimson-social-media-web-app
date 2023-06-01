@@ -95,6 +95,20 @@ function GetCommentsForEachPost()
   }
 }
 
-
+function removeFriend($userEmail, $friendEmail) 
+{
+  global $db;
+  try{
+    $query= "DELETE FROM friends where userEmail = ? AND FriendEmail = ?";
+    $record= $db->prepare($query);
+    $record->execute([$userEmail, $friendEmail]);
+    $query = "INSERT INTO notifications (fromUserEmail, toUserEmail, content) VALUES (?,?,?)";
+    $record= $db->prepare($query);
+    $record->execute([$userEmail, $friendEmail, "removed you as a friend."]);
+  }catch(PDOEXCEPTION $e)
+  {
+    return ["error" => "API Error: Remove Friend Error"];
+  }
+}
 
 ?>
