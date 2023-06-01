@@ -108,6 +108,16 @@ $notificaitons = Notifications::getNotifications($email);
         }
       })
 
+
+    function toggleNotftable() {
+      var notftable = document.querySelector(".notftable");
+      notftable.classList.toggle("show");
+    }
+
+
+    function togglefriendstable() {
+      var friendstable = document.querySelector(".friendstable");
+      friendstable.classList.toggle("show");
     }
   </script>
 
@@ -158,7 +168,21 @@ $notificaitons = Notifications::getNotifications($email);
 
                 ?>
               </div>
-
+              <li><img src="../img/avatar-1.webp" id="pic1" alt="">
+                <div class="square"><a href="#">Subsddddddddddddddddddddddddddd dddddddddd dddddddddddmenu wtrtÖğesi
+                    iiii </a></div>
+                <p></p>
+                <h1></h1>
+              </li>
+              <li><img src="../img/avatar-1.webp" id="pic1" alt="">
+                <div class="square"><a href="#">Subsddddddddddddddddddddddddddd dddddddddd dddddddddddmenu wtrtÖğesi
+                    iiii </a></div>
+                <h1></h1>
+              </li>
+              <li><img src="../img/avatar-1.webp" id="pic1" alt="">
+                <div class="square"><a href="#">Subsddddddddddddddddddddddddddd dddddddddd dddddddddddmenu wtrtÖğesi
+                    iiii </a></div>
+              </li>
             </ul>
 
           </div>
@@ -188,6 +212,12 @@ $notificaitons = Notifications::getNotifications($email);
                     <div class=\"frsquare\">
                     <a href=\"#\">$name $surname</a>
                     <button onclick=\"removeFriend('$email')\" class=\"remove-button\">Remove</button>
+                  echo "
+                <li>
+                  <img src=\"$picture\" id=\"frpic1\" alt=\"\">
+                    <div class=\"frsquare\">
+                    <a href=\"#\">$name $surname</a>
+                    <button class=\"remove-button\">Remove</button>
                     </div>
                   <h1></h1>
                 </li>
