@@ -22,8 +22,6 @@ foreach ($friendsUsers as $friend) {
   }
 }
 
-
-var_dump($friends);
 $usernames = Friends::fetchUsernames($friends);
 $notificaitons = Notifications::getNotifications($user["email"]);
 ?>
