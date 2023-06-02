@@ -236,6 +236,7 @@ $notificaitons = Notifications::getNotifications($user["email"]);
       }
       ?>
 
+      <button class="pre-button"  onclick='navigateToNextPage()'>Previous</button>
     </div>
   </div>
 
