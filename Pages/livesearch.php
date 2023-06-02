@@ -1,11 +1,13 @@
 <?php
 include_once "../Classes/user.php";
 include_once "../Classes/friends.php";
+include_once "../Classes/notification.php";
 if(session_id() == ''){ session_start();}
 
 
 if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST["type"])){
     if($_POST["type"]==="add"){
+        Notifications::setNotifications($_POST["username"],"add");
         Friends::addFriend($_POST["username"]);
     }elseif($_POST["type"]==="remove"){
         Friends::removeFriend($_POST["username"]);
