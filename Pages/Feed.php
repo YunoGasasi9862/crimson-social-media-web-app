@@ -201,9 +201,11 @@ $notificaitons = Notifications::getNotifications($user["email"]);
 
 
 
+
         <div class="nav-item">
           <a href="./SearchBar.php"><img src="../img/search.png" alt="" id="search"></a>
         </div>
+
       </nav>
 
 
@@ -236,9 +238,29 @@ $notificaitons = Notifications::getNotifications($user["email"]);
       }
       ?>
 
-      <button class="pre-button"  onclick='navigateToNextPage()'>Previous</button>
+
     </div>
+
   </div>
+
+  <!-- Footer -->
+<footer class="text-center text-lg-start bg-white text-muted">
+  <!-- Section: Social media -->
+
+  <div class="text-center p-4 " style=" background-color: rgba(0, 0, 0, 0); margin-right:100px;">
+      <a style="text-decoration:none; cursor:pointer" href="profile.php"class="pre-button" >Profile</a>
+
+    </div>
+
+ 
+    <div class="text-center p-4" style="position:absolute; top:92%; background-color: rgba(0, 0, 0, 0);">
+      © 2023 Copyright:
+      <a class="text-reset fw-bold" href="#!">Team Crimson</a>
+    </div>
+
+
+</footer>
+<!-- Footer -->
 
 </body>
 
