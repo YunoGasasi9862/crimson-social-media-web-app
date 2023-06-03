@@ -114,6 +114,22 @@ $notificaitons = Notifications::getNotifications($user["email"]);
 </head>
 
 <body>
+        <nav class="navbar navbar-expand-lg navbar-light">
+              <a class="navbar-brand" style="margin-left:10px;" href="#">Crimson</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                  <ul class="navbar-nav">
+                  <li class="nav-item active">
+                      <a class="nav-link" href="Feed.php">Home</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="profile.php">Profile</a>
+                  </li>
+                  </ul>
+              </div>
+              </nav>
   <div class="h-100 gradient-custom-2 ">
     <div class="main">
 
@@ -243,24 +259,7 @@ $notificaitons = Notifications::getNotifications($user["email"]);
 
   </div>
 
-  <!-- Footer -->
-<footer class="text-center text-lg-start bg-white text-muted">
-  <!-- Section: Social media -->
 
-  <div class="text-center p-4 " style=" background-color: rgba(0, 0, 0, 0); margin-right:100px;">
-      <a style="text-decoration:none; cursor:pointer" href="profile.php"class="pre-button" >Profile</a>
-
-    </div>
-
- 
-    <div class="text-center p-4" style="position:absolute; top:92%; background-color: rgba(0, 0, 0, 0);">
-      © 2023 Copyright:
-      <a class="text-reset fw-bold" href="#!">Team Crimson</a>
-    </div>
-
-
-</footer>
-<!-- Footer -->
 
 </body>
 

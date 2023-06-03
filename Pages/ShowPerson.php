@@ -28,8 +28,17 @@ if(isset($_GET))
                 <a href="#" class="btn btn-success">Add Friend</a>
                 <a href="#" class="btn btn-danger">Delete</a>
 
+
+
     </div>
 
+    <div style="margin-top:20px;">
+
+        <a style="text-decoration: none; margin-top:100px; cursor:pointer;" href="Feed.php" class="pre-button">Feed</a>
+        
+    </div>  
+
+           
 </div>
 </div>
 </body>

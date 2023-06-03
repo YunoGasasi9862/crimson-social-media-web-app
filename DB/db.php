@@ -118,18 +118,23 @@ function getProfileInformation($email)
     $query = "SELECT * FROM friends WHERE userEmail = ?";
     $record = $db->prepare($query);
     $record->execute([$email]);
-    $friendsArray = $record->rowCount();
+    $friendsArrayCount = $record->rowCount();
 
 
     //getting username for the posts
-    $username= $record->fetchAll(PDO::FETCH_ASSOC)[0]["username"];
-
+    $query = "SELECT * FROM users WHERE email = ?";
+    $record = $db->prepare($query);
+    $record->execute([$email]);
+    $username = $record->fetch(PDO::FETCH_ASSOC)["username"];
  
     //getting post numbers
     $query = "SELECT * FROM posts WHERE username = ?";
     $record = $db->prepare($query);
     $record->execute([$username]);
     $postsCount= $record->rowCount();
+
+    return ["Friends" => $friendsArrayCount, "postsCount" => $postsCount];
+
 
   }catch(PDOEXCEPTION $e)
   {
