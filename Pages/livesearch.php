@@ -9,7 +9,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST["type"])){
     if($_POST["type"]==="add"){
         Notifications::setNotifications($_POST["username"],"add");
         Friends::addFriend($_POST["username"]);
-    }elseif($_POST["type"]==="remove"){
+    }
+    elseif($_POST["type"]==="remove"){
         Friends::removeFriend($_POST["username"]);
     }
 }
@@ -53,13 +54,34 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST["input"])){
                 </div>";
                 //if the user is one of the following
                 if (in_array($mail, $friends)) {
-                    echo "<div class='follow-button'>
-                            <button type='submit' class='btn btn-outline-primary followButton' id='followButton-$username' data-username=$username>Following</button>
+                    //if they both follow each other
+                    if(Friends::isFriend($mail)){
+                        echo "<div class='follow-button'>
+                            <button type='submit' class='btn btn-outline-primary followButton' id='followButton-$username' data-username=$username>Remove</button>
                         </div>";
-                }else{
-                    echo "<div class='follow-button'>
-                            <button type='submit' class='btn btn-outline-primary followButton' id='followButton-$username' data-username=$username>Follow</button>
+                    }
+                    //if only request is sent
+                    else{
+                        echo "<div class='follow-button'>
+                                <button type='submit' class='btn btn-outline-primary followButton' id='followButton-$username' data-username=$username>Requested</button>
+                            </div>";
+                    }
+                }
+                else{
+                    //request is sent from friend
+                    if(Friends::isFriend($mail)){
+
+                        echo "<div class='follow-button'>
+                            <button type='submit' class='btn btn-outline-primary followButton' id='followButton-$username-accept' data-username=$username>Accept</button>
+                            <button type='submit' class='btn btn-outline-primary followButton' id='followButton-$username' data-username=$username>Decline</button>
                         </div>";
+                    }
+                    //no relation
+                    else{
+                        echo "<div class='follow-button'>
+                                <button type='submit' class='btn btn-outline-primary followButton' id='followButton-$username' data-username=$username>Add Friend</button>
+                            </div>";
+                    }
                 }
                 echo "</li>";
             }
@@ -74,7 +96,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST["input"])){
                 $(".followButton").on("click", function() {
                     var username = $(this).data("username");
                     var buttonText = $(this).text();
-                    if (buttonText === "Follow") {
+                    if (buttonText === "Add Friend") {
                         $.ajax({
                             url: "LiveSearch.php",
                             type: "POST",
@@ -83,10 +105,49 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST["input"])){
                                 username: username
                             },
                             success: function(response) {
-                                $("#followButton-" + username).text("Following");
+                                $("#followButton-" + username).text("Requested");
                             }
                         });
-                    } else {
+                    } else if(buttonText === "Remove"){
+                        $.ajax({
+                            url: "LiveSearch.php",
+                            type: "POST",
+                            data: {
+                                type: "remove",
+                                username: username
+                            },
+                            success: function(response) {
+                                $("#followButton-" + username).text("Add Friend");
+                            }
+                        });
+                    } else if(buttonText === "Decline"){
+                        $.ajax({
+                            url: "LiveSearch.php",
+                            type: "POST",
+                            data: {
+                                type: "remove",
+                                username: username
+                            },
+                            success: function(response) {
+                                $("#followButton-" + username + "-accept").css("display","none");
+                                $("#followButton-" + username).text("Add Friend");
+                            }
+                        });
+                    } else if(buttonText === "Accept"){
+                        $.ajax({
+                            url: "LiveSearch.php",
+                            type: "POST",
+                            data: {
+                                type: "add",
+                                username: username
+                            },
+                            success: function(response) {
+                                $("#followButton-" + username + "-accept").css("display","none");
+                                $("#followButton-" + username).text("Remove");
+                            }
+                        });
+                    }
+                    else {
                         $.ajax({
                         url: "LiveSearch.php",
                         type: "POST",
@@ -95,7 +156,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST["input"])){
                             username: username
                         },
                         success: function(response) {
-                            $("#followButton-" + username).text("Follow");
+                            $("#followButton-" + username).text("Add Friend");
                         }});
                     }
                 });

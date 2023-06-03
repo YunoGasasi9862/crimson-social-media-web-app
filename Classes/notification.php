@@ -2,7 +2,7 @@
 require_once "../scripts/config.php";
 require_once "user.php";
 if (session_id() == '') {session_start();}
-$username = $_SESSION['User']['username'];
+
 
 class Notifications
 {
@@ -16,7 +16,7 @@ class Notifications
     }
 
     public static function setNotifications($toUserName, $content){
-        global $username;
+        $username = $_SESSION['User']['username'];;
         $user = USER::get_user($username); 
         $fromUserEmail=$user["email"];
         $toUser= USER::get_user($toUserName);
