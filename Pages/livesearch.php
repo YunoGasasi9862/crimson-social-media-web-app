@@ -2,26 +2,38 @@
 include_once "../Classes/user.php";
 include_once "../Classes/friends.php";
 include_once "../Classes/notification.php";
-if(session_id() == ''){ session_start();}
-
+if (session_id() == '') {
+    session_start();
+}
 
 if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST["type"])){
+    $pemail= USER::get_user($_POST["username"])["email"];
     if($_POST["type"]==="add"){
-        Notifications::setNotifications($_POST["username"],"add");
+        Notifications::setNotifications($_POST["username"],true);
         Friends::addFriend($_POST["username"]);
     }
     elseif($_POST["type"]==="remove"){
+        Notifications::setNotifications($_POST["username"],false);
+        Friends::removeFriend($_POST["username"]);
+    }
+    elseif($_POST["type"]==="decline"){
+        Notifications::removeNotifications($pemail);
+        Friends::removeFriend($_POST["username"]);
+    }
+    elseif($_POST["type"]==="accept"){
+        Notifications::removeNotifications($pemail);
+        Friends::addFriend($_POST["username"]);
+    }
+    elseif($_POST["type"]==="unrequest"){
+        Notifications::removeNotifications($pemail);
         Friends::removeFriend($_POST["username"]);
     }
 }
 
-
-if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST["input"])){
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["input"])) {
     //add or remove friend with ajax
     $input = $_POST["input"];
     $users = User::get_user_like($input);
-
-
 
     //check input for search
 
@@ -37,13 +49,13 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST["input"])){
     if (isset($users)) {
         echo "<ul class='list-group list-group-flush result-container'>";
         foreach ($users as $user) {
-            if($user["email"]!=$currentUser){
+            if ($user["email"] != $currentUser) {
                 $username = $user["username"];
                 $name = $user["name"];
                 $surname = $user["surname"];
                 $mail = $user["email"];
                 $profile = $user["profile"];
-                
+
                 echo "<li class='list-group-item result'>
                 <div class='profile'><a href='../Pages/profile.php?profile=$username' >
                 <img src='../PPimages/$profile'></img></a>
@@ -55,21 +67,20 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST["input"])){
                 //if the user is one of the following
                 if (in_array($mail, $friends)) {
                     //if they both follow each other
-                    if(Friends::isFriend($mail)){
+                    if (Friends::isFriend($mail)) {
                         echo "<div class='follow-button'>
                             <button type='submit' class='btn btn-outline-primary followButton' id='followButton-$username' data-username=$username>Remove</button>
                         </div>";
                     }
                     //if only request is sent
-                    else{
+                    else {
                         echo "<div class='follow-button'>
                                 <button type='submit' class='btn btn-outline-primary followButton' id='followButton-$username' data-username=$username>Requested</button>
                             </div>";
                     }
-                }
-                else{
+                } else {
                     //request is sent from friend
-                    if(Friends::isFriend($mail)){
+                    if (Friends::isFriend($mail)) {
 
                         echo "<div class='follow-button'>
                             <button type='submit' class='btn btn-outline-primary followButton' id='followButton-$username-accept' data-username=$username>Accept</button>
@@ -77,7 +88,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST["input"])){
                         </div>";
                     }
                     //no relation
-                    else{
+                    else {
                         echo "<div class='follow-button'>
                                 <button type='submit' class='btn btn-outline-primary followButton' id='followButton-$username' data-username=$username>Add Friend</button>
                             </div>";
@@ -87,8 +98,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST["input"])){
             }
         }
         echo "</ul>";
-    }
-    else {
+    } else {
         echo "No results found";
     }
     echo '<script>
@@ -118,6 +128,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST["input"])){
                             },
                             success: function(response) {
                                 $("#followButton-" + username).text("Add Friend");
+                                
                             }
                         });
                     } else if(buttonText === "Decline"){
@@ -125,7 +136,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST["input"])){
                             url: "LiveSearch.php",
                             type: "POST",
                             data: {
-                                type: "remove",
+                                type: "decline",
                                 username: username
                             },
                             success: function(response) {
@@ -138,7 +149,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST["input"])){
                             url: "LiveSearch.php",
                             type: "POST",
                             data: {
-                                type: "add",
+                                type: "accept",
                                 username: username
                             },
                             success: function(response) {
@@ -152,7 +163,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST["input"])){
                         url: "LiveSearch.php",
                         type: "POST",
                         data: {
-                            type: "remove",
+                            type: "unrequest",
                             username: username
                         },
                         success: function(response) {
@@ -161,5 +172,5 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST["input"])){
                     }
                 });
             });
-        </script>';
+          </script>';
 }

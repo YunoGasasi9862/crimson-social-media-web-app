@@ -21,9 +21,18 @@ class Notifications
         $fromUserEmail=$user["email"];
         $toUser= USER::get_user($toUserName);
         $toUserEmail=$toUser["email"];
-        $db = new PDO(DSN, USER, PASS);
-        $db= $db->prepare("INSERT INTO notifications (fromUserEmail,toUserEmail, content) VALUES (?,?,?)");
+        $query = new PDO(DSN, USER, PASS);
+        $db= $query->prepare("DELETE FROM notifications WHERE fromUserEmail=? AND toUserEmail=?");
+        $db->execute([$fromUserEmail, $toUserEmail]);
+        $db= $query->prepare("INSERT INTO notifications (fromUserEmail,toUserEmail, content) VALUES (?,?,?)");
         $db->execute([$fromUserEmail, $toUserEmail, $content]);
+    }
+    
+    public static function removeNotifications($fromemail) {
+        $usermail = $_SESSION['User']["email"];
+        $db = new PDO(DSN, USER, PASS);
+        $db = $db->prepare("DELETE FROM notifications WHERE (fromUserEmail=? AND toUserEmail=?) OR (fromUserEmail=? AND toUserEmail=?)");
+        $db->execute([$usermail, $fromemail, $fromemail, $usermail]);
     }
 }
 ?>

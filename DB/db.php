@@ -98,12 +98,15 @@ function removeFriend($userEmail, $friendEmail)
     $query = "DELETE FROM friends where userEmail = ? AND FriendEmail = ?";
     $record = $db->prepare($query);
     $record->execute([$userEmail, $friendEmail]);
-    $query = "DELETE FROM friends where FriendEmail = ? AND userEmail = ?";
+    $query = "DELETE FROM friends where userEmail = ? AND FriendEmail = ?";
     $record = $db->prepare($query);
     $record->execute([$friendEmail, $userEmail]);
+    $query = "DELETE FROM notifications WHERE fromUserEmail=? AND toUserEmail=?";
+    $record = $db->prepare($query);
+    $record->execute([$userEmail, $friendEmail]);
     $query = "INSERT INTO notifications (fromUserEmail, toUserEmail, content) VALUES (?,?,?)";
     $record = $db->prepare($query);
-    $record->execute([$userEmail, $friendEmail, "removed you as a friend."]);
+    $record->execute([$userEmail, $friendEmail, false]);
   } catch (PDOEXCEPTION $e) {
     return ["error" => "API Error: Remove Friend Error"];
   }

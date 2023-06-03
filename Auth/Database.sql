@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `fromUserEmail` varchar(100) NOT NULL,
   `toUserEmail` varchar(100) NOT NULL,
-  `content` varchar(500)  ,
+  `content` tinyint(1) NOT NULL,
 PRIMARY KEY (`id`)
 
 ) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;

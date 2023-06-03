@@ -54,12 +54,17 @@ class Friends
 
     public static function addFriend($friendname)
     {
-        $usermail = $_SESSION['User']["email"];
-        $friend = USER::get_user($friendname);
-        $friendmail = $friend["email"];
-        $db = new PDO(DSN, USER, PASS);
-        $db = $db->prepare("INSERT INTO friends (userEmail, FriendEmail) VALUES (?, ?)");
-        $db->execute([$usermail, $friendmail]);
+        try{
+            $usermail = $_SESSION['User']["email"];
+            $friend = USER::get_user($friendname);
+            $friendmail = $friend["email"];
+            $db = new PDO(DSN, USER, PASS);
+            $db = $db->prepare("INSERT INTO friends (userEmail, FriendEmail) VALUES (?, ?)");
+            $db->execute([$usermail, $friendmail]);
+
+        }catch (PDOEXCEPTION $e) {
+            return ["error" => "API Error: Add Friend Error"];
+        }
     }
 
     public static function removeFriend($friendname)

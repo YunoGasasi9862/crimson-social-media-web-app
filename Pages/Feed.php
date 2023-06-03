@@ -4,6 +4,7 @@ if (session_id() == '') {
 }
 
 $user = $_SESSION['User'];
+$email = $_SESSION['User']['email'];
 include "../Classes/post.php";
 include "../Classes/user.php";
 include "../Classes/notification.php";
@@ -15,21 +16,7 @@ function filterCurrent($username)
   return $username !== $user;
 }
 
-$friends = Friends::getFriends($email); //returns all the friends
-$usernames = Friends::fetchUsernames($friends); //returns all the emails of the friends
-$usernames = array_filter($usernames, "filterCurrent");
-$friendsUsers = array();
-foreach ($friends as $friend) {
-  array_push($friendsUsers, User::get_user_by_email($friend["FriendEmail"]));
-}
-$usersToShow = array();
-foreach ($friendsUsers as $friend) {
-  if ($friend) {
-    $usersToShow[] = $friend;
-  }
-}
 
-$notifications = Notifications::getNotifications($email);
 ?>
 
 <!DOCTYPE html>
@@ -83,34 +70,6 @@ $notifications = Notifications::getNotifications($email);
   <div class="h-100 gradient-custom-2 ">
     <div class="main">
       <?php include "FeedNavigation.php" ?>
-      <div class="friendstable">
-        <div class="frmain" id="frmain">
-          <ul>
-            <br>
-            <h4>Friends</h4>
-            <div>
-              <?php
-              foreach ($usersToShow as $userToShow) {
-                $username = $userToShow['username'];
-                $name = $userToShow['name'];
-                $surname = $userToShow['surname'];
-                $picture = $userToShow["profile"] ? $userToShow["profile"] : "../img/avatar-1.webp";
-                $email = $userToShow['email'];
-                echo "
-                <li id=$email>
-                  <img src=\"$picture\" id=\"frpic1\" alt=\"\">
-                    <div class=\"frsquare\">
-                    <a href=\"#\">$name $surname</a>
-                    <button onclick=\"removeFriend('$email')\" class=\"remove-button\">Remove</button>
-                </li>
-              ";
-              }
-              ?>
-            </div>
-          </ul>
-        </div>
-      </div>
-
       <?php
       const PAGE_SIZE = 10;
       $countTest = 0;
@@ -137,42 +96,14 @@ $notifications = Notifications::getNotifications($email);
         echo "<button class='neon-button' onclick='navigateToNextPage()'>Next</button>";
       }
       ?>
-
-
     </div>
-
   </div>
+
   <script>
     localStorage.setItem("username",
       '<?php echo $_SESSION['User']['username'] ?>'); //setting the username into localstorage
     localStorage.setItem("userEmail",
       '<?php echo $_SESSION['User']['email'] ?>');
-    
-    function togglefriendstable() {
-      var friendstable = document.querySelector(".friendstable");
-      friendstable.classList.toggle("show");
-    }
-
-    function removeFriend(friendEmail) {
-      let userEmail = localStorage.getItem("userEmail");
-      $.ajax({
-        type: "DELETE",
-        url: "../Api/RemoveFriend-api.php",
-        data: JSON.stringify({
-          userEmail,
-          friendEmail
-        }),
-        contentType: "application/json",
-        success: function(data) {
-          if (!data?.error) {
-            document.getElementById(friendEmail).remove()
-          }
-        },
-        error: function(response) {
-          alert("Error connecting to the server.");
-        }
-      })
-    }
   </script>
 </body>
 
