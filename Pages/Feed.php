@@ -60,7 +60,7 @@ $notificaitons = Notifications::getNotifications($user["email"]);
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="../css/mainpage.css">
   <link rel="stylesheet" href="../css/extracss.css">
-
+    
   <script>
     localStorage.setItem("username",
       '<?php echo $_SESSION['User']['username'] ?>'); //setting the username into localstorage
