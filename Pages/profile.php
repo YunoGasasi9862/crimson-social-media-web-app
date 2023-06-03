@@ -59,7 +59,7 @@ $profile=$user["profile"];
                 <p class="small text-muted mb-0">Posts</p>
               </div>
     <div class="px-3 follow">
-        <p id="friends "class="mb-1 h5">1026</p>
+        <p id="friends" class="mb-1 h5">1026</p>
         <p class="small text-muted mb-0">Friends</p>
     
     </div>

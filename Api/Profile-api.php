@@ -8,9 +8,8 @@ $method= $_SERVER["REQUEST_METHOD"];
 $json = file_get_contents('php://input'); //to get the payload
 $input= json_decode($json); //converts into php object
 
-if($method === "GET")
+if($method === "POST")
 {
-
     $result = getProfileInformation($input->email);
 }
 
