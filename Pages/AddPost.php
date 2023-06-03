@@ -29,6 +29,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/button.css">
     <title>Document</title>
     <style>
     body {
@@ -95,7 +96,17 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
         background-color: #6c00ff;
         border: none;
     }
+   
     .btn-primary:hover {
+        background: linear-gradient(135deg, #ff00ff,#6c00ff );    
+
+    }
+    .pre-primary {
+        background-color: #6c00ff;
+        border: none;
+    }
+   
+    .pre-primary:hover {
         background: linear-gradient(135deg, #ff00ff,#6c00ff );    
 
     }
@@ -116,9 +127,26 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 .icons img:last-child {
   margin-right: -10px; /* Son resimden sonra boşluk olmasını engeller */
 }
+
     </style>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" style="margin-left:10px;" href="#">Crimson</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="Feed.php">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="profile.php">Profile</a>
+            </li>
+            </ul>
+        </div>
+        </nav>
     <div class="h-100 gradient-custom-2">
         <div class="main">
             <br><br><br>
@@ -144,6 +172,8 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
                     <img src="../img/selfies.png" alt="">
                 </div>
             </div>
+            
+    
             </form>
         </div>
     </div>

@@ -98,6 +98,9 @@ function removeFriend($userEmail, $friendEmail)
     $query = "DELETE FROM friends where userEmail = ? AND FriendEmail = ?";
     $record = $db->prepare($query);
     $record->execute([$userEmail, $friendEmail]);
+    $query = "DELETE FROM friends where FriendEmail = ? AND userEmail = ?";
+    $record = $db->prepare($query);
+    $record->execute([$friendEmail, $userEmail]);
     $query = "INSERT INTO notifications (fromUserEmail, toUserEmail, content) VALUES (?,?,?)";
     $record = $db->prepare($query);
     $record->execute([$userEmail, $friendEmail, "removed you as a friend."]);
@@ -105,5 +108,40 @@ function removeFriend($userEmail, $friendEmail)
     return ["error" => "API Error: Remove Friend Error"];
   }
 }
+
+function getProfileInformation($email)
+{
+  global $db;
+  try{
+
+    //getting friend Numbers
+    $query = "SELECT * FROM friends WHERE userEmail = ?";
+    $record = $db->prepare($query);
+    $record->execute([$email]);
+    $friendsArrayCount = $record->rowCount();
+
+
+    //getting username for the posts
+    $query = "SELECT * FROM users WHERE email = ?";
+    $record = $db->prepare($query);
+    $record->execute([$email]);
+    $username = $record->fetch(PDO::FETCH_ASSOC)["username"];
+ 
+    //getting post numbers
+    $query = "SELECT * FROM posts WHERE username = ?";
+    $record = $db->prepare($query);
+    $record->execute([$username]);
+    $postsCount= $record->rowCount();
+
+    return ["Friends" => $friendsArrayCount, "postsCount" => $postsCount];
+
+
+  }catch(PDOEXCEPTION $e)
+  {
+    return ["error" => "API Error: Update Profile Error"];
+
+  }
+}
+
 
 ?>

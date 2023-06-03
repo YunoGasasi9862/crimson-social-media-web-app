@@ -3,8 +3,7 @@ if (session_id() == '') {
   session_start();
 }
 
-$user = $_SESSION['User']['username'];
-$email = $_SESSION['User']['email'];
+$user = $_SESSION['User'];
 include "../Classes/post.php";
 include "../Classes/user.php";
 include "../Classes/notification.php";
@@ -20,12 +19,10 @@ $friends = Friends::getFriends($email); //returns all the friends
 $usernames = Friends::fetchUsernames($friends); //returns all the emails of the friends
 $usernames = array_filter($usernames, "filterCurrent");
 $friendsUsers = array();
-foreach ($usernames as $username) {
-  array_push($friendsUsers, User::get_user($username));
+foreach ($friends as $friend) {
+  array_push($friendsUsers, User::get_user_by_email($friend["FriendEmail"]));
 }
-
 $usersToShow = array();
-
 foreach ($friendsUsers as $friend) {
   if ($friend) {
     $usersToShow[] = $friend;
@@ -67,6 +64,22 @@ $notifications = Notifications::getNotifications($email);
 </head>
 
 <body>
+        <nav class="navbar navbar-expand-lg navbar-light">
+              <a class="navbar-brand" style="margin-left:10px;" href="#">Crimson</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                  <ul class="navbar-nav">
+                  <li class="nav-item active">
+                      <a class="nav-link" href="Feed.php">Home</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="profile.php">Profile</a>
+                  </li>
+                  </ul>
+              </div>
+              </nav>
   <div class="h-100 gradient-custom-2 ">
     <div class="main">
       <?php include "FeedNavigation.php" ?>
@@ -125,7 +138,9 @@ $notifications = Notifications::getNotifications($email);
       }
       ?>
 
+
     </div>
+
   </div>
   <script>
     localStorage.setItem("username",

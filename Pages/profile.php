@@ -19,6 +19,11 @@ $profile=$user["profile"];
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/profile.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+    integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="../JS/profile.js"></script>
+
     <title>Document</title>
 </head>
 
@@ -50,18 +55,13 @@ $profile=$user["profile"];
           <div class="p-4 text-black" style="background-color: #f8f9fa;">
             <div class="d-flex justify-content-end text-center py-1">
               <div>
-                <p class="mb-1 h5">253</p>
-                <p class="small text-muted mb-0">Photos</p>
+                <p id="posts" class="mb-1 h5">253</p>
+                <p class="small text-muted mb-0">Posts</p>
               </div>
     <div class="px-3 follow">
-        <p class="mb-1 h5">1026</p>
-        <p class="small text-muted mb-0">Followers</p>
+        <p id="friends" class="mb-1 h5">1026</p>
+        <p class="small text-muted mb-0">Friends</p>
     
-    </div>
-    <div class="follow">
-        <p class="mb-1 h5">478</p>
-        <p class="small text-muted mb-0">Following</p>
-      
     </div>
           </div>
           <div class="submain" style="width: 18rem;">
