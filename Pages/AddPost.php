@@ -95,7 +95,17 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
         background-color: #6c00ff;
         border: none;
     }
+   
     .btn-primary:hover {
+        background: linear-gradient(135deg, #ff00ff,#6c00ff );    
+
+    }
+    .pre-primary {
+        background-color: #6c00ff;
+        border: none;
+    }
+   
+    .pre-primary:hover {
         background: linear-gradient(135deg, #ff00ff,#6c00ff );    
 
     }
@@ -116,6 +126,32 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 .icons img:last-child {
   margin-right: -10px; /* Son resimden sonra boşluk olmasını engeller */
 }
+.pre-button {
+    background-color: #6c00ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-left: 85px;
+    margin-top:15px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 10px #37268E;
+   
+  }
+  
+
+  .pre-button:hover {
+    background: linear-gradient(135deg, #ff00ff, #6c00ff);
+    color: white;
+    box-shadow: 0px 0px 15px #5B3DA8;
+  }
+
+  .pre-button:active {
+    background-color: #37268E;
+    box-shadow: none;
+  }
+
+
     </style>
 </head>
 <body>
@@ -144,6 +180,10 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
                     <img src="../img/selfies.png" alt="">
                 </div>
             </div>
+            
+
+                <button class=" pre-button">Previous</button>
+            
             </form>
         </div>
     </div>
