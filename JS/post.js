@@ -96,9 +96,9 @@ function getComments()
       contentType: "application/json",
       success: function(data)
       {
-         console.log(data);
          for(let i=0; i<data.length; i++)
          {
+            let newDate= extractDate(data[i].date);
             let postid= data[i].postid;
             let profilename= localStorage.getItem("profile"); 
 
@@ -112,7 +112,7 @@ function getComments()
                   <h6 class="fw-bold mb-1">${data[i].username}</h6>
                   <div class="d-flex align-items-center mb-3">
                      <p class="mb-0">
-                     March 24, 2021
+                     ${newDate}
                      </p>
                   </div>
                   <p class="mb-0">
@@ -133,6 +133,19 @@ function getComments()
       }
 
    })
+}
+
+function extractDate(date)
+{
+   const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+   ];
+   const Time= new Date(date);
+   const year= Time.getFullYear();
+   const month= Time.getMonth();
+   const day= Time.getDate();
+
+   return `${day} ${monthNames[month]}, ${year}`;
 }
 
 function findparent(object)  //helper function to find the parent

@@ -68,9 +68,10 @@ function insertIntoComments($username, $postid, $comment)
 {
   global $db;
   try {
-    $query = "INSERT INTO comments (username, postid, comment) VALUES (?,?,?)";
+    $query = "INSERT INTO comments (username, postid, comment, date) VALUES (?,?,?,?)";
     $record = $db->prepare($query);
-    $record->execute([$username, $postid, $comment]);
+
+    $record->execute([$username, $postid, $comment, date("Y-m-d H:i:s")]);
     return ["username" => $username, "postid" => $postid, "comment" => $comment];
 
   } catch (PDOEXCEPTION $e) {

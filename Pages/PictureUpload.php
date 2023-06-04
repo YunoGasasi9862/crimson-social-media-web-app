@@ -4,7 +4,7 @@ class PictureUpload   //pictureClass
 {
     public $filename = null ;
     public $error = null ;
-    const MAX_FILESIZE = 1024 * 1024 ; 
+    const MAX_FILESIZE = 5120 * 5120 ; 
 
     public function __construct($file, $uploadFolder) //foldername is the folder where the file will be uploaded
     {
