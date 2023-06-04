@@ -57,13 +57,13 @@ $postId=$row["postid"];
        
        
              <div class="likeclass small d-flex justify-content-start">
-              <a id="<?=$postId?>" style="text-decoration:none" href="#!" class="d-flex align-items-center me-3">
+              <a id="<?=$postId?>" style="text-decoration:none " href="#!" class="d-flex align-items-center me-3">
                 <i style="color:red" class="far fa-thumbs-up me-2"></i>
                 <p style="color:purple" class="mb-0">0</p>
               </a>
               <a  style="text-decoration:none"  href="#!" class="d-flex align-items-center me-3 comment">
                 <i  style="color:red" class="far fa-comment-dots me-2"></i>
-                <p style="color:purple" class="mb-0">Comment</p>
+                <p  style="color:purple" class="mb-0">Comment</p>
               </a>
             </div>
 

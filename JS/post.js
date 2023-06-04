@@ -25,7 +25,8 @@ $(function()
     let newLikes=parseInt($(this).find("p:first").text());
     newLikes++;
     let postId = parseInt($(this).attr("id"));
-    updateLikes(postId, newLikes, "Yes", "div.likeclass a:first-child");
+    $(this).find("p:first").attr("class", postId).addClass("mb-0");
+    updateLikes(postId, newLikes, "Yes");
      
   })
 
@@ -46,6 +47,8 @@ $(function()
 
 function addCommentPostAjax(username, postid, comment, parent, profilename)
 {
+   date= new Date();
+   date=extractDate(date);
    $.ajax({
       type: "POST",
       url: apiURL2,
@@ -66,7 +69,7 @@ function addCommentPostAjax(username, postid, comment, parent, profilename)
              <h6 class="fw-bold mb-1">${data.username}</h6>
              <div class="d-flex align-items-center mb-3">
                <p class="mb-0">
-                 March 24, 2021
+                 ${date}
                </p>
              </div>
              <p class="mb-0">
@@ -99,6 +102,7 @@ function getComments()
          for(let i=0; i<data.length; i++)
          {
             let newDate= extractDate(data[i].date);
+            console.log(newDate);
             let postid= data[i].postid;
             let profilename= localStorage.getItem("profile"); 
 
@@ -158,7 +162,7 @@ function findparent(object)  //helper function to find the parent
    return object;
 }
 
-function HelperUpdateLikes(username, postId, YesNo, newLikes, selector)
+function HelperUpdateLikes(username, postId, YesNo, newLikes)
 {
    $.ajax({
       type: "POST",
@@ -173,12 +177,13 @@ function HelperUpdateLikes(username, postId, YesNo, newLikes, selector)
             console.log(data.error);
             if(data.YesNo=="Yes")
             {
-               RemoveLikes(postId, username, newLikes-2, selector);
+               RemoveLikes(postId, username, newLikes-2);
             }
          
          }else
          {
-            $(`${selector}`).find("p").text(newLikes);
+            
+            $(`p.${postId}`).text(newLikes);
          }
        
       },
@@ -190,7 +195,7 @@ function HelperUpdateLikes(username, postId, YesNo, newLikes, selector)
    })
 }
 
-function RemoveLikes(postId, username, newLikes, selector)
+function RemoveLikes(postId, username, newLikes)
 {
 
    $.ajax({
@@ -200,7 +205,7 @@ function RemoveLikes(postId, username, newLikes, selector)
       contentType: "application/json",
       success: function(data)
       {       
-         $(`${selector}`).find("p").text(data.newLikes);
+         $(`p.${postId}`).text(data.newLikes);
 
       },
       error: function()
@@ -233,7 +238,7 @@ function getLikes()
    })
 }
 
-function updateLikes(postId, newLikes, YesNo, selector)
+function updateLikes(postId, newLikes, YesNo)
 {
    $.ajax({
       type: "PUT",
@@ -244,7 +249,7 @@ function updateLikes(postId, newLikes, YesNo, selector)
       {
        console.log(data);
        let username= localStorage.getItem("username");
-       HelperUpdateLikes(username, postId, YesNo, data.newLikes, selector);  
+       HelperUpdateLikes(username, postId, YesNo, data.newLikes);  
     
       },
       error: function()
