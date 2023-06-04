@@ -22,10 +22,10 @@ $(function()
   $("div.likeclass a:first-child").click(function()
   {
 
-    let newLikes=parseInt($(this).find("p").text());
+    let newLikes=parseInt($(this).find("p:first").text());
     newLikes++;
     let postId = parseInt($(this).attr("id"));
-    updateLikes(postId, newLikes, "Yes");
+    updateLikes(postId, newLikes, "Yes", "div.likeclass a:first-child");
      
   })
 
@@ -158,7 +158,7 @@ function findparent(object)  //helper function to find the parent
    return object;
 }
 
-function HelperUpdateLikes(username, postId, YesNo, newLikes)
+function HelperUpdateLikes(username, postId, YesNo, newLikes, selector)
 {
    $.ajax({
       type: "POST",
@@ -173,12 +173,12 @@ function HelperUpdateLikes(username, postId, YesNo, newLikes)
             console.log(data.error);
             if(data.YesNo=="Yes")
             {
-               RemoveLikes(postId, username, newLikes-2);
+               RemoveLikes(postId, username, newLikes-2, selector);
             }
          
          }else
          {
-            $(`#${postId}`).find("p").text(newLikes);
+            $(`${selector}`).find("p").text(newLikes);
          }
        
       },
@@ -190,7 +190,7 @@ function HelperUpdateLikes(username, postId, YesNo, newLikes)
    })
 }
 
-function RemoveLikes(postId, username, newLikes)
+function RemoveLikes(postId, username, newLikes, selector)
 {
 
    $.ajax({
@@ -200,7 +200,7 @@ function RemoveLikes(postId, username, newLikes)
       contentType: "application/json",
       success: function(data)
       {       
-         $(`#${postId}`).find("p").text(data.newLikes);
+         $(`${selector}`).find("p").text(data.newLikes);
 
       },
       error: function()
@@ -233,7 +233,7 @@ function getLikes()
    })
 }
 
-function updateLikes(postId, newLikes, YesNo)
+function updateLikes(postId, newLikes, YesNo, selector)
 {
    $.ajax({
       type: "PUT",
@@ -244,7 +244,7 @@ function updateLikes(postId, newLikes, YesNo)
       {
        console.log(data);
        let username= localStorage.getItem("username");
-       HelperUpdateLikes(username, postId, YesNo, data.newLikes);  
+       HelperUpdateLikes(username, postId, YesNo, data.newLikes, selector);  
     
       },
       error: function()
