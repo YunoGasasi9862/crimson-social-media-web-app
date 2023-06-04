@@ -5,8 +5,10 @@ class Post{
         $db=new PDO(DSN, USER, PASS);
         $error = "";
         if(!empty($data['description'])){
+            $data=Sanitize::sqlSanitize($data);
             $description= $data['description'];
             $postid=Post::create_postid();
+            $username=Sanitize::sqlSanitize($username);
             $statement=$db->prepare ("INSERT INTO posts (postid,username,post,image,comments, likes, date) VALUES (?,?,?,?,?,?,?)"); //you cant insert partial data, you have to give all the fields
             if($file!=null)
             {
@@ -23,6 +25,7 @@ class Post{
     }
     public static function get_posts($username){
         $db=new PDO(DSN, USER, PASS);
+        $username=Sanitize::sqlSanitize($username);
         $query="SELECT * FROM posts where username=?";
         $record=$db->prepare($query); 
         $record->execute([$username]);  

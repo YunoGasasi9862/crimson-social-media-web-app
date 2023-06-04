@@ -1,15 +1,18 @@
 <?php
 require_once "../scripts/config.php";
 require_once "user.php";
+require_once "sanitize.php";
 if (session_id() == '') {
     session_start();
 }
+
 
 class Friends
 {
 
     public static function getFriends($email) //current Email
     {
+        $email=Sanitize::sqlSanitize($email);
         $db = new PDO(DSN, USER, PASS);
         $db = $db->prepare("SELECT * FROM friends WHERE userEmail=?");
         $db->execute([$email]);
@@ -18,6 +21,7 @@ class Friends
 
     public static function getFriendMail($email) //current Email
     {
+        $email=Sanitize::sqlSanitize($email);
         $db = new PDO(DSN, USER, PASS);
         $db = $db->prepare("SELECT FriendEmail FROM friends WHERE userEmail=?");
         $db->execute([$email]);
@@ -26,6 +30,7 @@ class Friends
 
     public static function UserNameHelper($email)
     {
+        $email=Sanitize::sqlSanitize($email);
         $db = new PDO(DSN, USER, PASS);
         $db = $db->prepare("SELECT * FROM users WHERE email=?");
         $db->execute([$email]);
@@ -56,6 +61,7 @@ class Friends
     {
         try{
             $usermail = $_SESSION['User']["email"];
+            $usermail=Sanitize::sqlSanitize($usermail);
             $friend = USER::get_user($friendname);
             $friendmail = $friend["email"];
             $db = new PDO(DSN, USER, PASS);
@@ -70,6 +76,8 @@ class Friends
     public static function removeFriend($friendname)
     {
         $usermail = $_SESSION['User']["email"];
+        $usermail=Sanitize::sqlSanitize($usermail);
+        $friendname=Sanitize::sqlSanitize($friendname);
         $friend = USER::get_user($friendname);
         $friendmail = $friend["email"];
         $db = new PDO(DSN, USER, PASS);
@@ -81,10 +89,13 @@ class Friends
     public static function isFriend($friendmail)
     {
         $usermail = $_SESSION['User']["email"];
+        $usermail=Sanitize::sqlSanitize($usermail);
         $db = new PDO(DSN, USER, PASS);
         $db = $db->prepare("SELECT * FROM friends WHERE userEmail=? AND FriendEmail=?");
         $db->execute([$friendmail, $usermail]);
         $row = $db->fetch(PDO::FETCH_ASSOC);
         return !(!$row);
     }
+
+  
 }
