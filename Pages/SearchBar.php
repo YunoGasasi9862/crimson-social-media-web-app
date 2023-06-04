@@ -69,13 +69,10 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" href="Feed.php">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Feed</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Profile</a>
+                <a class="nav-link" href="profile.php">Profile</a>
             </li>
             </ul>
         </div>

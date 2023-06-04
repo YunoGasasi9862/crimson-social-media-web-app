@@ -1,5 +1,6 @@
 <?php
 require_once "../scripts/config.php";
+require_once "sanitize.php";
 class Post{
     public static function create_post($username, $file, $data){
         $db=new PDO(DSN, USER, PASS);

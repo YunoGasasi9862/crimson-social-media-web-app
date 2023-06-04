@@ -1,5 +1,6 @@
 <?php
 require_once "../scripts/config.php";
+require_once "sanitize.php";
 require_once "user.php";
 if (session_id() == '') {session_start();}
 

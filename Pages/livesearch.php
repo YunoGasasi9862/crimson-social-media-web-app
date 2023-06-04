@@ -10,7 +10,6 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST["type"])){
     $pemail= USER::get_user($_POST["username"])["email"];
     if($_POST["type"]==="add"){
         Notifications::setNotifications($_POST["username"],true);
-        Friends::addFriend($_POST["username"]);
     }
     elseif($_POST["type"]==="remove"){
         Notifications::setNotifications($_POST["username"],false);
