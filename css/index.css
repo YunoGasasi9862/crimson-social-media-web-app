@@ -1,4 +1,6 @@
 .bg
 {
     background-image: url(../bgs/img4.jpg);
+    background-size: cover;
+    background-attachment: fixed;
 }

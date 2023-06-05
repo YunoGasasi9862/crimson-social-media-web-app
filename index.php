@@ -77,24 +77,27 @@ if (!empty($_POST)) {
   <script src="JS/prevent.js"></script>
 
   <style>
+  
   ::-webkit-scrollbar {
-    width: 2em;
+    width: .5em;
   }
 
   ::-webkit-scrollbar-track {
-    background: hsl(120, 75%, 0%);
+    background: hsl(348, 75%, 30%);
   }
+  
+ 
   </style>
 
 </head>
 
-<body>
+<body >
   <section class="vh-100 bg-image bg">
     <div class="mask d-flex align-items-center h-100 gradient-custom-3">
       <div class="container h-100 ">
-        <div class="row d-flex justify-content-center align-items-center h-100 ">
+        <div class="row d-flex justify-content-center align-items-center h-100 " >
           <div class="col-12 col-md-9 col-lg-7 col-xl-6 " style="width: 800px;">
-            <div class="card " style="border-radius: 15px; height: 600px; overflow: scroll;">
+            <div id="scr" class="card " style="overflow-y: scroll;height:1000px;">
               <div class="card-body p-5 ">
                 <h2 class="text-uppercase text-center mb-5">Welcome to Crimson!</h2>
                 <form action="" method="post" enctype="multipart/form-data">
@@ -201,5 +204,22 @@ if (!empty($_POST)) {
   </section>
 
 </body>
+
+  <script>
+         $(window).resize(function(){
+         
+            height=$(window).height();
+            console.log(height);
+            if(height<600)
+            {
+              $("#scr").css("height","600");
+            }else
+            {
+              $("#scr").css("height","1000");
+
+            }
+      });
+
+  </script>
 
 </html>
