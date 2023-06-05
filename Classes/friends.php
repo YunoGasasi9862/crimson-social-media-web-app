@@ -57,17 +57,17 @@ class Friends
         return $Usernames;
     }
 
-    public static function addFriend($friendname)
+ 
+    public static function addFriend($friendname, $usermail)
     {
         try{
-            $usermail = $_SESSION['User']["email"];
-            $usermail=Sanitize::sqlSanitize($usermail);
             $friend = USER::get_user($friendname);
             $friendmail = $friend["email"];
             $db = new PDO(DSN, USER, PASS);
             $db = $db->prepare("INSERT INTO friends (userEmail, FriendEmail) VALUES (?, ?)");
             $db->execute([$usermail, $friendmail]);
-
+            $db->execute([$friendmail, $usermail]);
+            return ["success" => "Friend Added"];
         }catch (PDOEXCEPTION $e) {
             return ["error" => "API Error: Add Friend Error"];
         }

@@ -12,7 +12,7 @@ $input = json_decode($json); //converts into php object
 $result =[];
 if ($method === "POST") {
     $fromUser= User::get_user_by_email($input->from);
-    $result = Friends::addFriend($fromUser["username"]);
-    Notifications::removeNotifications($input->from);
+    $result = Friends::addFriend($fromUser["username"], $input->usermail);
+    Notifications::removeNotifications($input->from, $input->usermail);
 }
 echo json_encode($result);

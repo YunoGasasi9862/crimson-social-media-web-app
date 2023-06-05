@@ -32,9 +32,9 @@ class Notifications
         $db->execute([$fromUserEmail, $toUserEmail, $content]);
     }
     
-    public static function removeNotifications($fromemail) {
+    public static function removeNotifications($fromemail, $usermail) {
     
-        $usermail = $_SESSION['User']["email"];
+    
         $usermail=Sanitize::sqlSanitize($usermail);
         $fromemail=Sanitize::sqlSanitize($fromemail);
         $db = new PDO(DSN, USER, PASS);

@@ -107,7 +107,7 @@ foreach ($friendsUsers as $friend) {
             <a href='../Pages/profile.php?profile=<?= $username ?>' style='text-decoration: none; color:inherit'><?= $username ?></a><br>
         </div>
         <div style="margin-left: auto;">
-            <button onclick="removeFriend('<?=$email?>')" class="accept-button">Remove</button>
+            <button onclick="removeFriend('<?=$email?>')" class="accept-button <?=$email?>">Remove</button>
         </div>
         </li>
     <?php
@@ -135,13 +135,13 @@ foreach ($friendsUsers as $friend) {
         type: "DELETE",
         url: "../Api/RemoveFriend-api.php",
         data: JSON.stringify({
-          userEmail,
-          friendEmail
+          "userEmail": userEmail,
+           "friendEmail": friendEmail
         }),
         contentType: "application/json",
         success: function(data) {
           if (!data?.error) {
-            document.getElementById("fri-"+friendEmail).remove()
+            document.getElementById("fri"+friendEmail).remove();
           }
         },
         error: function(response) {
@@ -150,16 +150,18 @@ foreach ($friendsUsers as $friend) {
       })
     }
 
+  
+
     function acceptFriend(from) {
+      let usermail = localStorage.getItem("userEmail");
       $.ajax({
         type: "POST",
         url: "../Api/AcceptFriend-api.php",
-        data: JSON.stringify({from}),
+        data: JSON.stringify({from, usermail}),
         contentType: "application/json",
-        success: function(data) {
-          if (!data?.error) {
-            document.getElementById("not-"+from).remove()
-          }
+        success: function(data) {     
+            user="not-"+from;
+            document.getElementById(user).remove();
         },
         error: function(response) {
           console.log(response);
