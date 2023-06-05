@@ -1,6 +1,5 @@
 <?php
 require_once "../scripts/config.php";
-require "../Classes/Sanitize.php";
 
 try {
   $db = new PDO(DSN, USER, PASS);
@@ -21,8 +20,6 @@ function updateLikes($postId, $newLikes)
 {
   global $db;
   try {
-    $postId= Sanitize::sanitize($postId);
-    $newLikes= Sanitize::sanitize($newLikes);
     $query = "update posts set likes = ? where postid = ?";
     $record = $db->prepare($query);
     $record->execute([$newLikes, $postId]);
@@ -38,9 +35,6 @@ function insertLikesIntoULikesTable($username, $postId, $YesNo)
 {
   global $db;
   try {
-    $postId= Sanitize::sanitize($postId);
-    $username= Sanitize::sanitize($username);
-    $YesNo= Sanitize::sanitize($YesNo);
     $query = "INSERT INTO luikes (username, postid, liked) VALUES (?,?,?)";
     $record = $db->prepare($query);
     $record->execute([$username, $postId, $YesNo]);
@@ -56,9 +50,6 @@ function removeLikes($postId, $username, $newLikes)
 {
   global $db;
   try {
-    $postId= Sanitize::sanitize($postId);
-    $username= Sanitize::sanitize($username);
-    $newLikes= Sanitize::sanitize($newLikes);
     $query = "DELETE FROM luikes WHERE username=? AND postid=?";
     $record = $db->prepare($query);
     $record->execute([$username, $postId]);
@@ -77,9 +68,6 @@ function insertIntoComments($username, $postid, $comment)
 {
   global $db;
   try {
-    $username= Sanitize::sanitize($username);
-    $postid= Sanitize::sanitize($postid);
-    $comment= Sanitize::sanitize($comment);
     $query = "INSERT INTO comments (username, postid, comment, date) VALUES (?,?,?,?)";
     $record = $db->prepare($query);
 
@@ -108,8 +96,6 @@ function removeFriend($userEmail, $friendEmail)
 {
   global $db;
   try {
-    $userEmail= Sanitize::sanitize($userEmail);
-    $friendEmail= Sanitize::sanitize($friendEmail);
     $query = "DELETE FROM friends where userEmail = ? AND FriendEmail = ?";
     $record = $db->prepare($query);
     $record->execute([$userEmail, $friendEmail]);
@@ -132,7 +118,6 @@ function getProfileInformation($email)
   global $db;
   try{
 
-    $email= Sanitize::sanitize($email);
     //getting friend Numbers
     $query = "SELECT * FROM friends WHERE userEmail = ?";
     $record = $db->prepare($query);
