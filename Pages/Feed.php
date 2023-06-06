@@ -51,7 +51,7 @@ function filterCurrent($username)
 </head>
 
 <body>
-        <nav class="navbar navbar-expand-lg navbar-light">
+        <nav class="navbar navbar-expand-lg navbar-light" style="height: 60px !important;">
               <a class="navbar-brand" style="margin-left:10px;" href="#">Crimson</a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
@@ -66,7 +66,7 @@ function filterCurrent($username)
                   </li>
                   </ul>
               </div>
-              </nav>
+          </nav>
   <div class="h-100 gradient-custom-2 ">
     <div class="main">
       <?php include "FeedNavigation.php" ?>
