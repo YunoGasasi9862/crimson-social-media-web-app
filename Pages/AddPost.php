@@ -9,8 +9,11 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 
     extract($_POST);
     extract($_FILES);
-    $filePath = new PictureUpload("postimage", "../PostImages"); //they both have to be string
-    $result= Post::create_post($username,$filePath->filename, $_POST);
+
+
+    $filePath = new PictureUpload("postimage", "../PostImages"); 
+
+    $result= Post::create_post($username,$filePath->postName, $_POST);
     
     if($result==""){
         header("Location: Feed.php");
