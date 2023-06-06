@@ -102,7 +102,6 @@ function getComments()
          for(let i=0; i<data.length; i++)
          {
             let newDate= extractDate(data[i].date);
-            console.log(newDate);
             let postid= data[i].postid;
             let profilename= localStorage.getItem("profile"); 
 
@@ -174,7 +173,6 @@ function HelperUpdateLikes(username, postId, YesNo, newLikes)
 
          if(data.error)
          {
-            console.log(data.error);
             if(data.YesNo=="Yes")
             {
                RemoveLikes(postId, username, newLikes-2);
@@ -247,7 +245,6 @@ function updateLikes(postId, newLikes, YesNo)
       contentType: "application/json",
       success: function(data)
       {
-       console.log(data);
        let username= localStorage.getItem("username");
        HelperUpdateLikes(username, postId, YesNo, data.newLikes);  
     
