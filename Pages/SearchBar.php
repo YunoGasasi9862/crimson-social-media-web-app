@@ -18,11 +18,9 @@
         .container{
             width: 350px; 
             margin: auto;
-            padding-top: 50px;
         }
         .main {
         background-color: white;
-        border-radius: 2%;
         width: 800px;
         margin: auto;
         min-height: 800px;
@@ -61,7 +59,7 @@
     </style>
 </head>
 <body>
-        <nav class="navbar navbar-expand-lg navbar-light">
+        <nav style="margin-bottom: 5px;" class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" style="margin-left:10px;" href="#">Crimson</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

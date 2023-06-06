@@ -17,7 +17,7 @@ foreach ($friendsUsers as $friend) {
 }
 
 ?>
-<nav>
+<nav style="margin-bottom: 20px;">
     <button type="submit" id="camera" style="border: none; background: none; padding: 0;">
         <div class="nav-item">
             <a href="./AddPost.php"><img src="../img/camara-icon-21.png" alt="" id="camera"></a>
