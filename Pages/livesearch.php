@@ -55,6 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["input"])) {
                 $mail = $user["email"];
                 $profile = $user["profile"];
 
+                $profile= $profile? $profile : "home.png";
                 echo "<li class='list-group-item result'>
                 <div class='profile'><a href='../Pages/profile.php?profile=$username' >
                 <img src='../PPimages/$profile'></img></a>

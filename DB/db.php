@@ -107,8 +107,9 @@ function removeFriend($userEmail, $friendEmail)
     $record->execute([$userEmail, $friendEmail]);
     $query = "INSERT INTO notifications (fromUserEmail, toUserEmail, content) VALUES (?,?,?)";
     $record = $db->prepare($query);
-    $record->execute([$userEmail, $friendEmail, false]);
+    $record->execute([$userEmail, $friendEmail, 0]);
   } catch (PDOEXCEPTION $e) {
+    var_dump($e);
     return ["error" => "API Error: Remove Friend Error"];
   }
 }
@@ -116,6 +117,7 @@ function removeFriend($userEmail, $friendEmail)
 function getProfileInformation($email)
 {
   global $db;
+  sleep(.5);
   try{
 
     //getting friend Numbers

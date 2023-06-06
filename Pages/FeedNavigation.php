@@ -61,8 +61,8 @@ foreach ($friendsUsers as $friend) {
               <li class='profDiv' id="not-<?=$from?>">
                   <div style="margin-right: 5px;"><img src="../PPimages/<?= $fromUser["profile"]; ?>" class='profileImage'></img></div>
                   <div class='user-description'>
-                      <a href='../Pages/profile.php?profile=<?= $fromUser["username"] ?>' style='text-decoration: none; color:inherit'><?= $fromUser["name"] . " " . $fromUser["surname"] ?></a><br>
-                      <a href='../Pages/profile.php?profile=<?= $fromUser["username"] ?>' style='text-decoration: none; color:inherit'><?= $fromUser["username"] ?></a><br>
+                      <a href='#!' style='text-decoration: none; color:inherit'><?= $fromUser["name"] . " " . $fromUser["surname"] ?></a><br>
+                      <a href='#!' style='text-decoration: none; color:inherit'><?= $fromUser["username"] ?></a><br>
                   </div>
                   <div style="margin-left: auto;">
                       <button onclick="acceptFriend('<?=$from?>')" class="accept-button">Accept</button>
@@ -75,11 +75,11 @@ foreach ($friendsUsers as $friend) {
         <li class='profDiv' id="not-<?=$from?>">
         <div style="margin-right: 5px;"><img src="../PPimages/<?= $fromUser["profile"]; ?>" class='profileImage'></img></div>
         <div class='user-description'>
-            <a href='../Pages/profile.php?profile=<?= $fromUser["username"] ?>' style='text-decoration: none; color:inherit'><?= $fromUser["name"] . " " . $fromUser["surname"] ?></a><br>
-            <a href='../Pages/profile.php?profile=<?= $fromUser["username"] ?>' style='text-decoration: none; color:inherit'><?= $fromUser["username"] ?></a><br>
+            <a href='#!' style='text-decoration: none; color:inherit'><?= $fromUser["name"] . " " . $fromUser["surname"] ?></a><br>
+            <a href='#!' style='text-decoration: none; color:inherit'><?= $fromUser["username"] ?></a><br>
         </div>
         <div style="margin-left: auto;">
-            <p><b style="color:crimson">removed from friends</b></p>
+            <p><b style="color:crimson">removed you :(</b></p>
         </div>
         </li>
         <?php
@@ -103,8 +103,8 @@ foreach ($friendsUsers as $friend) {
         <li class='profDiv' id="fri-<?=$email?>">
         <div style="margin-right: 5px;" ><img src="../PPimages/<?=$picture?>" class='profileImage'></img></div>
         <div class='user-description'>
-            <a href='../Pages/profile.php?profile=<?= $username ?>' style='text-decoration: none; color:inherit'><?= $name . " " . $surname ?></a><br>
-            <a href='../Pages/profile.php?profile=<?= $username ?>' style='text-decoration: none; color:inherit'><?= $username ?></a><br>
+            <a href='#!' style='text-decoration: none; color:inherit'><?= $name . " " . $surname ?></a><br>
+            <a href='#!' style='text-decoration: none; color:inherit'><?= $username ?></a><br>
         </div>
         <div style="margin-left: auto;">
             <button onclick="removeFriend('<?=$email?>')" class="accept-button <?=$email?>">Remove</button>
@@ -140,8 +140,11 @@ foreach ($friendsUsers as $friend) {
         }),
         contentType: "application/json",
         success: function(data) {
+          console.log(data);
           if (!data?.error) {
-            document.getElementById("fri"+friendEmail).remove();
+            user="fri-"+friendEmail;
+            document.getElementById(user).remove();
+
           }
         },
         error: function(response) {
@@ -150,7 +153,6 @@ foreach ($friendsUsers as $friend) {
       })
     }
 
-  
 
     function acceptFriend(from) {
       let usermail = localStorage.getItem("userEmail");
