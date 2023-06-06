@@ -44,11 +44,9 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
     }
     .main {
         background-color: white;
-        border-radius: 2%;
         width: 800px;
         margin: auto;
         min-height: 800px;
-        padding: 30px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
     .card {
@@ -134,7 +132,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
     </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: white; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
         <a class="navbar-brand" style="margin-left:10px;" href="#">Crimson</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
