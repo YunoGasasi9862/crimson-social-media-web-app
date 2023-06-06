@@ -212,7 +212,15 @@ if (!empty($_POST)) {
             console.log(height);
             if(height<600)
             {
+              $("#scr").css("height","400");
+            }else if(height < 800)
+            {
+              $("#scr").css("height","500");
+
+            }else if(height <1000)
+            {
               $("#scr").css("height","600");
+
             }else
             {
               $("#scr").css("height","1000");
