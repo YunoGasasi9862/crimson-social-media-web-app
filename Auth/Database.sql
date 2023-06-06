@@ -69,6 +69,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `postid` varchar(100) NOT NULL,
   `comment` varchar(500)  ,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `profileimage` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
 
 PRIMARY KEY (`id`, `username`, `postid`, `date`)
 

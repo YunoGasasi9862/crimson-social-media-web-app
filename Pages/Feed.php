@@ -99,12 +99,7 @@ function filterCurrent($username)
     </div>
   </div>
 
-  <script>
-    localStorage.setItem("username",
-      '<?php echo $_SESSION['User']['username'] ?>'); //setting the username into localstorage
-    localStorage.setItem("userEmail",
-      '<?php echo $_SESSION['User']['email'] ?>');
-  </script>
+
 </body>
 
 </html>

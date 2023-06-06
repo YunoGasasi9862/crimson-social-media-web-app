@@ -64,7 +64,10 @@ if (!empty($_POST)) {
                   </div>
 
                   <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-danger btn-block btn-lg gradient-custom-4 text-body">Sign in</button>
+                    <button type="submit" class="btn btn-danger btn-block btn-lg gradient-custom-4 text-body text-white">Sign in</button>
+                  </div>
+                  <div class="d-flex justify-content-center ">
+                    <a href="../index.php" class="btn btn-primary btn-block btn-lg gradient-custom-4 text-body mt-3 text-white" >Register</a>
                   </div>
                 </form>
               </div>
@@ -80,6 +83,13 @@ if (!empty($_POST)) {
   </section>
 
 
+  <script type="text/javascript">
+
+  window.localStorage.clear();
+
+
+
+  </script>
 
 </body>
 

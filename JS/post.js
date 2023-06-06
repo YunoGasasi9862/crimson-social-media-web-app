@@ -38,21 +38,22 @@ $(function()
      $(parent).attr("id", postid);
      let comment= $(this).parent().prev().find("textarea").val();
      let username= localStorage.getItem("username");
-     let profilename= localStorage.getItem("profile");  
-     addCommentPostAjax(username, postid, comment, parent, profilename); //sends to the database
+     let profileimage= localStorage.getItem("profile");  
+     addCommentPostAjax(username, postid, comment, parent, profileimage); //sends to the database
 
   });
 
 });
 
-function addCommentPostAjax(username, postid, comment, parent, profilename)
+function addCommentPostAjax(username, postid, comment, parent, profileimage)
 {
+   pp=profileimage
    date= new Date();
    date=extractDate(date);
    $.ajax({
       type: "POST",
       url: apiURL2,
-      data: JSON.stringify({"username":username, "postid": postid, "comment": comment}),
+      data: JSON.stringify({"username":username, "postid": postid, "comment": comment, "pp": pp}),
       contentType: "application/json",
       success: function(data)
       {
@@ -63,7 +64,7 @@ function addCommentPostAjax(username, postid, comment, parent, profilename)
          <div class="card-body p-4">
          <div class="d-flex flex-start">
          <img style="width:50px; height:50px;" class="rounded-circle shadow-1-strong me-3"
-                    src="../PPimages/${profilename}" alt="avatar" width="60"
+                    src="../PPimages/${profileimage}" alt="avatar" width="60"
                     height="60" />
            <div>
              <h6 class="fw-bold mb-1">${data.username}</h6>
@@ -103,13 +104,12 @@ function getComments()
          {
             let newDate= extractDate(data[i].date);
             let postid= data[i].postid;
-            let profilename= localStorage.getItem("profile"); 
-
+            let profileimage= data[i].profileimage
               $(`#${postid}`).parent().next().append(`
                <div class="card-body p-4">
                <div class="d-flex flex-start">
                <img style="width:50px; height:50px;" class="rounded-circle shadow-1-strong me-3"
-                        src="../PPimages/${profilename}" alt="avatar" width="60"
+                        src="../PPimages/${profileimage}" alt="avatar" width="60"
                         height="60" />
                <div>
                   <h6 class="fw-bold mb-1">${data[i].username}</h6>

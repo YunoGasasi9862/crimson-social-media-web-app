@@ -16,7 +16,7 @@ if($method ==="GET")
 
 if($method === "POST")
 {
-    $result= insertIntoComments($input->username,$input->postid,$input->comment);
+    $result= insertIntoComments($input->username,$input->postid,$input->comment, $input->pp);
 }
 
 echo json_encode($result); //create json encoding

@@ -64,16 +64,14 @@ function removeLikes($postId, $username, $newLikes)
   }
 }
 
-function insertIntoComments($username, $postid, $comment)
+function insertIntoComments($username, $postid, $comment, $pp)
 {
   global $db;
   try {
-    $query = "INSERT INTO comments (username, postid, comment, date) VALUES (?,?,?,?)";
+    $query = "INSERT INTO comments (username, postid, comment, date, profileimage) VALUES (?,?,?,?,?)";
     $record = $db->prepare($query);
-
-    $record->execute([$username, $postid, $comment, date("Y-m-d H:i:s")]);
-    return ["username" => $username, "postid" => $postid, "comment" => $comment];
-
+    $record->execute([$username, $postid, $comment, date("Y-m-d H:i:s"), $pp]);
+    return ["username" => $username, "postid" => $postid, "comment" => $comment, "pp" => $pp];
   } catch (PDOEXCEPTION $e) {
     return ["error" => "API Error: Update Comment Error"];
   }
