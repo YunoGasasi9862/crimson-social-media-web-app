@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 
     $filePath = new PictureUpload("postimage", "../PostImages"); 
 
-    $result= Post::create_post($username,$filePath->postName, $_POST);
+    $result= Post::create_post($username,$filePath->filename, $_POST);
     
     if($result==""){
         header("Location: Feed.php");
