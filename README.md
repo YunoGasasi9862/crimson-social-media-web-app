@@ -39,8 +39,8 @@ Rename the config.php file to config.php.
 Open the config.php file in a text editor.
 Modify the database connection details to match your local setup:
 Update the DB_HOST to localhost.
-Update the DB_NAME to crimson.
-Update the DB_USER and DB_PASSWORD fields with your MySQL credentials if necessary.
+Update the USER to crimson.
+Update the USER and PASS fields with your MySQL credentials if necessary.
 Start the Application:
 
 Move the entire cloned repository folder (crimson-social-media-web-app) to the WAMP Server's document root directory. By default, it is located at C:\wamp64\www.
