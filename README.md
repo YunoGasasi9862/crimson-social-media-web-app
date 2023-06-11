@@ -43,7 +43,7 @@ Update the USER to crimson.
 Update the USER and PASS fields with your MySQL credentials if necessary.
 Start the Application:
 
-Move the entire cloned repository folder (crimson-social-media-web-app) to the WAMP Server's document root directory. By default, it is located at C:\wamp64\www.
+Move the entire cloned repository folder (crimson-social-media-web-app) to the WAMP Server's document root directory. By default, it is located at C:\wamp64\www\
 Open your web browser.
 Enter the following URL in the address bar: http://localhost/crimson-social-media-web-app.
 If everything is set up correctly, the "Crimson Social Media Web App" should now be running locally.
