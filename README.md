@@ -29,15 +29,17 @@ Database Setup:
 
 Open phpMyAdmin by clicking on the WAMP Server icon in the system tray, then selecting "phpMyAdmin."
 Create a new database named crimson.
-Import the SQL file included in the repository. Inside the repository folder, you should find a file named Auth.sql. Import this file into the crimson_social_media database using phpMyAdmin's import feature.
+Import the SQL file included in the repository. Inside the repository folder, you should find a file named Database.sql. Import this file into the crimson database using phpMyAdmin's import feature.
+Make sure the username is set as "root" and password is " " (empty), otherwise make necessary changes accordingly into the config file found in the project folder.
+
 Configure Application:
 
 In the cloned repository, navigate to the config directory.
-Rename the config.example.php file to config.php.
+Rename the config.php file to config.php.
 Open the config.php file in a text editor.
 Modify the database connection details to match your local setup:
 Update the DB_HOST to localhost.
-Update the DB_NAME to crimson_social_media.
+Update the DB_NAME to crimson.
 Update the DB_USER and DB_PASSWORD fields with your MySQL credentials if necessary.
 Start the Application:
 
